@@ -44,7 +44,7 @@ namespace thalbhet
                 {
                     dr.Close();
                     this.Hide();
-                    Registration home = new Registration();
+                    Newentry home = new Newentry();
                     home.ShowDialog();
                 }
                 else
@@ -58,6 +58,16 @@ namespace thalbhet
             {
                 MessageBox.Show("Please enter value in all field.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            txtpassword.Clear();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            txtusername.Clear();
         }
     }
 }
