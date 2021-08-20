@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -48,8 +48,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bunifu_UI_v1.5.3">
+      <HintPath>D:\Downloads\_Getintopc.com_Bunifu_UI_WinForms_1.11.5.1\Bunifu_UI_WinForms_1.11.5.1\Bunifu_UI_WinForms_1.11.5.1\Bunifu_UI_v1.5.3.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,6 +69,36 @@
     <Reference Include="TelerikCommon, Version=2019.2.618.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addnimit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addnimit.Designer.cs">
+      <DependentUpon>addnimit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="creditreport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="creditreport.Designer.cs">
+      <DependentUpon>creditreport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="debitreport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="debitreport.Designer.cs">
+      <DependentUpon>debitreport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form3.Designer.cs">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Newentry.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +119,32 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportoption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportoption.Designer.cs">
+      <DependentUpon>Reportoption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="satyaadiDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>satyaadiDataSet.xsd</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="addnimit.resx">
+      <DependentUpon>addnimit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="creditreport.resx">
+      <DependentUpon>creditreport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="debitreport.resx">
+      <DependentUpon>debitreport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form3.resx">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Newentry.resx">
       <DependentUpon>Newentry.cs</DependentUpon>
     </EmbeddedResource>
@@ -104,6 +165,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reportoption.resx">
+      <DependentUpon>Reportoption.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -113,17 +177,48 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="satyaadiDataSet.xsc">
+      <DependentUpon>satyaadiDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="satyaadiDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>satyaadiDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="satyaadiDataSet.xss">
+      <DependentUpon>satyaadiDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="thal bhet logo.jpg" />
+    <None Include="[Downloader.la]-611e51c852218.jpg" />
+    <None Include="toppng.com-login-14-icons-login-line-icon-529x505.jpg" />
+    <None Include="Resources\33660-200.png" />
+    <None Include="avatardefault_92824.png" />
+    <None Include="Resources\108101003-password-vector-icon-isolated-on-transparent-background-password-logo-concept.jpg" />
+    <None Include="Resources\55405628_406122090244553_6060813567555272704_n.jpg" />
+    <None Include="108101003-password-vector-icon-isolated-on-transparent-background-password-logo-concept.jpg" />
+    <None Include="33660-200.png" />
+    <None Include="55405628_406122090244553_6060813567555272704_n.jpg" />
     <Content Include="Database1.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Database1_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>Database1.mdf</DependentUpon>
+    </Content>
+    <None Include="Resources\[Downloader.la]-611e51c852218.jpg" />
+    <None Include="png-transparent-computer-icons-password-strength-padlock-text-technic-symbol-thumbnail.png" />
+    <None Include="Desktop-Wallpaper-9 cropped.jpg" />
+    <Content Include="satyaadi.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="satyaadi_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>satyaadi.mdf</DependentUpon>
     </Content>
     <None Include="Resources\Desktop-Wallpaper-9 cropped.jpg" />
     <None Include="Resources\thal bhet logo.jpg" />

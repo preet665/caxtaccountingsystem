@@ -63,6 +63,57 @@ namespace thalbhet.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _108101003_password_vector_icon_isolated_on_transparent_background_password_logo_concept {
+            get {
+                object obj = ResourceManager.GetObject("108101003-password-vector-icon-isolated-on-transparent-background-password-logo-c" +
+                        "oncept", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _33660_200 {
+            get {
+                object obj = ResourceManager.GetObject("33660-200", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _55405628_406122090244553_6060813567555272704_n {
+            get {
+                object obj = ResourceManager.GetObject("55405628_406122090244553_6060813567555272704_n", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _Downloader_la__611e51c852218 {
+            get {
+                object obj = ResourceManager.GetObject("[Downloader.la]-611e51c852218", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap avatardefault_92824 {
+            get {
+                object obj = ResourceManager.GetObject("avatardefault_92824", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Desktop_Wallpaper_9_cropped {
             get {
                 object obj = ResourceManager.GetObject("Desktop-Wallpaper-9 cropped", resourceCulture);
@@ -73,9 +124,40 @@ namespace thalbhet.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap png_transparent_computer_icons_password_strength_padlock_text_technic_symbol_thumbnail {
+            get {
+                object obj = ResourceManager.GetObject("png-transparent-computer-icons-password-strength-padlock-text-technic-symbol-thum" +
+                        "bnail", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap thal_bhet_logo {
             get {
                 object obj = ResourceManager.GetObject("thal bhet logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap toppng_com_login_14_icons_login_line_icon_529x505 {
+            get {
+                object obj = ResourceManager.GetObject("toppng.com-login-14-icons-login-line-icon-529x505", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap toppng1 {
+            get {
+                object obj = ResourceManager.GetObject("toppng1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
