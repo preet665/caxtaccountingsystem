@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS2001: Source file 'E:\thal bhet new\thalbhet\newentrydbDataSet1.Designer.cs' could not be found.
+dotnet_diagnostic.CS2001.severity = none

@@ -63,10 +63,9 @@ namespace thalbhet.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _108101003_password_vector_icon_isolated_on_transparent_background_password_logo_concept {
+        internal static System.Drawing.Bitmap _1155205__1_ {
             get {
-                object obj = ResourceManager.GetObject("108101003-password-vector-icon-isolated-on-transparent-background-password-logo-c" +
-                        "oncept", resourceCulture);
+                object obj = ResourceManager.GetObject("1155205 (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -74,9 +73,9 @@ namespace thalbhet.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _33660_200 {
+        internal static System.Drawing.Bitmap _493_4933495_close_button_png_transparent_image_close_icon_png {
             get {
-                object obj = ResourceManager.GetObject("33660-200", resourceCulture);
+                object obj = ResourceManager.GetObject("493-4933495_close-button-png-transparent-image-close-icon-png", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -84,19 +83,9 @@ namespace thalbhet.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _55405628_406122090244553_6060813567555272704_n {
+        internal static System.Drawing.Bitmap avatar_generic_118 {
             get {
-                object obj = ResourceManager.GetObject("55405628_406122090244553_6060813567555272704_n", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _Downloader_la__611e51c852218 {
-            get {
-                object obj = ResourceManager.GetObject("[Downloader.la]-611e51c852218", resourceCulture);
+                object obj = ResourceManager.GetObject("avatar_generic_118", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -114,9 +103,9 @@ namespace thalbhet.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Desktop_Wallpaper_9_cropped {
+        internal static System.Drawing.Bitmap Chesta__223_ {
             get {
-                object obj = ResourceManager.GetObject("Desktop-Wallpaper-9 cropped", resourceCulture);
+                object obj = ResourceManager.GetObject("Chesta (223)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -124,10 +113,9 @@ namespace thalbhet.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap png_transparent_computer_icons_password_strength_padlock_text_technic_symbol_thumbnail {
+        internal static System.Drawing.Bitmap Daco_4933495 {
             get {
-                object obj = ResourceManager.GetObject("png-transparent-computer-icons-password-strength-padlock-text-technic-symbol-thum" +
-                        "bnail", resourceCulture);
+                object obj = ResourceManager.GetObject("Daco_4933495", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -135,29 +123,9 @@ namespace thalbhet.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap thal_bhet_logo {
+        internal static System.Drawing.Bitmap login_background_final1 {
             get {
-                object obj = ResourceManager.GetObject("thal bhet logo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap toppng_com_login_14_icons_login_line_icon_529x505 {
-            get {
-                object obj = ResourceManager.GetObject("toppng.com-login-14-icons-login-line-icon-529x505", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap toppng1 {
-            get {
-                object obj = ResourceManager.GetObject("toppng1", resourceCulture);
+                object obj = ResourceManager.GetObject("login background final1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

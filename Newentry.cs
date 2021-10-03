@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 
 namespace thalbhet
 {
     public partial class Newentry : Form
     {
         //SqlDataReader reader; // = cmd.ExecuteReader();
-        public Newentry()
+        public Newentry(string UserName)
         {
             InitializeComponent();
             fill_smk();
@@ -23,6 +24,8 @@ namespace thalbhet
             
             button1.BackColor = Color.FromArgb(246, 73, 0);
             button2.BackColor = Color.FromArgb(37, 154, 92);
+            
+            label2.Text = UserName;
             //populatecombobox9();
         }
         void fill_smk()
@@ -52,34 +55,31 @@ namespace thalbhet
                 radDropDownList1.Items.Add(new ListViewItem (reader[0].ToString(), reader[0].ToString()));
             }
             //reader.Close();*/
-            radDropDownList1.DataSource = cmd.ExecuteReader();
-            radDropDownList1.DisplayMember = "Nimit";
-            radDropDownList1.ValueMember = "Nimit";
+            //radDropDownList1.DataSource = cmd.ExecuteReader();
+            //radDropDownList1.DisplayMember = "Nimit";
+            //radDropDownList1.ValueMember = "Nimit";
             //radDropDownList1.DataBindings
             con.Close();
             con.Open();
         }
-        /*public void Nimit2()
+        public void Nimit2()
         {
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
-
-
-            SqlCommand cmd = new SqlCommand("SELECT Nimit from Nimit", con);
-            //SqlDataReader reader; //= cmd.ExecuteReader();
+            SqlConnection con;
+            SqlCommand cmd;
+            SqlDataReader dr;
+            con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
+            cmd = new SqlCommand();
             con.Open();
-            //radDropDownList1.Items.Clear();
-            /*while (reader.Read())
+            cmd.Connection = con;
+            cmd.CommandText = "SELECT Nimit from Nimit";
+            dr = cmd.ExecuteReader();
+
+            while (dr.Read())
             {
-                radDropDownList1.Items.Add(new ListViewItem (reader[0].ToString(), reader[0].ToString()));
+                comboBox1.Items.Add(dr["Nimit"]);
             }
-            //reader.Close();
-            radDropDownList1.DataSource = cmd.ExecuteReader();
-            radDropDownList1.DisplayMember = "Nimit";
-            radDropDownList1.ValueMember = "Nimit";
-            //radDropDownList1.DataBindings
             con.Close();
-            con.Open();
-        }*/
+        }
         public void populatecombobox9()
         {
             DataTable table = new DataTable();
@@ -95,18 +95,26 @@ namespace thalbhet
 
         private void Newentry_Load(object sender, EventArgs e)
         {
-            Nimit();
+            // TODO: This line of code loads data into the 'newentrydbDataSet.newentrytable' table. You can move, or remove it, as needed.
+            //this.newentrytableTableAdapter.Fill(this.newentrydbDataSet.newentrytable);
+            Nimit2();
+            if(label2.Text != "admin")
+            {
+                button6.Visible = false;
+            }
+            this.Refresh();
+            
         }
 
         private void textBox4_MouseClick(object sender, MouseEventArgs e)
         {
-            bool isParsable = Int32.TryParse(textBox4.Text, out int number);
+            /*bool isParsable = Int32.TryParse(textBox4.Text, out int number);
             if (textBox4.Text != null && isParsable == true)
             {
                 int smk = Convert.ToInt32(textBox4.Text);
                 MessageBox.Show("Number");
 
-            }
+            }*/
         }
 
         private void textBox4_KeyDown(object sender, KeyEventArgs e)
@@ -118,18 +126,18 @@ namespace thalbhet
                 {
                     int smk = Convert.ToInt32(textBox4.Text);
                     //MessageBox.Show("Number");
-                    SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
+                    SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\smk.mdf;Integrated Security=True");
                     con.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[SMKID] where SMK='" + textBox4.Text + "' ", con);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[Page1$] where SMKId='" + textBox4.Text + "' ", con);
                     SqlDataReader reader1 = cmd.ExecuteReader();
                     if (reader1.Read())
                     {
-                        radTextBox2.Text = reader1["name"].ToString();
-                        textBox2.Text = reader1["PresentCity"].ToString();
-                        radTextBox3.Text = reader1["FatherName"].ToString();
-                        radTextBox4.Text = reader1["Surname"].ToString();
-                        textBox1.Text = reader1["NativeCity"].ToString();
-                        textBox3.Text = reader1["MobileNumber"].ToString();
+                        textBox8.Text = reader1["First Name Guj"].ToString();
+                        textBox2.Text = reader1["Present City/Village Guj"].ToString();
+                        textBox9.Text = reader1["Middle Name Guj"].ToString();
+                        textBox10.Text = reader1["Last Name GUj"].ToString();
+                        textBox1.Text = reader1["Native Guj"].ToString();
+                        textBox3.Text = reader1["Mobile 1"].ToString();
 
                         reader1.Close();
                         con.Close();
@@ -151,19 +159,13 @@ namespace thalbhet
                 {
                     int smk = Convert.ToInt32(textBox4.Text);
                     //MessageBox.Show("Number");
-                    SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
+                    SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\smk.mdf;Integrated Security=True");
                     con.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[SMKID] where SMK='" + textBox6.Text + "' ", con);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[Page1$] where SMKId='" + textBox6.Text + "' ", con);
                     SqlDataReader reader2 = cmd.ExecuteReader();
                     if (reader2.Read())
                     {
-                        /*radTextBox2.Text = reader1["name"].ToString();
-                        textBox2.Text = reader1["Present City"].ToString();
-                        radTextBox3.Text = reader1["Father Name"].ToString();
-                        radTextBox4.Text = reader1["Surname"].ToString();
-                        textBox1.Text = reader1["Native City"].ToString();
-                        textBox3.Text = reader1["Mobile Number"].ToString();*/
-                        textBox7.Text = reader2["name"].ToString();
+                        textBox7.Text = reader2["First Name Guj"].ToString();
                         reader2.Close();
                         con.Close();
                     }
@@ -177,24 +179,29 @@ namespace thalbhet
         private void button2_Click(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
-            
+
             long SMK = Int64.Parse(textBox4.Text);
-            String name = radTextBox2.Text;
-            String Fathername = radTextBox3.Text;
-            String Surname = radTextBox4.Text;
+            String name = textBox8.Text;
+            String Fathername = textBox9.Text;
+            String Surname = textBox10.Text;
             String PresentCity = textBox2.Text;
             String NativeCity = textBox1.Text;
             long MobileNumber = Int64.Parse(textBox3.Text);
             long Amount = Int64.Parse(textBox5.Text);
-            String Nimit = radDropDownList1.SelectedItem.ToString();
+            String Nimit = comboBox1.SelectedItem.ToString();
             long hastaksmk = Int64.Parse(textBox6.Text);
             String hastak = textBox7.Text;
             string submissiontime = DateTime.Now.ToString("F");
             string enrtydatetime = dateTimePicker1.Value.ToString();
-            String query = "INSERT INTO [dbo].[newentrytable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[Nimit],[CrAmount],[hastaksmk],[hastak],[submissiontime],[enrtydatetime]) VALUES ('" + SMK+ "' ,'" +PresentCity+ "','" +NativeCity+ "', '" +Fathername+"','" +Surname+"','"+MobileNumber+"','"+name+"','"+Nimit+"','"+Amount+"','"+hastaksmk+"','"+hastak+"','"+ submissiontime+ "','"+ enrtydatetime+ "')";
+            string status = "Credit";
+            string loggedinuser = label2.Text;
+            String query = "INSERT INTO [dbo].[newentrytable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[Nimit],[CrAmount],[hastaksmk],[hastak],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "',N'" + Nimit + "','" + Amount + "','" + submissiontime + "','" + enrtydatetime + "','" + status + "','" + loggedinuser + "')";
+            String ledgequery = "INSERT INTO [dbo].[ledgertable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[Nimit],[CrAmount],[hastaksmk],[hastak],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "',N'" + Nimit + "','" + Amount + "','" + submissiontime + "','" + enrtydatetime + "','" + status + "','" + loggedinuser + "')";
             SqlCommand cmd = new SqlCommand(@query, con);
+            SqlCommand cmdl = new SqlCommand(@ledgequery, con);
             con.Open();
             cmd.ExecuteNonQuery();
+            cmdl.ExecuteNonQuery();
             con.Close();
             MessageBox.Show("Entry has been Done successfully");
         }
@@ -203,6 +210,7 @@ namespace thalbhet
         {
             Form3 form = new Form3();
             form.ShowDialog();
+            Nimit2();
 
         }
 
@@ -217,12 +225,6 @@ namespace thalbhet
             }
         }
 
-        
-        private void radDropDownList1_MouseClick(object sender, MouseEventArgs e)
-        {
-            Nimit();
-        }
-
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
@@ -230,7 +232,7 @@ namespace thalbhet
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Reportoption repoption = new Reportoption();
+            Reportoption repoption = new Reportoption(label2.Text);
             repoption.ShowDialog();
         }
 
@@ -239,24 +241,62 @@ namespace thalbhet
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
 
             long SMK = Int64.Parse(textBox4.Text);
-            String name = radTextBox2.Text;
-            String Fathername = radTextBox3.Text;
-            String Surname = radTextBox4.Text;
+            String name = textBox8.Text;
+            String Fathername = textBox9.Text;
+            String Surname = textBox10.Text;
             String PresentCity = textBox2.Text;
             String NativeCity = textBox1.Text;
             long MobileNumber = Int64.Parse(textBox3.Text);
             long Amount = Int64.Parse(textBox5.Text);
-            String Nimit = radDropDownList1.SelectedItem.ToString();
+            String Nimit = comboBox1.SelectedItem.ToString();
             long hastaksmk = Int64.Parse(textBox6.Text);
             String hastak = textBox7.Text;
             string submissiontime = DateTime.Now.ToString("F");
             string enrtydatetime = dateTimePicker1.Value.ToString();
-            String query = "INSERT INTO [dbo].[DebitTable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[Nimit],[DebAmount],[hastaksmk],[hastak],[submissiontime],[enrtydatetime]) VALUES ('" + SMK + "' ,'" + PresentCity + "','" + NativeCity + "', '" + Fathername + "','" + Surname + "','" + MobileNumber + "','" + name + "','" + Nimit + "','" + Amount + "','" + hastaksmk + "','" + hastak + "','" + submissiontime + "','" + enrtydatetime + "')";
+            string status = "Debit";
+            string loggedinuser = label2.Text;
+            String query = "INSERT INTO [dbo].[DebitTable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[Nimit],[DebAmount],[hastaksmk],[hastak],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "' ,'" + PresentCity + "','" + NativeCity + "', '" + Fathername + "','" + Surname + "','" + MobileNumber + "','" + name + "','" + Nimit + "','" + Amount + "','" + hastaksmk + "','" + hastak + "','" + submissiontime + "','" + enrtydatetime + "','" + status + "','" + loggedinuser + "')";
             SqlCommand cmd = new SqlCommand(@query, con);
+            String ledgequery = "INSERT INTO [dbo].[DebitTable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[Nimit],[DebAmount],[hastaksmk],[hastak],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "' ,'" + PresentCity + "','" + NativeCity + "', '" + Fathername + "','" + Surname + "','" + MobileNumber + "','" + name + "','" + Nimit + "','" + Amount + "','" + hastaksmk + "','" + hastak + "','" + submissiontime + "','" + enrtydatetime + "','" + status + "','" + loggedinuser + "')";
+            SqlCommand cmdl = new SqlCommand(@query, con);
             con.Open();
             cmd.ExecuteNonQuery();
             con.Close();
             MessageBox.Show("Entry has been Done successfully");
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void comboBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            comboBox1.Refresh();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Registration reg = new Registration();
+            reg.ShowDialog();
+        }
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        private void Newentry_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            newsmk n = new newsmk();
+            n.ShowDialog();
         }
     }
 }

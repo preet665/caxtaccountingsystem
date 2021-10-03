@@ -33,5 +33,16 @@ namespace thalbhet.Properties {
                 return ((string)(this["satyaadiConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\newentrydb.md" +
+            "f;Integrated Security=True;Connect Timeout=30")]
+        public string newentrydbConnectionString {
+            get {
+                return ((string)(this["newentrydbConnectionString"]));
+            }
+        }
     }
 }
