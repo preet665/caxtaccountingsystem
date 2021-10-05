@@ -213,6 +213,7 @@ namespace thalbhet
                 //SqlCommand selectCMD2 = new SqlCommand("update newentrytable set note = '" + note + "' where ID ='" + id + "'", con);
 
                 selectCMD.ExecuteNonQuery();
+                
                 //selectCMD1.ExecuteNonQuery();
                 //selectCMD2.ExecuteNonQuery();
                 con.Close();
@@ -268,6 +269,16 @@ namespace thalbhet
                 deck.Add(row.Index);
                 var id = row.Cells[0].Value;
                 var amount = row.Cells["CrAmount"].Value;
+                var smk = row.Cells["SMK"].Value;
+                var PresentCity = row.Cells["PresentCIty"].Value;
+                var NativeCity = row.Cells["NativeCity"].Value;
+                var FatherName = row.Cells["FatherName"].Value;
+                var Surname = row.Cells["Surname"].Value;
+                var MobileNumber = row.Cells["MobileNumber"].Value;
+                var Nimit = row.Cells["Nimit"].Value;
+                var name = row.Cells["name"].Value;
+                var hastaksmk = row.Cells["hastaksmk"].Value;
+                var hastak = row.Cells["hastak"].Value;
                 MessageBox.Show(amount.ToString());
                 string note = textBox1.Text;
                 //string From = label11.Text;
@@ -288,9 +299,13 @@ namespace thalbhet
                 //}
                 SqlCommand selectCMD = new SqlCommand("update newentrytable set status = 'Transfer' , giver = '"+label11.Text+"', taker = '"+To+"' , TransAmount = CrAmount , note = '" + note + "'  where ID ='" + id + "'", con);
                 SqlCommand selectCMD1 = new SqlCommand("insert into newentrytable (status,giver,taker,CrAmount,TransAmount,note,flag) values ('Credit','" + label11.Text + "','" + To + "','"+amount + "',0,'" + note + "',1)", con );
-                    //"status = 'Credit' , giver = '"+label11.Text+"', taker = '"+To+ "' , Cramount = TransAmount, TransAmount = 0 , note = '" + note + "'  where ID ='" + id + "'", con);
+                //"status = 'Credit' , giver = '"+label11.Text+"', taker = '"+To+ "' , Cramount = TransAmount, TransAmount = 0 , note = '" + note + "'  where ID ='" + id + "'", con);
+                SqlCommand selectCMD2 = new SqlCommand("insert into history (SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,hastaksmk,hastak,status,giver,taker,CrAmount,TransAmount,note) values " +
+                    "                                                       ('"+smk+ "',N'" + PresentCity + "',N'" + NativeCity + "',N'" +FatherName + "',N'" + Surname + "','" + MobileNumber + "',N'" + Nimit + "',N'" + name + "','" + hastaksmk + "',N'" + hastak+ "','Transfer','" + label11.Text + "','" + To + "','" + amount + "',0,'" + note + "')", con);
+
                 selectCMD.ExecuteNonQuery();
-                selectCMD1.ExecuteNonQuery();
+                //selectCMD1.ExecuteNonQuery();
+                selectCMD2.ExecuteNonQuery();
                 con.Close();
                 reportload();                
             }
