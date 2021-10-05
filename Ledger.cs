@@ -50,5 +50,83 @@ namespace thalbhet
             DA.Fill(DS, "history");
             dataGridView1.DataSource = DS.Tables["history"].DefaultView;
         }
-    }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            PdfPTable pdfTable = new PdfPTable(dataGridView1.ColumnCount);
+            pdfTable.DefaultCell.Padding = 5;
+            pdfTable.WidthPercentage = 100;
+            pdfTable.HorizontalAlignment = Element.ALIGN_JUSTIFIED;
+            pdfTable.DefaultCell.BorderWidth = 2;
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText));
+                cell.BackgroundColor = new iTextSharp.text.BaseColor(30, 144, 255);
+                pdfTable.AddCell(cell);
+            }
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (cell.Value == null)
+                    {
+
+                    }
+                    else
+                    {
+                        pdfTable.AddCell(cell.Value.ToString());
+                    }
+                }
+            }
+
+            string folderpath = "C:\\PDF\\";
+            if (!Directory.Exists(folderpath))
+            {
+                Directory.CreateDirectory(folderpath);
+            }
+            using (FileStream stream = new FileStream(folderpath + "LedgerReport.pdf", FileMode.Create))
+            {
+                Document document = new Document(PageSize.A4.Rotate(), 10f, 10f, 10f, 0f);
+                PdfWriter.GetInstance(document, stream);
+                document.Open();
+                document.Add(pdfTable);
+                document.Close();
+                stream.Close();
+                MessageBox.Show("Pdf is exported ");
+            }
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Microsoft.Office.Interop.Excel.Application excl = new Microsoft.Office.Interop.Excel.Application();
+            excl.Application.Workbooks.Add(Type.Missing);
+            for (int i = 1; i < dataGridView1.Columns.Count; i++)
+            {
+                excl.Cells[1, i] = dataGridView1.Columns[i - 1].HeaderText;
+
+            }
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                for (int j = 0; j < dataGridView1.Columns.Count; j++)
+                {
+                    excl.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                }
+            }
+            excl.Columns.AutoFit();
+            excl.Visible = true;
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                var smk = row.Cells["SMK"].Value;
+                label2.Text = Convert.ToString(smk);
+                showledger sl = new showledger((int)long.Parse(label2.Text));
+                sl.ShowDialog();
+            }
+        }}
 }
+
+
+

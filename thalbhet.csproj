@@ -303,6 +303,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>satyaadiDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="showledger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="showledger.Designer.cs">
+      <DependentUpon>showledger.cs</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="transferreport.cs">
       <SubType>Form</SubType>
@@ -352,6 +358,9 @@
     <EmbeddedResource Include="Report1.rdlc" />
     <EmbeddedResource Include="Reportoption.resx">
       <DependentUpon>Reportoption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="showledger.resx">
+      <DependentUpon>showledger.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="transferreport.resx">
       <DependentUpon>transferreport.cs</DependentUpon>
