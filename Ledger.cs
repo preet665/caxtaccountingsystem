@@ -7,31 +7,48 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Collections;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Configuration;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
+using System.Windows.Forms.VisualStyles;
+using System.Diagnostics;
 
 namespace thalbhet
 {
-    public partial class Ledger : Form
+    public partial class ledger : Form
     {
-        public Ledger()
+        public ledger()
         {
             InitializeComponent();
         }
 
-        private void Ledger_Load(object sender, EventArgs e)
+        private void ledger_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'newentrydbDataSet.newentrytable' table. You can move, or remove it, as needed.
-            this.newentrytableTableAdapter.Fill(this.newentrydbDataSet.newentrytable);
-
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
+            SqlCommand selectCMD = new SqlCommand("SELECT SMK,name,MobileNumber,PresentCity, Count(*) FROM history GROUP BY SMK,name,MobileNumber,PresentCity", con);
+            SqlDataAdapter DA = new SqlDataAdapter();
+            DA.SelectCommand = selectCMD;
+            con.Open();
+            DataSet DS = new DataSet();
+            DA.Fill(DS, "history");
+            dataGridView1.DataSource = DS.Tables["history"].DefaultView;
         }
 
-        private void advancedDataGridView2_FilterStringChanged(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            this.bindingSource1.Sort = advancedDataGridView2.FilterString;
-        }
-
-        private void advancedDataGridView2_SortStringChanged(object sender, EventArgs e)
-        {
-            this.bindingSource1.Sort = advancedDataGridView2.SortString;
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
+            SqlCommand selectCMD = new SqlCommand("SELECT SMK,name,MobileNumber,PresentCity, Count(*) FROM history where SMK like '" + textBox1.Text + "' GROUP BY SMK,name,MobileNumber,PresentCity", con);
+            SqlDataAdapter DA = new SqlDataAdapter();
+            DA.SelectCommand = selectCMD;
+            con.Open();
+            DataSet DS = new DataSet();
+            DA.Fill(DS, "history");
+            dataGridView1.DataSource = DS.Tables["history"].DefaultView;
         }
     }
 }

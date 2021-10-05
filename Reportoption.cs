@@ -48,7 +48,7 @@ namespace thalbhet
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Ledger ledge = new Ledger();
+            ledger ledge = new ledger();
             ledge.ShowDialog();
         }
     }

@@ -226,11 +226,11 @@
       <DependentUpon>Form3.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Ledger.cs">
+    <Compile Include="ledger.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Ledger.Designer.cs">
-      <DependentUpon>Ledger.cs</DependentUpon>
+    <Compile Include="ledger.Designer.cs">
+      <DependentUpon>ledger.cs</DependentUpon>
     </Compile>
     <Compile Include="Login2.cs">
       <SubType>Form</SubType>
@@ -325,8 +325,8 @@
     <EmbeddedResource Include="Form3.resx">
       <DependentUpon>Form3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ledger.resx">
-      <DependentUpon>Ledger.cs</DependentUpon>
+    <EmbeddedResource Include="ledger.resx">
+      <DependentUpon>ledger.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login2.resx">
       <DependentUpon>Login2.cs</DependentUpon>
