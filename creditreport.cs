@@ -284,6 +284,7 @@ namespace thalbhet
             {
                 deck.Add(row.Index);
                 var id = row.Cells[0].Value;
+                var amount = row.Cells["CrAmount"].Value;
                 var debamount = row.Cells["DebAmount"].Value;
                 var cramount = row.Cells["CrAmount"].Value;
                 var transamount = row.Cells["TransAmount"].Value;
@@ -317,9 +318,9 @@ namespace thalbhet
                 //    INSERT INTO ins_duplicate VALUES(5,'Wild Dog') ON DUPLICATE KEY UPDATE animal = 'Wild Dog';
                 //}
                 SqlCommand selectCMD = new SqlCommand("update newentrytable set status = 'Transfer' , giver = '"+label11.Text+"', taker = '"+To+"' , TransAmount = CrAmount , note = '" + note + "'  where ID ='" + id + "'", con);
-                SqlCommand selectCMD1 = new SqlCommand("insert into newentrytable (SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,hastaksmk,hastak,status,giver,taker,CrAmount,TransAmount,DebAmount,note,flag) values ('" + smk + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + FatherName + "',N'" + Surname + "','" + MobileNumber + "',N'" + Nimit + "',N'" + name + "','" + hastaksmk + "',N'" + hastak + "','Credit','" + label11.Text + "','" + To + "','"+amount + "',0,'" + note + "',1)", con );
+                SqlCommand selectCMD1 = new SqlCommand("insert into newentrytable (SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,hastaksmk,hastak,status,giver,taker,CrAmount,TransAmount,note,flag) values ('" + smk + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + FatherName + "',N'" + Surname + "','" + MobileNumber + "',N'" + Nimit + "',N'" + name + "','" + hastaksmk + "',N'" + hastak + "','Credit','" + label11.Text + "','" + To + "','"+amount + "',0,'" + note + "',1)", con );
                 //"status = 'Credit' , giver = '"+label11.Text+"', taker = '"+To+ "' , Cramount = TransAmount, TransAmount = 0 , note = '" + note + "'  where ID ='" + id + "'", con);
-                SqlCommand selectCMD2 = new SqlCommand("insert into history (SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,hastaksmk,hastak,status,giver,taker,CrAmount,TransAmount,note) values " +
+                SqlCommand selectCMD2 = new SqlCommand("insert into history (SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,hastaksmk,hastak,status,giver,taker,CrAmount,TransAmount,DebAmount,note) values " +
                     "                                                       ('"+smk+ "',N'" + PresentCity + "',N'" + NativeCity + "',N'" +FatherName + "',N'" + Surname + "','" + MobileNumber + "',N'" + Nimit + "',N'" + name + "','" + hastaksmk + "',N'" + hastak+ "','Transfer','" + label11.Text + "','" + To + "','" + cramount + "','" + transamount + "','" + debamount + "','" + note + "')", con);
 
                 selectCMD.ExecuteNonQuery();
