@@ -53,12 +53,13 @@ namespace thalbhet
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(5, 6);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 29);
+            this.label1.Size = new System.Drawing.Size(57, 29);
             this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
+            this.label1.Text = "smk";
             // 
             // textBox1
             // 
@@ -101,17 +102,19 @@ namespace thalbhet
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(548, 667);
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(605, 623);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(121, 77);
             this.button4.TabIndex = 6;
-            this.button4.Text = "button4";
+            this.button4.Text = "show ledger";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Location = new System.Drawing.Point(-2, 696);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 17);
@@ -122,6 +125,7 @@ namespace thalbhet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::thalbhet.Properties.Resources._1155205__1_;
             this.ClientSize = new System.Drawing.Size(738, 712);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button4);

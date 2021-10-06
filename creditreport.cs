@@ -279,6 +279,7 @@ namespace thalbhet
                 var name = row.Cells["name"].Value;
                 var hastaksmk = row.Cells["hastaksmk"].Value;
                 var hastak = row.Cells["hastak"].Value;
+                var loggedinuser = row.Cells["loggedinuser"].Value;
                 MessageBox.Show(amount.ToString());
                 string note = textBox1.Text;
                 //string From = label11.Text;
@@ -298,13 +299,17 @@ namespace thalbhet
                 //    INSERT INTO ins_duplicate VALUES(5,'Wild Dog') ON DUPLICATE KEY UPDATE animal = 'Wild Dog';
                 //}
                 SqlCommand selectCMD = new SqlCommand("update newentrytable set status = 'Transfer' , giver = '"+label11.Text+"', taker = '"+To+"' , TransAmount = CrAmount , note = '" + note + "'  where ID ='" + id + "'", con);
-                SqlCommand selectCMD1 = new SqlCommand("insert into newentrytable (status,giver,taker,CrAmount,TransAmount,note,flag) values ('Credit','" + label11.Text + "','" + To + "','"+amount + "',0,'" + note + "',1)", con );
+                SqlCommand selectCMD1 = new SqlCommand("insert into newentrytable (SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,hastaksmk,hastak,status,giver,taker,CrAmount,TransAmount,note,flag) values ('" + smk + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + FatherName + "',N'" + Surname + "','" + MobileNumber + "',N'" + Nimit + "',N'" + name + "','" + hastaksmk + "',N'" + hastak + "','Credit','" + label11.Text + "','" + To + "','"+amount + "',0,'" + note + "',1)", con );
                 //"status = 'Credit' , giver = '"+label11.Text+"', taker = '"+To+ "' , Cramount = TransAmount, TransAmount = 0 , note = '" + note + "'  where ID ='" + id + "'", con);
                 SqlCommand selectCMD2 = new SqlCommand("insert into history (SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,hastaksmk,hastak,status,giver,taker,CrAmount,TransAmount,note) values " +
                     "                                                       ('"+smk+ "',N'" + PresentCity + "',N'" + NativeCity + "',N'" +FatherName + "',N'" + Surname + "','" + MobileNumber + "',N'" + Nimit + "',N'" + name + "','" + hastaksmk + "',N'" + hastak+ "','Transfer','" + label11.Text + "','" + To + "','" + amount + "',0,'" + note + "')", con);
 
                 selectCMD.ExecuteNonQuery();
-                //selectCMD1.ExecuteNonQuery();
+                if (loggedinuser == comboBox1.Text)
+                {
+                    selectCMD1.ExecuteNonQuery();
+                }
+                selectCMD1.ExecuteNonQuery();
                 selectCMD2.ExecuteNonQuery();
                 con.Close();
                 reportload();                
