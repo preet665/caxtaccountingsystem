@@ -20,7 +20,7 @@ namespace thalbhet
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True;");
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True;");
             String Nimit = nimittextbox.Text.Trim();
             String query = "INSERT INTO Nimit (Nimit) VALUES ('" + Nimit + "')";
             //"Insert into Nimit_Lookup (Nimit) Values('" & txtNimitGuj.Text.Trim & "')";

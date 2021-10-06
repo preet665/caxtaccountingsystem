@@ -25,7 +25,7 @@ namespace thalbhet
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlConnection cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
+            SqlConnection cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
             if (textBox1.Text == "admin" || textBox2.Text == "admin")
             {
                 SqlCommand cmd = new SqlCommand("select * from LoginTable where username='" + textBox1.Text + "' and password='" + textBox2.Text + "'", cn);

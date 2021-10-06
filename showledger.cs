@@ -30,7 +30,7 @@ namespace thalbhet
 
         private void showledger_Load(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
             SqlCommand selectCMD = new SqlCommand("SELECT * FROM history where SMK LIKE '" + label1.Text + "'", con);
             SqlDataAdapter DA = new SqlDataAdapter();
             DA.SelectCommand = selectCMD;

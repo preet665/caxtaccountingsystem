@@ -56,7 +56,7 @@ namespace thalbhet
             
             if (label11.Text == "admin")
             {
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
                 SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount, hastaksmk, hastak, submissiontime, enrtydatetime, status, note, giver, taker, loggedinuser, flag FROM newentrytable", con);
                 SqlDataAdapter DA = new SqlDataAdapter();
                 DA.SelectCommand = selectCMD;
@@ -98,7 +98,7 @@ namespace thalbhet
                                select Convert.ToInt32(row.Cells[9].FormattedValue)).Sum().ToString();*/
                 string transstring = "Transfer";
                 string crestring = "Credit";
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
                 SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount, TransAmount, hastaksmk, hastak, submissiontime, enrtydatetime, status, note, giver, taker, loggedinuser FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) AND (status IS NULL OR status ='" + transstring + "' OR status ='" + crestring + "' OR flag='1')", con);
                 SqlDataAdapter DA = new SqlDataAdapter();
                 DA.SelectCommand = selectCMD;
@@ -147,7 +147,7 @@ namespace thalbhet
             SqlConnection con;
             SqlCommand cmd;
             SqlDataReader dr;
-            con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
+            con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
             cmd = new SqlCommand();
             con.Open();
             cmd.Connection = con;
@@ -167,7 +167,7 @@ namespace thalbhet
 
         /*  private void Displayindatagrid()
         {
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
             SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount, hastaksmk, hastak, submissiontime, enrtydatetime FROM newentrytable", con);
             SqlDataAdapter DA = new SqlDataAdapter();
             DA.SelectCommand = selectCMD;
@@ -182,7 +182,7 @@ namespace thalbhet
         }
         void Displaydata()
         {
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
             SqlDataAdapter adap = new SqlDataAdapter("Select * from newentrytable", con);
             DataTable dt = new DataTable();
             con.Open();
@@ -220,7 +220,7 @@ namespace thalbhet
                     id = row.Cells[1].Value;
                 }
 
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True;");
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True;");
                 con.Open();
                 SqlCommand selectCMD = new SqlCommand("update newentrytable set status = 'Debit', DebAmount = CrAmount , note = '" + note + "'  where ID ='" + id + "'", con);
                 //SqlCommand selectCMD1 = new SqlCommand("update newentrytable set DebAmount = CrAmount where ID ='" + id + "'", con);
@@ -239,7 +239,7 @@ namespace thalbhet
                 {
                     int id = deck[i] + 1;
                     string note = textBox1.Text;
-                    SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True;") ;
+                    SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True;") ;
                     con.Open();
                     SqlCommand selectCMD = new SqlCommand("update newentrytable set status = 'Debit' where ID ='" +id + "'", con);
                     SqlCommand selectCMD1 = new SqlCommand("update newentrytable set DebAmount = CrAmount where ID ='" + id + "'", con);
@@ -309,7 +309,7 @@ namespace thalbhet
                     id = row.Cells[1].Value;
 
                 }
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True;");
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True;");
                 con.Open();
 
                 //if(label11.Text== row.Cells["taker"].Value)
@@ -338,7 +338,7 @@ namespace thalbhet
 
         private void dateTimePicker3_CloseUp(object sender, EventArgs e)
         {
-            string constring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True";
+            string constring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True";
             SqlConnection con = new SqlConnection(constring);
             string sqlquery = "SELECT * from newentrytable where submissiontime between '" + dateTimePicker2.Text + "' and '" + dateTimePicker3.Text + "'";
             SqlCommand cmd = new SqlCommand(sqlquery, con);
@@ -450,7 +450,7 @@ namespace thalbhet
         {
             if (label11.Text == "admin")
             {
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
                 SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount, hastaksmk, hastak, submissiontime, enrtydatetime, status, note, giver, taker, loggedinuser FROM newentrytable where SMK like '"+textBox2.Text+"' ", con);
                 SqlDataAdapter DA = new SqlDataAdapter();
                 DA.SelectCommand = selectCMD;
@@ -491,7 +491,7 @@ namespace thalbhet
                                where row.Cells[9].FormattedValue.ToString() != string.Empty
                                select Convert.ToInt32(row.Cells[9].FormattedValue)).Sum().ToString();*/
                 string transstring = "Transfer";
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
                 SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount, TransAmount, hastaksmk, hastak, submissiontime, enrtydatetime, status, note, giver, taker, loggedinuser FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) AND (status IS NULL OR status ='" + transstring + "') AND SMK like '" + textBox2.Text + "'", con);
                 SqlDataAdapter DA = new SqlDataAdapter();
                 DA.SelectCommand = selectCMD;

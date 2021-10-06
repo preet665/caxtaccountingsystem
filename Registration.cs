@@ -22,7 +22,7 @@ namespace thalbhet
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            SqlConnection cn= new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
+            SqlConnection cn= new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -34,7 +34,7 @@ namespace thalbhet
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlConnection cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
+            SqlConnection cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
             if (txtconfirmpassword.Text != string.Empty || txtpassword.Text != string.Empty || txtusername.Text != string.Empty)
             {
                 if (txtpassword.Text == txtconfirmpassword.Text)

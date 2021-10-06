@@ -43,7 +43,7 @@ namespace thalbhet
         void Nimit()
         {
            
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
             
           
             SqlCommand cmd = new SqlCommand("SELECT Nimit from Nimit", con);
@@ -67,7 +67,7 @@ namespace thalbhet
             SqlConnection con;
             SqlCommand cmd;
             SqlDataReader dr;
-            con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
+            con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
             cmd = new SqlCommand();
             con.Open();
             cmd.Connection = con;
@@ -126,7 +126,7 @@ namespace thalbhet
                 {
                     int smk = Convert.ToInt32(textBox4.Text);
                     //MessageBox.Show("Number");
-                    SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\smk.mdf;Integrated Security=True");
+                    SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\smk.mdf;Integrated Security=True");
                     con.Open();
                     SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[Page1$] where SMKId='" + textBox4.Text + "' ", con);
                     SqlDataReader reader1 = cmd.ExecuteReader();
@@ -159,7 +159,7 @@ namespace thalbhet
                 {
                     int smk = Convert.ToInt32(textBox4.Text);
                     //MessageBox.Show("Number");
-                    SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\smk.mdf;Integrated Security=True");
+                    SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\smk.mdf;Integrated Security=True");
                     con.Open();
                     SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[Page1$] where SMKId='" + textBox6.Text + "' ", con);
                     SqlDataReader reader2 = cmd.ExecuteReader();
@@ -178,7 +178,7 @@ namespace thalbhet
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
 
             long SMK = Int64.Parse(textBox4.Text);
             String name = textBox8.Text;
@@ -238,7 +238,7 @@ namespace thalbhet
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
 
             long SMK = Int64.Parse(textBox4.Text);
             String name = textBox8.Text;

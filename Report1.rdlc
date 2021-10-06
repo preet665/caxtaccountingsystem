@@ -1308,7 +1308,7 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSet1</rd:DataSetName>
-        <rd:SchemaPath>E:\thal bhet new\thalbhet\DataSet1.xsd</rd:SchemaPath>
+        <rd:SchemaPath>E:\bank management system\thalbhet\DataSet1.xsd</rd:SchemaPath>
         <rd:TableName>newentrytable</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
