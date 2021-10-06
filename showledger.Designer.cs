@@ -80,6 +80,7 @@ namespace thalbhet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::thalbhet.Properties.Resources._1155205__1_;
             this.ClientSize = new System.Drawing.Size(1489, 450);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
