@@ -102,9 +102,10 @@ namespace thalbhet
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(605, 657);
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(605, 623);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(121, 23);
+            this.button4.Size = new System.Drawing.Size(121, 77);
             this.button4.TabIndex = 6;
             this.button4.Text = "show ledger";
             this.button4.UseVisualStyleBackColor = true;
@@ -113,6 +114,7 @@ namespace thalbhet
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Location = new System.Drawing.Point(-2, 696);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 17);
