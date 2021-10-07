@@ -502,7 +502,7 @@ namespace thalbhet
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::thalbhet.Properties.Resources._1155205__1_;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1613, 766);
+            this.ClientSize = new System.Drawing.Size(1613, 684);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label13);

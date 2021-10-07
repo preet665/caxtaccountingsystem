@@ -31,13 +31,13 @@ namespace thalbhet
         private void showledger_Load(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
-            SqlCommand selectCMD = new SqlCommand("SELECT * FROM history where SMK LIKE '" + label1.Text + "'", con);
+            SqlCommand selectCMD = new SqlCommand("SELECT * FROM newentrytable where SMK LIKE '" + label1.Text + "'", con);
             SqlDataAdapter DA = new SqlDataAdapter();
             DA.SelectCommand = selectCMD;
             con.Open();
             DataSet DS = new DataSet();
-            DA.Fill(DS, "history");
-            dataGridView1.DataSource = DS.Tables["history"].DefaultView;
+            DA.Fill(DS, "newentrytable");
+            dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
         }
 
         private void button1_Click(object sender, EventArgs e)
