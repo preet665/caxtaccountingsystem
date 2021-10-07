@@ -26,6 +26,11 @@ namespace thalbhet
             button2.BackColor = Color.FromArgb(37, 154, 92);
             
             label2.Text = UserName;
+            if(label2.Text != "admin")
+            {
+                addnimitbutton.Visible = false;
+                button7.Visible = false;
+            }
             //populatecombobox9();
         }
         void fill_smk()
@@ -119,6 +124,7 @@ namespace thalbhet
 
         private void textBox4_KeyDown(object sender, KeyEventArgs e)
         {
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\smk.mdf;Integrated Security=True");
             bool isParsable = Int32.TryParse(textBox4.Text, out int number);
             if (e.KeyCode == Keys.Enter)
             {
@@ -126,7 +132,7 @@ namespace thalbhet
                 {
                     int smk = Convert.ToInt32(textBox4.Text);
                     //MessageBox.Show("Number");
-                    SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\smk.mdf;Integrated Security=True");
+                    
                     con.Open();
                     SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[Page1$] where SMKId='" + textBox4.Text + "' ", con);
                     SqlDataReader reader1 = cmd.ExecuteReader();
@@ -146,6 +152,13 @@ namespace thalbhet
 
 
                 }
+                SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
+                con2.Open();
+                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)) FROM newentrytable  where SMK='" + textBox4.Text + "' ", con2);
+                //balquery.Connection = con;
+                object balsum = balquery.ExecuteScalar();
+                label15.Text = balsum.ToString();
+                con2.Close();
             }
 
         }
@@ -188,15 +201,15 @@ namespace thalbhet
             String NativeCity = textBox1.Text;
             long MobileNumber = Int64.Parse(textBox3.Text);
             long Amount = Int64.Parse(textBox5.Text);
-            String Nimit = comboBox1.SelectedItem.ToString();
-            long hastaksmk = Int64.Parse(textBox6.Text);
-            String hastak = textBox7.Text;
+            //String Nimit = comboBox1.SelectedItem.ToString();
+            //long hastaksmk = Int64.Parse(textBox6.Text);
+            //String hastak = textBox7.Text;
             string submissiontime = DateTime.Now.ToString("F");
             string enrtydatetime = dateTimePicker1.Value.ToString();
             string status = "Credit";
             string loggedinuser = label2.Text;
-            String query = " Begin tran credit INSERT INTO [dbo].[newentrytable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[Nimit],[CrAmount],[hastaksmk],[hastak],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "',N'" + Nimit + "','" + Amount + "','" + hastaksmk + "',N'" + hastak + "','" + submissiontime + "','" + enrtydatetime + "','" + status + "','" + loggedinuser + "')commit tran credit";
-            String ledgequery = "INSERT INTO [dbo].[ledgertable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[Nimit],[CrAmount],[hastaksmk],[hastak],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "',N'" + Nimit + "','" + Amount + "','" + hastaksmk + "',N'" + hastak + "','" + submissiontime + "','" + enrtydatetime + "','" + status + "','" + loggedinuser + "')";
+            String query = " Begin tran credit INSERT INTO [dbo].[newentrytable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[CrAmount],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "','" + Amount + "','" + submissiontime + "','" + enrtydatetime + "','" + status + "','" + loggedinuser + "')commit tran credit";
+            String ledgequery = "INSERT INTO [dbo].[ledgertable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[CrAmount],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "','" + Amount + "','" + submissiontime + "','" + enrtydatetime + "','" + status + "','" + loggedinuser + "')";
             SqlCommand cmd = new SqlCommand(@query, con);
             SqlCommand cmdl = new SqlCommand(@ledgequery, con);
             con.Open();
@@ -298,6 +311,46 @@ namespace thalbhet
         {
             newsmk n = new newsmk();
             n.ShowDialog();
+        }
+
+        private void textBox3_KeyDown(object sender, KeyEventArgs e)
+        {
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\smk.mdf;Integrated Security=True");
+            bool isParsable = Int32.TryParse(textBox3.Text, out int number);
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (textBox3.Text != null && isParsable == true)
+                {
+                    int smk = Convert.ToInt32(textBox3.Text);
+                    //MessageBox.Show("Number");
+
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[Page1$] where [Mobile 1] ='" + textBox3.Text + "' ", con);
+                    SqlDataReader reader1 = cmd.ExecuteReader();
+                    if (reader1.Read())
+                    {
+                        textBox8.Text = reader1["First Name Guj"].ToString();
+                        textBox2.Text = reader1["Present City/Village Guj"].ToString();
+                        textBox9.Text = reader1["Middle Name Guj"].ToString();
+                        textBox10.Text = reader1["Last Name GUj"].ToString();
+                        textBox1.Text = reader1["Native Guj"].ToString();
+                        textBox4.Text = reader1["SMK"].ToString();
+
+                        reader1.Close();
+                        con.Close();
+                    }
+
+
+
+                }
+                SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
+                con2.Open();
+                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)) FROM newentrytable where [MobileNumber] ='" + textBox3.Text + "'", con2);
+                //balquery.Connection = con;
+                object balsum = balquery.ExecuteScalar();
+                label15.Text = balsum.ToString();
+                con2.Close();
+            }
         }
     }
 }
