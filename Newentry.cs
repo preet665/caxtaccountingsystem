@@ -209,7 +209,7 @@ namespace thalbhet
             string status = "Credit";
             string loggedinuser = label2.Text;
             String query = " Begin tran credit INSERT INTO [dbo].[newentrytable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[CrAmount],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "','" + Amount + "','" + submissiontime + "','" + enrtydatetime + "','" + status + "','" + loggedinuser + "')commit tran credit";
-            String ledgequery = "INSERT INTO [dbo].[ledgertable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[CrAmount],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "','" + Amount + "','" + submissiontime + "','" + enrtydatetime + "','" + status + "','" + loggedinuser + "')";
+            String ledgequery = "INSERT INTO [dbo].[history]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[CrAmount],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "','" + Amount + "','" + submissiontime + "','" + enrtydatetime + "','" + status + "','" + loggedinuser + "')";
             SqlCommand cmd = new SqlCommand(@query, con);
             SqlCommand cmdl = new SqlCommand(@ledgequery, con);
             con.Open();
@@ -270,7 +270,7 @@ namespace thalbhet
             string loggedinuser = label2.Text;
             String query = "INSERT INTO [dbo].[newentrytable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[Nimit],[DebAmount],[hastaksmk],[hastak],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "' ,'" + PresentCity + "','" + NativeCity + "', '" + Fathername + "','" + Surname + "','" + MobileNumber + "','" + name + "','" + Nimit + "','" + Amount + "','" + hastaksmk + "','" + hastak + "','" + submissiontime + "','" + enrtydatetime + "','" + status + "','" + loggedinuser + "')";
             SqlCommand cmd = new SqlCommand(@query, con);
-            String ledgequery = "INSERT INTO [dbo].[ledgertable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[Nimit],[DebAmount],[hastaksmk],[hastak],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "' ,'" + PresentCity + "','" + NativeCity + "', '" + Fathername + "','" + Surname + "','" + MobileNumber + "','" + name + "','" + Nimit + "','" + Amount + "','" + hastaksmk + "','" + hastak + "','" + submissiontime + "','" + enrtydatetime + "','" + status + "','" + loggedinuser + "')";
+            String ledgequery = "INSERT INTO [dbo].[history]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[Nimit],[DebAmount],[hastaksmk],[hastak],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "' ,'" + PresentCity + "','" + NativeCity + "', '" + Fathername + "','" + Surname + "','" + MobileNumber + "','" + name + "','" + Nimit + "','" + Amount + "','" + hastaksmk + "','" + hastak + "','" + submissiontime + "','" + enrtydatetime + "','" + status + "','" + loggedinuser + "')";
             SqlCommand cmdl = new SqlCommand(@ledgequery, con);
             con.Open();
             cmd.ExecuteNonQuery();
@@ -351,6 +351,36 @@ namespace thalbhet
                 label15.Text = balsum.ToString();
                 con2.Close();
             }
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
+
+            long SMK = Int64.Parse(textBox4.Text);
+            String name = textBox8.Text;
+            String Fathername = textBox9.Text;
+            String Surname = textBox10.Text;
+            String PresentCity = textBox2.Text;
+            String NativeCity = textBox1.Text;
+            long MobileNumber = Int64.Parse(textBox3.Text);
+            long Amount = Int64.Parse(textBox5.Text);
+            String Nimit = comboBox1.SelectedItem.ToString();
+            //long hastaksmk = Int64.Parse(textBox6.Text);
+            //String hastak = textBox7.Text;
+            string submissiontime = DateTime.Now.ToString("F");
+            string enrtydatetime = dateTimePicker1.Value.ToString();
+            string status = "Credit";
+            string loggedinuser = label2.Text;
+            String query = " Begin tran transfer INSERT INTO [dbo].[newentrytable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[CrAmount],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "','" + Amount + "','" + submissiontime + "','" + enrtydatetime + "','" + Nimit + "','" + loggedinuser + "')commit tran credit";
+            String ledgequery = "INSERT INTO [dbo].[history]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[CrAmount],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "','" + Amount + "','" + submissiontime + "','" + enrtydatetime + "','" + Nimit + "','" + loggedinuser + "')";
+            SqlCommand cmd = new SqlCommand(@query, con);
+            SqlCommand cmdl = new SqlCommand(@ledgequery, con);
+            con.Open();
+            cmd.ExecuteNonQuery();
+            cmdl.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("Entry has been Done successfully");
         }
     }
 }

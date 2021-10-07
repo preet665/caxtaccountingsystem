@@ -120,7 +120,7 @@ namespace thalbhet
             this.label7.Location = new System.Drawing.Point(428, 250);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(159, 73);
+            this.label7.Size = new System.Drawing.Size(127, 58);
             this.label7.TabIndex = 6;
             this.label7.Text = "મૂળગામ\r\nNative City";
             // 
@@ -180,7 +180,7 @@ namespace thalbhet
             this.label3.Location = new System.Drawing.Point(418, 127);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(335, 73);
+            this.label3.Size = new System.Drawing.Size(268, 58);
             this.label3.TabIndex = 13;
             this.label3.Text = "પિતા/પતિનું નામ   \r\nFather/husband\'s Name\r\n";
             // 
@@ -495,6 +495,7 @@ namespace thalbhet
             this.button5.TabIndex = 59;
             this.button5.Text = "ok";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
             // 
             // Newentry
             // 
