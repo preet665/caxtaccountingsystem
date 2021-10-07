@@ -259,8 +259,7 @@ namespace thalbhet
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(265, 43);
             this.textBox3.TabIndex = 32;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            this.textBox3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox3_KeyDown);
+            this.textBox3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox3_KeyUp);
             // 
             // textBox4
             // 

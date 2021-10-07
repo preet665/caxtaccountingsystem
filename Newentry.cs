@@ -382,5 +382,47 @@ namespace thalbhet
             con.Close();
             MessageBox.Show("Entry has been Done successfully");
         }
+
+        private void textBox3_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\smk.mdf;Integrated Security=True");
+                bool isParsable = Int32.TryParse(textBox3.Text, out int number);
+                if (textBox3.Text != null)
+                {
+                    
+                    //double smk = Convert.ToInt64(textBox3.Text);
+                    //MessageBox.Show("Number");
+
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[Page1$] where [Mobile 1] ='" + textBox3.Text + "' ", con);
+                    SqlDataReader reader1 = cmd.ExecuteReader();
+                    if (reader1.Read())
+                    {
+                        textBox8.Text = reader1["First Name Guj"].ToString();
+                        textBox2.Text = reader1["Present City/Village Guj"].ToString();
+                        textBox9.Text = reader1["Middle Name Guj"].ToString();
+                        textBox10.Text = reader1["Last Name GUj"].ToString();
+                        textBox1.Text = reader1["Native Guj"].ToString();
+                        textBox4.Text = reader1["SMKId"].ToString();
+
+                        reader1.Close();
+                        con.Close();
+                    }
+
+
+
+                }
+                SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
+                con2.Open();
+                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)) FROM newentrytable where [MobileNumber] ='" + textBox3.Text + "'", con2);
+                //balquery.Connection = con;
+                object balsum = balquery.ExecuteScalar();
+                label15.Text = balsum.ToString();
+                con2.Close();
+            }
+        }
     }
 }
