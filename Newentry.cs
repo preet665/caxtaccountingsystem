@@ -204,7 +204,7 @@ namespace thalbhet
             //String Nimit = comboBox1.SelectedItem.ToString();
             //long hastaksmk = Int64.Parse(textBox6.Text);
             //String hastak = textBox7.Text;
-            string submissiontime = DateTime.Now.ToString("F");
+            string submissiontime = DateTime.Now.ToString("dd-MM-yy");
             string enrtydatetime = dateTimePicker1.Value.ToString();
             string status = "Credit";
             string loggedinuser = label2.Text;
@@ -216,7 +216,10 @@ namespace thalbhet
             cmd.ExecuteNonQuery();
             cmdl.ExecuteNonQuery();
             con.Close();
+           
             MessageBox.Show("Entry has been Done successfully");
+            reportviewer repv = new reportviewer(SMK.ToString());
+            repv.ShowDialog();
         }
 
         private void addnimitbutton_Click(object sender, EventArgs e)
@@ -423,6 +426,13 @@ namespace thalbhet
                 label15.Text = balsum.ToString();
                 con2.Close();
             }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            long SMK = Int64.Parse(textBox4.Text);
+            reportviewer repv = new reportviewer(SMK.ToString());
+            repv.ShowDialog();
         }
     }
 }

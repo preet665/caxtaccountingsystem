@@ -67,12 +67,14 @@
     <Reference Include="AdvancedDataGridView, Version=0.1.0.10, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\ADGV.0.1.0.10\lib\net40\AdvancedDataGridView.dll</HintPath>
     </Reference>
+    <Reference Include="AxShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Dapper.2.0.90\lib\net461\Dapper.dll</HintPath>
     </Reference>
@@ -175,6 +177,7 @@
     <Reference Include="System.Security" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -324,6 +327,12 @@
     <Compile Include="Reportoption.Designer.cs">
       <DependentUpon>Reportoption.cs</DependentUpon>
     </Compile>
+    <Compile Include="reportviewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="reportviewer.Designer.cs">
+      <DependentUpon>reportviewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="satyaadiDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -398,6 +407,9 @@
     <EmbeddedResource Include="Reportoption.resx">
       <DependentUpon>Reportoption.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="reportviewer.resx">
+      <DependentUpon>reportviewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="showledger.resx">
       <DependentUpon>showledger.cs</DependentUpon>
     </EmbeddedResource>
@@ -427,6 +439,7 @@
       <DependentUpon>DataSet2.xsd</DependentUpon>
     </None>
     <None Include="DataSet2.xsd">
+      <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DataSet2.Designer.cs</LastGenOutput>
     </None>
