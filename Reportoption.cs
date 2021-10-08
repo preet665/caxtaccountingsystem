@@ -51,5 +51,11 @@ namespace thalbhet
             ledger ledge = new ledger();
             ledge.ShowDialog();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            adminpanel adp = new adminpanel(label1.Text);
+            adp.ShowDialog();
+        }
     }
 }
