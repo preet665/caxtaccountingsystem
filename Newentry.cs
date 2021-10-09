@@ -452,7 +452,8 @@ namespace thalbhet
             balance.Text = "hello";
 
             repv.crystalReportViewer1.ReportSource = cr;
-            //repv.Show();
+            repv.crystalReportViewer1.Refresh();
+            repv.Show();
             //PrintDialog printDialog = new PrintDialog();
             //string path = @"E:\bank management system\thalbhet\CrystalReport1.rpt";
             //CrystalDecisions.CrystalReports.Engine.ReportDocument reportDocument = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
@@ -464,7 +465,7 @@ namespace thalbhet
                 ExportOptions CrExportOptions;
                 DiskFileDestinationOptions CrDiskFileDestinationOptions = new DiskFileDestinationOptions();
                 PdfRtfWordFormatOptions CrFormatTypeOptions = new PdfRtfWordFormatOptions();
-                CrDiskFileDestinationOptions.DiskFileName = "c:\\bmsreceipt.pdf";
+                CrDiskFileDestinationOptions.DiskFileName = "E:\\bmsreceipt.pdf";
                 CrExportOptions = cr.ExportOptions;
                 {
                     CrExportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
