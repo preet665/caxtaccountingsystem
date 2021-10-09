@@ -333,6 +333,7 @@
     <Compile Include="reportviewer.Designer.cs">
       <DependentUpon>reportviewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="repv.cs" />
     <Compile Include="satyaadiDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

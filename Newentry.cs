@@ -453,14 +453,32 @@ namespace thalbhet
 
             repv.crystalReportViewer1.ReportSource = cr;
             //repv.Show();
-            PrintDialog printDialog = new PrintDialog();
-            string path = @"E:/bank management system/thalbhet/CrystalReport1.rpt";
-            CrystalDecisions.CrystalReports.Engine.ReportDocument reportDocument = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-            reportDocument.Load(Application.StartupPath + path);
-            reportDocument.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
-            reportDocument.PrintToPrinter(printDialog.PrinterSettings.Copies, printDialog.PrinterSettings.Collate, printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
+            //PrintDialog printDialog = new PrintDialog();
+            //string path = @"E:\bank management system\thalbhet\CrystalReport1.rpt";
+            //CrystalDecisions.CrystalReports.Engine.ReportDocument reportDocument = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+            //reportDocument.Load(path);
+            //reportDocument.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
+            //reportDocument.PrintToPrinter(printDialog.PrinterSettings.Copies, printDialog.PrinterSettings.Collate, printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
+            try
+            {
+                ExportOptions CrExportOptions;
+                DiskFileDestinationOptions CrDiskFileDestinationOptions = new DiskFileDestinationOptions();
+                PdfRtfWordFormatOptions CrFormatTypeOptions = new PdfRtfWordFormatOptions();
+                CrDiskFileDestinationOptions.DiskFileName = "c:\\bmsreceipt.pdf";
+                CrExportOptions = cr.ExportOptions;
+                {
+                    CrExportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
+                    CrExportOptions.ExportFormatType = ExportFormatType.PortableDocFormat;
+                    CrExportOptions.DestinationOptions = CrDiskFileDestinationOptions;
+                    CrExportOptions.FormatOptions = CrFormatTypeOptions;
+                }
+                cr.Export();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
 
-            
         }
     }
 }
