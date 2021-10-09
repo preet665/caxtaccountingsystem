@@ -34,6 +34,8 @@ namespace thalbhet
                 addnimitbutton.Visible = false;
                 button7.Visible = false;
             }
+            
+
             //populatecombobox9();
         }
         void fill_smk()
@@ -460,25 +462,25 @@ namespace thalbhet
             //reportDocument.Load(path);
             //reportDocument.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
             //reportDocument.PrintToPrinter(printDialog.PrinterSettings.Copies, printDialog.PrinterSettings.Collate, printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
-            try
-            {
-                ExportOptions CrExportOptions;
-                DiskFileDestinationOptions CrDiskFileDestinationOptions = new DiskFileDestinationOptions();
-                PdfRtfWordFormatOptions CrFormatTypeOptions = new PdfRtfWordFormatOptions();
-                CrDiskFileDestinationOptions.DiskFileName = "E:\\bmsreceipt.pdf";
-                CrExportOptions = cr.ExportOptions;
-                {
-                    CrExportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
-                    CrExportOptions.ExportFormatType = ExportFormatType.PortableDocFormat;
-                    CrExportOptions.DestinationOptions = CrDiskFileDestinationOptions;
-                    CrExportOptions.FormatOptions = CrFormatTypeOptions;
-                }
-                cr.Export();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            //try
+            //{
+            //    ExportOptions CrExportOptions;
+            //    DiskFileDestinationOptions CrDiskFileDestinationOptions = new DiskFileDestinationOptions();
+            //    PdfRtfWordFormatOptions CrFormatTypeOptions = new PdfRtfWordFormatOptions();
+            //    CrDiskFileDestinationOptions.DiskFileName = "E:\\bmsreceipt.pdf";
+            //    CrExportOptions = cr.ExportOptions;
+            //    {
+            //        CrExportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
+            //        CrExportOptions.ExportFormatType = ExportFormatType.PortableDocFormat;
+            //        CrExportOptions.DestinationOptions = CrDiskFileDestinationOptions;
+            //        CrExportOptions.FormatOptions = CrFormatTypeOptions;
+            //    }
+            //    cr.Export();
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.ToString());
+            //}
 
         }
     }

@@ -90,7 +90,7 @@ namespace thalbhet {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_My_Parameter {
+        public CrystalDecisions.Shared.IParameterField Parameter_balance {
             get {
                 return this.DataDefinition.ParameterFields[0];
             }
