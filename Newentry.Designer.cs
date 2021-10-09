@@ -603,12 +603,12 @@ namespace thalbhet
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button8;
+        public System.Windows.Forms.Label label15;
     }
 }

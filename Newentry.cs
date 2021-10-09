@@ -9,12 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Runtime.InteropServices;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 
 namespace thalbhet
 {
     public partial class Newentry : Form
     {
         //SqlDataReader reader; // = cmd.ExecuteReader();
+        public static string bal;
         public Newentry(string UserName)
         {
             InitializeComponent();
@@ -158,6 +161,7 @@ namespace thalbhet
                 //balquery.Connection = con;
                 object balsum = balquery.ExecuteScalar();
                 label15.Text = balsum.ToString();
+                bal = balsum.ToString();
                 con2.Close();
             }
 
@@ -218,8 +222,15 @@ namespace thalbhet
             con.Close();
            
             MessageBox.Show("Entry has been Done successfully");
-            reportviewer repv = new reportviewer(Convert.ToInt32(SMK).ToString());
-            repv.ShowDialog();
+            reportviewer repv = new reportviewer(Convert.ToInt32(SMK).ToString(),label15.Text);
+            CrystalReport1 cr = new CrystalReport1();
+            TextObject balance = (TextObject)cr.ReportDefinition.Sections["Section1"].ReportObjects["Text6"];
+            balance.Text = "hello";
+
+            repv.crystalReportViewer1.ReportSource = cr;
+            repv.Show();
+           
+           
         }
 
         private void addnimitbutton_Click(object sender, EventArgs e)
@@ -280,7 +291,7 @@ namespace thalbhet
             cmdl.ExecuteNonQuery();
             con.Close();
             MessageBox.Show("Entry has been Done successfully");
-            reportviewer repv = new reportviewer(Convert.ToInt32(SMK).ToString());
+            reportviewer repv = new reportviewer(Convert.ToInt32(SMK).ToString(),label15.Text);
             repv.ShowDialog();
         }
 
@@ -433,8 +444,15 @@ namespace thalbhet
         private void button8_Click(object sender, EventArgs e)
         {
             long SMK = Int64.Parse(textBox4.Text);
-            reportviewer repv = new reportviewer(SMK.ToString());
-            repv.ShowDialog();
+            //reportviewer repv = new reportviewer(SMK.ToString());
+            //repv.ShowDialog();
+            reportviewer repv = new reportviewer(Convert.ToInt32(SMK).ToString(),label15.Text);
+            CrystalReport1 cr = new CrystalReport1();
+            TextObject balance = (TextObject)cr.ReportDefinition.Sections["Section1"].ReportObjects["Text6"];
+            balance.Text = "hello";
+
+            repv.crystalReportViewer1.ReportSource = cr;
+            repv.Show();
         }
     }
 }
