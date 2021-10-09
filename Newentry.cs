@@ -128,16 +128,16 @@ namespace thalbhet
         private void textBox4_KeyDown(object sender, KeyEventArgs e)
         {
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\smk.mdf;Integrated Security=True");
-            bool isParsable = Int32.TryParse(textBox4.Text, out int number);
+            //bool isParsable = Int32.TryParse(textBox4.Text, out int number);
             if (e.KeyCode == Keys.Enter)
             {
-                if (textBox4.Text != null && isParsable == true)
+                if (textBox4.Text != null)
                 {
-                    int smk = Convert.ToInt32(textBox4.Text);
+                    //int smk = Convert.ToInt32(textBox4.Text);
                     //MessageBox.Show("Number");
                     
                     con.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[Page1$] where SMKId='" + textBox4.Text + "' ", con);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[Page1$] where SMKId='"+textBox4.Text+"' ", con);
                     SqlDataReader reader1 = cmd.ExecuteReader();
                     if (reader1.Read())
                     {
@@ -443,7 +443,7 @@ namespace thalbhet
 
         private void button8_Click(object sender, EventArgs e)
         {
-            long SMK = Int64.Parse(textBox4.Text);
+            string SMK = textBox4.Text;
             //reportviewer repv = new reportviewer(SMK.ToString());
             //repv.ShowDialog();
             reportviewer repv = new reportviewer(Convert.ToInt32(SMK).ToString(),label15.Text);
@@ -452,7 +452,15 @@ namespace thalbhet
             balance.Text = "hello";
 
             repv.crystalReportViewer1.ReportSource = cr;
-            repv.Show();
+            //repv.Show();
+            PrintDialog printDialog = new PrintDialog();
+            string path = @"E:/bank management system/thalbhet/CrystalReport1.rpt";
+            CrystalDecisions.CrystalReports.Engine.ReportDocument reportDocument = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+            reportDocument.Load(Application.StartupPath + path);
+            reportDocument.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
+            reportDocument.PrintToPrinter(printDialog.PrinterSettings.Copies, printDialog.PrinterSettings.Collate, printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
+
+            
         }
     }
 }

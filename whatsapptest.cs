@@ -24,13 +24,15 @@ namespace thalbhet
         String password = "Kundal212#";
         private void button1_Click(object sender, EventArgs e)
         {
-            //using (WebClient web = new WebClient())
-            //{
-            //    string url = string.Format("https://wa.krupacc.com/send-message")
-            //}
-            //HttpClient Client = new HttpClient();
-            //StringContent Content = new StringContent("");
-            //await Client.PostAsync("https://wa.krupacc.com/send-message", Content);
+            var client = new RestClient("http://wa.krupacc.com/send-cloud-media");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.POST);
+            request.AlwaysMultipartFormData = true;
+            request.AddParameter("number", "+918320640724");
+            request.AddParameter("caption", "jay swaminarayan");
+            request.AddParameter("file", "https://www.upiqrcode.com/upiqrtestapi?apikey=ntljdu&seckey=kundal&paymode=bankac&vpa=SMKV1017905@YESB0CMSNOC&payee=SHRI SWAMINARAYAN MANDIR KARELIBAUG VADODARA");
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
         }
     }
 }

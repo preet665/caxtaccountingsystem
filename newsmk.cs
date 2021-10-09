@@ -22,15 +22,15 @@ namespace thalbhet
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source=LAPTOP-BH74KO7F;Initial Catalog=smkdb;Integrated Security=True");
-            String SMK = label8.Text;
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\smk.mdf;Integrated Security=True");
+            String num = label8.Text;
             String Name = textBox2.Text;
             String Fathername = textBox4.Text;
             String Surname = textBox5.Text;
             String PresentCity = textBox3.Text;
             String NativeCity = textBox1.Text;
             String MobileNumber = textBox6.Text;
-            String query = "INSERT INTO [dbo].[Page1$] ([SMKId],[First Name Guj],[Middle Name Guj],[Last Name Guj],[Present City/Village Guj],[Native Guj],[Mobile 1]) VALUES ('" + SMK + "',N'" + Name + "',N'" + Fathername + "',N'" + Surname + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + MobileNumber + "')";
+            String query = "INSERT INTO [dbo].[Page1$] ([SMKId],[First Name Guj],[Middle Name Guj],[Last Name Guj],[Present City/Village Guj],[Native Guj],[Mobile 1]) VALUES ('" + num + "',N'" + Name + "',N'" + Fathername + "',N'" + Surname + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + MobileNumber + "')";
             SqlCommand cmd = new SqlCommand(@query, con);
             con.Open();
             cmd.ExecuteNonQuery();
@@ -53,22 +53,39 @@ namespace thalbhet
 
         private void newsmk_Load(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source=LAPTOP-BH74KO7F;Initial Catalog=smkdb;Integrated Security=True");
-            con.Open();
-            SqlDataAdapter da = new SqlDataAdapter("SELECT SMKId FROM [dbo].[Page1$] order by SMKId desc", con);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
+            //SqlConnection con = new SqlConnection(@"Data Source=LAPTOP-BH74KO7F;Initial Catalog=smkdb;Integrated Security=True");
+            //con.Open();
+            //SqlDataAdapter da = new SqlDataAdapter("SELECT SMKId FROM [dbo].[Page1$] order by SMKId desc", con);
+            //DataSet ds = new DataSet();
+            //da.Fill(ds);
 
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                label8.Text = (int.Parse(ds.Tables[0].Rows[0][0].ToString()) + 1).ToString();
-            }
-            else
-            {
-                MessageBox.Show("who are you?");
-            }
+            //if (ds.Tables[0].Rows.Count > 0)
+            //{
+            //    label8.Text = (int.Parse(ds.Tables[0].Rows[0][0].ToString()) + 1).ToString();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("who are you?");
+
+            //}
+            string num = GenerateRandomString(5);
+            MessageBox.Show(num);
+            label8.Text = num;
 
         }
+        public static string GenerateRandomString(int Length)
+        {
+            string _allowedChars = "ABCDEFGHJKLMNOPQRSTUVWXYZ0123456789";
+            Random randNum = new Random();
+            char[] chars = new char[Length];
+
+            for (int i = 0; i < Length; i++)
+            {
+                chars[i] = _allowedChars[Convert.ToInt32((_allowedChars.Length - 1) * randNum.NextDouble())];
+            }
+            return new string(chars);
+        }
+
     }
 
 }
