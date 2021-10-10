@@ -450,8 +450,8 @@ namespace thalbhet
             //repv.ShowDialog();
             reportviewer repv = new reportviewer(Convert.ToInt32(SMK).ToString(),label15.Text);
             CrystalReport1 cr = new CrystalReport1();
-            TextObject balance = (TextObject)cr.ReportDefinition.Sections["Section1"].ReportObjects["Text6"];
-            balance.Text = "hello";
+            //TextObject balance = (TextObject)cr.ReportDefinition.Sections["Section1"].ReportObjects["Text6"];
+            //balance.Text = "hello";
 
             repv.crystalReportViewer1.ReportSource = cr;
             repv.crystalReportViewer1.Refresh();

@@ -803,6 +803,8 @@ namespace thalbhet {
             
             private global::System.Data.DataColumn columnMobile_1;
             
+            private global::System.Data.DataColumn columnimage;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public _Page1_DataTable() {
@@ -958,6 +960,14 @@ namespace thalbhet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn imageColumn {
+                get {
+                    return this.columnimage;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -993,7 +1003,23 @@ namespace thalbhet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public _Page1_Row Add_Page1_Row(string SMKId, double Kutumb_Id, string FullNameGuj, string FullNameEng, string First_Name_Guj, string Middle_Name_Guj, string Last_Name_Guj, string First_Name, string Middle_Name, string Last_Name, string _Present_City_Village_Guj, string _Present_City_Village, string Native_Guj, string _Native_City_Village, string Mobile_1) {
+            public _Page1_Row Add_Page1_Row(
+                        string SMKId, 
+                        double Kutumb_Id, 
+                        string FullNameGuj, 
+                        string FullNameEng, 
+                        string First_Name_Guj, 
+                        string Middle_Name_Guj, 
+                        string Last_Name_Guj, 
+                        string First_Name, 
+                        string Middle_Name, 
+                        string Last_Name, 
+                        string _Present_City_Village_Guj, 
+                        string _Present_City_Village, 
+                        string Native_Guj, 
+                        string _Native_City_Village, 
+                        string Mobile_1, 
+                        string image) {
                 _Page1_Row row_Page1_Row = ((_Page1_Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SMKId,
@@ -1010,7 +1036,8 @@ namespace thalbhet {
                         _Present_City_Village,
                         Native_Guj,
                         _Native_City_Village,
-                        Mobile_1};
+                        Mobile_1,
+                        image};
                 row_Page1_Row.ItemArray = columnValuesArray;
                 this.Rows.Add(row_Page1_Row);
                 return row_Page1_Row;
@@ -1048,6 +1075,7 @@ namespace thalbhet {
                 this.columnNative_Guj = base.Columns["Native Guj"];
                 this._columnNative_City_Village = base.Columns["Native City/Village"];
                 this.columnMobile_1 = base.Columns["Mobile 1"];
+                this.columnimage = base.Columns["image"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1089,6 +1117,8 @@ namespace thalbhet {
                 base.Columns.Add(this._columnNative_City_Village);
                 this.columnMobile_1 = new global::System.Data.DataColumn("Mobile 1", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMobile_1);
+                this.columnimage = new global::System.Data.DataColumn("image", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnimage);
                 this.columnSMKId.MaxLength = 50;
                 this.columnFullNameGuj.MaxLength = 255;
                 this.columnFullNameEng.MaxLength = 255;
@@ -1103,6 +1133,7 @@ namespace thalbhet {
                 this.columnNative_Guj.MaxLength = 255;
                 this._columnNative_City_Village.MaxLength = 255;
                 this.columnMobile_1.MaxLength = 255;
+                this.columnimage.MaxLength = 50;
                 this.ExtendedProperties.Add("Generator_TableVarName", "_tablePage1_");
                 this.ExtendedProperties.Add("Generator_UserTableName", "Page1$");
             }
@@ -1888,6 +1919,22 @@ namespace thalbhet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string image {
+                get {
+                    try {
+                        return ((string)(this[this._tablePage1_.imageColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'image\' in table \'Page1$\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this._tablePage1_.imageColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsSMKIdNull() {
                 return this.IsNull(this._tablePage1_.SMKIdColumn);
             }
@@ -2064,6 +2111,18 @@ namespace thalbhet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetMobile_1Null() {
                 this[this._tablePage1_.Mobile_1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsimageNull() {
+                return this.IsNull(this._tablePage1_.imageColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetimageNull() {
+                this[this._tablePage1_.imageColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2605,10 +2664,11 @@ namespace thalbhet.DataSet2TableAdapters {
             tableMapping.ColumnMappings.Add("Native Guj", "Native Guj");
             tableMapping.ColumnMappings.Add("Native City/Village", "Native City/Village");
             tableMapping.ColumnMappings.Add("Mobile 1", "Mobile 1");
+            tableMapping.ColumnMappings.Add("image", "image");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Page1$] ([SMKId], [Kutumb Id], [FullNameGuj], [FullNameEng], [First Name Guj], [Middle Name Guj], [Last Name Guj], [First Name], [Middle Name], [Last Name], [Present City/Village Guj], [Present City/Village], [Native Guj], [Native City/Village], [Mobile 1]) VALUES (@SMKId, @Kutumb_Id, @FullNameGuj, @FullNameEng, @First_Name_Guj, @Middle_Name_Guj, @Last_Name_Guj, @First_Name, @Middle_Name, @Last_Name, @p1, @p4, @Native_Guj, @p7, @Mobile_1)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Page1$] ([SMKId], [Kutumb Id], [FullNameGuj], [FullNameEng], [First Name Guj], [Middle Name Guj], [Last Name Guj], [First Name], [Middle Name], [Last Name], [Present City/Village Guj], [Present City/Village], [Native Guj], [Native City/Village], [Mobile 1], [image]) VALUES (@SMKId, @Kutumb_Id, @FullNameGuj, @FullNameEng, @First_Name_Guj, @Middle_Name_Guj, @Last_Name_Guj, @First_Name, @Middle_Name, @Last_Name, @p1, @p4, @Native_Guj, @p7, @Mobile_1, @image)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SMKId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SMKId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Kutumb_Id", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Kutumb Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -2625,6 +2685,7 @@ namespace thalbhet.DataSet2TableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Native_Guj", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Native Guj", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p7", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Native City/Village", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Mobile_1", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Mobile 1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@image", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "image", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2640,7 +2701,7 @@ namespace thalbhet.DataSet2TableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT SMKId, [Kutumb Id], FullNameGuj, FullNameEng, [First Name Guj], [Middle Name Guj], [Last Name Guj], [First Name], [Middle Name], [Last Name], [Present City/Village Guj], [Present City/Village], [Native Guj], [Native City/Village], [Mobile 1] FROM dbo.Page1$";
+            this._commandCollection[0].CommandText = @"SELECT SMKId, [Kutumb Id], FullNameGuj, FullNameEng, [First Name Guj], [Middle Name Guj], [Last Name Guj], [First Name], [Middle Name], [Last Name], [Present City/Village Guj], [Present City/Village], [Native Guj], [Native City/Village], [Mobile 1], image FROM dbo.Page1$";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -2701,7 +2762,23 @@ namespace thalbhet.DataSet2TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string SMKId, global::System.Nullable<double> Kutumb_Id, string FullNameGuj, string FullNameEng, string First_Name_Guj, string Middle_Name_Guj, string Last_Name_Guj, string First_Name, string Middle_Name, string Last_Name, string p1, string p4, string Native_Guj, string p7, string Mobile_1) {
+        public virtual int Insert(
+                    string SMKId, 
+                    global::System.Nullable<double> Kutumb_Id, 
+                    string FullNameGuj, 
+                    string FullNameEng, 
+                    string First_Name_Guj, 
+                    string Middle_Name_Guj, 
+                    string Last_Name_Guj, 
+                    string First_Name, 
+                    string Middle_Name, 
+                    string Last_Name, 
+                    string p1, 
+                    string p4, 
+                    string Native_Guj, 
+                    string p7, 
+                    string Mobile_1, 
+                    string image) {
             if ((SMKId == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -2791,6 +2868,12 @@ namespace thalbhet.DataSet2TableAdapters {
             }
             else {
                 this.Adapter.InsertCommand.Parameters[14].Value = ((string)(Mobile_1));
+            }
+            if ((image == null)) {
+                this.Adapter.InsertCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[15].Value = ((string)(image));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 

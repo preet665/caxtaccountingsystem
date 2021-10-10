@@ -110,5 +110,6 @@ namespace thalbhet
             reportDocument.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
             reportDocument.PrintToPrinter(printDialog.PrinterSettings.Copies, printDialog.PrinterSettings.Collate, printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
         }
+
     }
 }
