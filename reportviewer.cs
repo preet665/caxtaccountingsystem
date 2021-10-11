@@ -13,6 +13,8 @@ using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 using RestSharp;
 using System.Drawing.Imaging;
+using Ghostscript.NET.Rasterizer;
+using System.IO;
 
 namespace thalbhet
 {
@@ -48,6 +50,7 @@ namespace thalbhet
             DA.Fill(DS, "newentrytable");
             DA.SelectCommand = cmd2;
             DA.Fill(DS, "Page1$");
+            
             //dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
 
             CrystalReport1 crypt = new CrystalReport1();
@@ -55,6 +58,9 @@ namespace thalbhet
             crypt.Database.Tables["Page1_"].SetDataSource(DS);
             crypt.Database.Tables["ReportDetail"].SetDataSource(DS);
             crypt.SetParameterValue("balance", label2.Text);
+            String dac = "E:\\smkphotos\\" + DS.Tables["Page1$"].Rows[0].ItemArray[15].ToString();
+
+            MessageBox.Show(dac);
             //crypt.SetParameterValue("imageURL", "E:\\smkphotos\\12486.jpg");
             //crypt.DataDefinition.FormulaFields.Item("Location").Text
             //crypt.SetParameterValue("balance", Newentry.balance);
@@ -169,33 +175,23 @@ namespace thalbhet
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //PDFDocument pdfDoc = new PDFDocument();
-
-            // Load PDF document from local file.
-            //pdfDoc.LoadPDF("sample.pdf");
-
-            //// Get the total page count.
-            //int count = pdfDoc.PageCount;
-
-            //for (int i = 0; i < count; i++)
-            //{
-            //    // Convert PDF page to image.
-            //    Bitmap jpgImage = pdfDoc.ToImage(i);
-
-            //    // Save image with jpg file type.
-            //    jpgImage.Save("output" + i + ".jpg", ImageFormat.Jpeg);
+            string pdf_filename = "E:\\bmsreceipt.pdf";
+            string png_filename = "E:\\bmsreceipt.png";
+            List<string> errors = cs_pdf_to_image.Pdf2Image.Convert(pdf_filename, png_filename);
 
 
-                var client = new RestClient("https://wa.krupacc.com/send-media");
+            var client = new RestClient("https://wa.krupacc.com/send-media");
                 client.Timeout = -1;
                 var request = new RestRequest(Method.POST);
                 request.AddParameter("number", "+918866140395");
                 request.AddParameter("caption", "Hi_rkanani");
-                request.AddFile("file", @"C:\Users\Preet\Desktop\bmsreceipt.jpg"); //local file path
+                request.AddFile("file", @"E:\bmsreceipt.png"); //local file path
                 IRestResponse response = client.Execute(request);
                 Console.WriteLine(response.Content);
                 MessageBox.Show("Sent successfully");
             }
-        }
     }
+}
+
+
 
