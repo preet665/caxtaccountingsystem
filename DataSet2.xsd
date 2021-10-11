@@ -87,7 +87,7 @@
                 </InsertCommand>
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT SMKId, [Kutumb Id], FullNameGuj, FullNameEng, [First Name Guj], [Middle Name Guj], [Last Name Guj], [First Name], [Middle Name], [Last Name], [Present City/Village Guj], [Present City/Village], [Native Guj], [Native City/Village], [Mobile 1], image FROM dbo.Page1$</CommandText>
+                    <CommandText>SELECT SMKId, [Kutumb Id], FullNameGuj, FullNameEng, [First Name Guj], [Middle Name Guj], [Last Name Guj], [First Name], [Middle Name], [Last Name], [Present City/Village Guj], [Present City/Village], [Native Guj], [Native City/Village], [Mobile 1], image FROM Page1$</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -304,13 +304,14 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="image" msprop:Generator_ColumnVarNameInTable="columnimage" msprop:Generator_ColumnPropNameInRow="image" msprop:Generator_ColumnPropNameInTable="imageColumn" msprop:Generator_UserColumnName="image" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
+              <xs:element name="image" msprop:Generator_ColumnVarNameInTable="columnimage" msprop:Generator_ColumnPropNameInRow="image" msprop:Generator_ColumnPropNameInTable="imageColumn" msprop:Generator_UserColumnName="image" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ReportDetail" msprop:Generator_TableClassName="ReportDetailDataTable" msprop:Generator_TableVarName="tableReportDetail" msprop:Generator_TablePropName="ReportDetail" msprop:Generator_RowDeletingName="ReportDetailRowDeleting" msprop:Generator_RowChangingName="ReportDetailRowChanging" msprop:Generator_RowEvHandlerName="ReportDetailRowChangeEventHandler" msprop:Generator_RowDeletedName="ReportDetailRowDeleted" msprop:Generator_UserTableName="ReportDetail" msprop:Generator_RowChangedName="ReportDetailRowChanged" msprop:Generator_RowEvArgName="ReportDetailRowChangeEvent" msprop:Generator_RowClassName="ReportDetailRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="imagepath" msprop:Generator_ColumnVarNameInTable="columnimagepath" msprop:Generator_ColumnPropNameInRow="imagepath" msprop:Generator_ColumnPropNameInTable="imagepathColumn" msprop:Generator_UserColumnName="imagepath" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
