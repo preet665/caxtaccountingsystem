@@ -38,9 +38,9 @@ namespace thalbhet
         {
 
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
-            SqlCommand selectCMD = new SqlCommand("select * from (SELECT TOP 4 * FROM newentrytable where SMK = '" + label1.Text + "' ORDER BY submissiontime DESC)AS TEMP where SMK LIKE '" + label1.Text + "'  order by submissiontime ASC; ", con);
+            SqlCommand selectCMD = new SqlCommand("select * from (SELECT top 4 ID,SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,CrAmount,DebAmount,status,submissiontime,enrtydatetime,loggedinuser,SUM(isnull(CrAmount, 0) - isnull(DebAmount, 0))  OVER (ORDER BY id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as Balance FROM newentrytable  where SMK = '"+label1.Text+"' order by submissiontime desc) as temp order by submissiontime asc; ", con);
             SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\smk.mdf;Integrated Security=True");
-            SqlCommand cmd2 = new SqlCommand("Select FullNameGuj,[Mobile 1],[image] From [dbo].[Page1$] where SMKId LIKE '" + label1.Text + "'", con2);
+            SqlCommand cmd2 = new SqlCommand("Select FullNameGuj,[Mobile 1],image From [dbo].[Page1$] where SMKId LIKE '" + label1.Text + "'", con2);
             SqlDataAdapter DA = new SqlDataAdapter();
             DA.SelectCommand = selectCMD;
             con.Open();
@@ -58,9 +58,13 @@ namespace thalbhet
             crypt.Database.Tables["Page1_"].SetDataSource(DS);
             crypt.Database.Tables["ReportDetail"].SetDataSource(DS);
             crypt.SetParameterValue("balance", label2.Text);
-            String dac = "E:\\smkphotos\\" + DS.Tables["Page1$"].Rows[0].ItemArray[15].ToString();
+            /*String dac = "E:\\smkphotos\\" +label1.Text+".jpg";
+            Bitmap b = new Bitmap(dac);
 
             MessageBox.Show(dac);
+            ImageConverter imgconv = new ImageConverter();
+            byte[] img = (byte[])imgconv.ConvertTo(b, typeof(byte[]));
+            DS.Tables["Page1$"].Rows[0].ItemArray[15]=img;*/
             //crypt.SetParameterValue("imageURL", "E:\\smkphotos\\12486.jpg");
             //crypt.DataDefinition.FormulaFields.Item("Location").Text
             //crypt.SetParameterValue("balance", Newentry.balance);

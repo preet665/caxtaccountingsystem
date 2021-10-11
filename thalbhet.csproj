@@ -343,6 +343,12 @@
       <DependentUpon>reportviewer.cs</DependentUpon>
     </Compile>
     <Compile Include="repv.cs" />
+    <Compile Include="rough.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="rough.Designer.cs">
+      <DependentUpon>rough.cs</DependentUpon>
+    </Compile>
     <Compile Include="satyaadiDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -419,6 +425,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="reportviewer.resx">
       <DependentUpon>reportviewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rough.resx">
+      <DependentUpon>rough.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="showledger.resx">
       <DependentUpon>showledger.cs</DependentUpon>
