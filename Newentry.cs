@@ -231,8 +231,8 @@ namespace thalbhet
             //TextObject balance = (TextObject)cr.ReportDefinition.Sections["Section1"].ReportObjects["Text6"];
             //balance.Text = "hello";
 
-            //repv.crystalReportViewer1.ReportSource = cr;
-            //repv.Show();
+            repv.crystalReportViewer1.ReportSource = cr;
+            repv.Show();
            
            
         }
