@@ -108,13 +108,17 @@ namespace thalbhet
         {
             // TODO: This line of code loads data into the 'newentrydbDataSet.newentrytable' table. You can move, or remove it, as needed.
             //this.newentrytableTableAdapter.Fill(this.newentrydbDataSet.newentrytable);
+            newentryload();
+            
+        }
+        private void newentryload()
+        {
             Nimit2();
-            if(label2.Text != "admin")
+            if (label2.Text != "admin")
             {
                 button6.Visible = false;
             }
             this.Refresh();
-            
         }
 
         private void textBox4_MouseClick(object sender, MouseEventArgs e)
@@ -233,8 +237,8 @@ namespace thalbhet
 
             repv.crystalReportViewer1.ReportSource = cr;
             repv.Show();
-           
-           
+            newentryload();
+
         }
 
         private void addnimitbutton_Click(object sender, EventArgs e)
@@ -304,6 +308,8 @@ namespace thalbhet
             MessageBox.Show("Entry has been Done successfully");
             reportviewer repv = new reportviewer(Convert.ToInt32(SMK).ToString(),label15.Text);
             repv.ShowDialog();
+            newentryload();
+
         }
 
         private void button5_Click(object sender, EventArgs e)
