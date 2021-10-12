@@ -220,6 +220,7 @@ namespace thalbhet
             SqlCommand cmd = new SqlCommand(@query, con);
             SqlCommand cmdl = new SqlCommand(@ledgequery, con);
             con.Open();
+            
             cmd.ExecuteNonQuery();
             cmdl.ExecuteNonQuery();
             con.Close();
@@ -290,8 +291,15 @@ namespace thalbhet
             String ledgequery = "INSERT INTO [dbo].[history]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[DebAmount],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "' ,N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "',N'" + MobileNumber + "',N'" + name + "','" + Amount + "','" + submissiontime + "','" + enrtydatetime + "','" + status + "','" + loggedinuser + "')";
             SqlCommand cmdl = new SqlCommand(@ledgequery, con);
             con.Open();
-            cmd.ExecuteNonQuery();
-            cmdl.ExecuteNonQuery();
+            if (Int64.Parse(textBox5.Text) > Int64.Parse(label15.Text))
+            {
+                MessageBox.Show("Amount is greaer than balance");
+            }
+            else
+            {
+                cmd.ExecuteNonQuery();
+                cmdl.ExecuteNonQuery();
+            }
             con.Close();
             MessageBox.Show("Entry has been Done successfully");
             reportviewer repv = new reportviewer(Convert.ToInt32(SMK).ToString(),label15.Text);
