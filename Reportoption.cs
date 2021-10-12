@@ -25,6 +25,8 @@ namespace thalbhet
             if(label1.Text != "admin")
             {
                 button4.Visible = false;
+                button1.Visible = false;
+                button2.Visible = false;
             }
         }
 

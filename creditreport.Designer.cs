@@ -123,6 +123,7 @@ namespace thalbhet
             this.label7.Size = new System.Drawing.Size(114, 29);
             this.label7.TabIndex = 7;
             this.label7.Text = "Note (નોંધ)";
+            this.label7.Visible = false;
             // 
             // textBox1
             // 
@@ -132,6 +133,7 @@ namespace thalbhet
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(465, 34);
             this.textBox1.TabIndex = 8;
+            this.textBox1.Visible = false;
             // 
             // button1
             // 
@@ -143,6 +145,7 @@ namespace thalbhet
             this.button1.TabIndex = 9;
             this.button1.Text = "DEBIT ";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
@@ -155,6 +158,7 @@ namespace thalbhet
             this.button2.TabIndex = 10;
             this.button2.Text = "TRANSFER - TO";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // textBox2
@@ -188,6 +192,7 @@ namespace thalbhet
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(174, 46);
             this.comboBox1.TabIndex = 16;
+            this.comboBox1.Visible = false;
             // 
             // label11
             // 
@@ -399,7 +404,7 @@ namespace thalbhet
             this.AutoSize = true;
             this.BackgroundImage = global::thalbhet.Properties.Resources._1155205__1_;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1924, 793);
+            this.ClientSize = new System.Drawing.Size(1924, 885);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dateTimePicker3);

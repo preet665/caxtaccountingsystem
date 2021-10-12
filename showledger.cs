@@ -17,6 +17,7 @@ using iTextSharp.text.pdf;
 using System.IO;
 using System.Windows.Forms.VisualStyles;
 using System.Diagnostics;
+using Spire;
 
 namespace thalbhet
 {
@@ -42,23 +43,24 @@ namespace thalbhet
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Microsoft.Office.Interop.Excel.Application excl = new Microsoft.Office.Interop.Excel.Application();
-            excl.Application.Workbooks.Add(Type.Missing);
-            for (int i = 1; i < dataGridView1.Columns.Count; i++)
-            {
-                excl.Cells[1, i] = dataGridView1.Columns[i - 1].HeaderText;
-
-            }
-            for (int i = 0; i < dataGridView1.Rows.Count; i++)
-            {
-                for (int j = 0; j < dataGridView1.Columns.Count; j++)
-                {
-                    excl.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[j].Value.ToString();
-                }
-            }
-            excl.Columns.AutoFit();
-            excl.Visible = true;
+            dataGridView1.SelectAll();
+            DataObject dataObj = dataGridView1.GetClipboardContent();
+            if (dataObj != null)
+                Clipboard.SetDataObject(dataObj);
+            Microsoft.Office.Interop.Excel.Application xlexcel;
+            Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
+            Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
+            object misValue = System.Reflection.Missing.Value;
+            xlexcel = new Microsoft.Office.Interop.Excel.Application();
+            xlexcel.Visible = true;
+            xlWorkBook = xlexcel.Workbooks.Add(misValue);
+            xlWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+            Microsoft.Office.Interop.Excel.Range CR = (Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Cells[1, 1];
+            CR.Select();
+            xlWorkSheet.PasteSpecial(CR, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
         }
+
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -86,6 +88,21 @@ namespace thalbhet
                         pdfTable.AddCell(cell.Value.ToString());
                     }
                 }
+            }
+            string folderpath = "E:\\PDF\\";
+            if (!Directory.Exists(folderpath))
+            {
+                Directory.CreateDirectory(folderpath);
+            }
+            using (FileStream stream = new FileStream(folderpath + "LedgerReport.pdf", FileMode.Create))
+            {
+                Document document = new Document(PageSize.A4.Rotate(), 10f, 10f, 10f, 0f);
+                PdfWriter.GetInstance(document, stream);
+                document.Open();
+                document.Add(pdfTable);
+                document.Close();
+                stream.Close();
+                MessageBox.Show("Pdf is exported to E:\\LedgerReport.pdf");
             }
         }
     }

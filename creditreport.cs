@@ -57,7 +57,7 @@ namespace thalbhet
             if (label11.Text == "admin")
             {
                 SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
-                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount, hastaksmk, hastak, submissiontime, enrtydatetime, status, note, giver, taker, loggedinuser, flag FROM newentrytable", con);
+                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount, submissiontime, enrtydatetime, status, note, loggedinuser, flag FROM newentrytable", con);
                 SqlDataAdapter DA = new SqlDataAdapter();
                 DA.SelectCommand = selectCMD;
                 con.Open();
@@ -99,7 +99,7 @@ namespace thalbhet
                 string transstring = "Transfer";
                 string crestring = "Credit";
                 SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
-                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount, TransAmount, hastaksmk, hastak, submissiontime, enrtydatetime, status, note, giver, taker, loggedinuser FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) AND (status IS NULL OR status ='" + transstring + "' OR status ='" + crestring + "' OR flag='1')", con);
+                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount, TransAmount, submissiontime, enrtydatetime, status, taker, loggedinuser FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) AND (status IS NULL OR status ='" + transstring + "' OR status ='" + crestring + "' OR flag='1')", con);
                 SqlDataAdapter DA = new SqlDataAdapter();
                 DA.SelectCommand = selectCMD;
                 con.Open();
@@ -210,10 +210,8 @@ namespace thalbhet
                 var MobileNumber = row.Cells["MobileNumber"].Value;
                 var Nimit = row.Cells["Nimit"].Value;
                 var name = row.Cells["name"].Value;
-                var hastaksmk = row.Cells["hastaksmk"].Value;
-                var hastak = row.Cells["hastak"].Value;
                 var loggedinuser = row.Cells["loggedinuser"].Value;
-                string note = textBox1.Text;
+                //string note = textBox1.Text;
                 if (id != null) { }
                 else
                 {
@@ -222,11 +220,11 @@ namespace thalbhet
 
                 SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True;");
                 con.Open();
-                SqlCommand selectCMD = new SqlCommand("update newentrytable set status = 'Debit', DebAmount = CrAmount , note = '" + note + "'  where ID ='" + id + "'", con);
+                SqlCommand selectCMD = new SqlCommand("update newentrytable set status = 'Debit', DebAmount = CrAmount  where ID ='" + id + "'", con);
                 //SqlCommand selectCMD1 = new SqlCommand("update newentrytable set DebAmount = CrAmount where ID ='" + id + "'", con);
                 //SqlCommand selectCMD2 = new SqlCommand("update newentrytable set note = '" + note + "' where ID ='" + id + "'", con);
-                SqlCommand selectCMD2 = new SqlCommand("insert into history (SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,hastaksmk,hastak,status,CrAmount,TransAmount,DebAmount,note) values " +
-                                        "('" + smk + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + FatherName + "',N'" + Surname + "','" + MobileNumber + "',N'" + Nimit + "',N'" + name + "','" + hastaksmk + "',N'" + hastak + "','Debit','"+cramount+"','"+transamount+"',0,'" + debamount + "','" + note + "')", con);
+                SqlCommand selectCMD2 = new SqlCommand("insert into history (SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,status,CrAmount,TransAmount,DebAmount) values " +
+                                        "('" + smk + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + FatherName + "',N'" + Surname + "','" + MobileNumber + "',N'" + Nimit + "',N'" + name + "','Debit','"+cramount+"','"+transamount+"',0,'" + debamount + "')", con);
 
                 selectCMD.ExecuteNonQuery();
                 
@@ -296,11 +294,8 @@ namespace thalbhet
                 var MobileNumber = row.Cells["MobileNumber"].Value;
                 var Nimit = row.Cells["Nimit"].Value;
                 var name = row.Cells["name"].Value;
-                var hastaksmk = row.Cells["hastaksmk"].Value;
-                var hastak = row.Cells["hastak"].Value;
                 var loggedinuser = row.Cells["loggedinuser"].Value;
                 MessageBox.Show(amount.ToString());
-                string note = textBox1.Text;
                 //string From = label11.Text;
                 string To = comboBox1.SelectedItem.ToString();
                 if (id != null) { }
@@ -317,11 +312,11 @@ namespace thalbhet
                 //    SqlCommand selectCMD = new SqlCommand("insert newentrytable set status = 'Transfer' , giver = '" + label11.Text + "', taker = '" + To + "' , TransAmount = CrAmount , note = '" + note + "'  where ID ='" + id + "'", con);
                 //    INSERT INTO ins_duplicate VALUES(5,'Wild Dog') ON DUPLICATE KEY UPDATE animal = 'Wild Dog';
                 //}
-                SqlCommand selectCMD = new SqlCommand("update newentrytable set status = 'Transfer' , giver = '"+label11.Text+"', taker = '"+To+"' , TransAmount = CrAmount , note = '" + note + "'  where ID ='" + id + "'", con);
-                SqlCommand selectCMD1 = new SqlCommand("insert into newentrytable (SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,hastaksmk,hastak,status,giver,taker,CrAmount,TransAmount,note,flag) values ('" + smk + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + FatherName + "',N'" + Surname + "','" + MobileNumber + "',N'" + Nimit + "',N'" + name + "','" + hastaksmk + "',N'" + hastak + "','Credit','" + label11.Text + "','" + To + "','"+amount + "',0,'" + note + "',1)", con );
+                SqlCommand selectCMD = new SqlCommand("update newentrytable set status = 'Transfer' , giver = '"+label11.Text+"', taker = '"+To+"' , TransAmount = CrAmount ,  where ID ='" + id + "'", con);
+                SqlCommand selectCMD1 = new SqlCommand("insert into newentrytable (SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,hastaksmk,hastak,status,giver,taker,CrAmount,TransAmount,note,flag) values ('" + smk + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + FatherName + "',N'" + Surname + "','" + MobileNumber + "',N'" + Nimit + "',N'" + name + "','Credit','" + label11.Text + "','" + To + "','"+amount + "',0,,1)", con );
                 //"status = 'Credit' , giver = '"+label11.Text+"', taker = '"+To+ "' , Cramount = TransAmount, TransAmount = 0 , note = '" + note + "'  where ID ='" + id + "'", con);
                 SqlCommand selectCMD2 = new SqlCommand("insert into history (SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,hastaksmk,hastak,status,giver,taker,CrAmount,TransAmount,DebAmount,note) values " +
-                    "                                                       ('"+smk+ "',N'" + PresentCity + "',N'" + NativeCity + "',N'" +FatherName + "',N'" + Surname + "','" + MobileNumber + "',N'" + Nimit + "',N'" + name + "','" + hastaksmk + "',N'" + hastak+ "','Transfer','" + label11.Text + "','" + To + "','" + cramount + "','" + transamount + "','" + debamount + "','" + note + "')", con);
+                    "                                                       ('"+smk+ "',N'" + PresentCity + "',N'" + NativeCity + "',N'" +FatherName + "',N'" + Surname + "','" + MobileNumber + "',N'" + Nimit + "',N'" + name + "', 'Transfer','" + label11.Text + "','" + To + "','" + cramount + "','" + transamount + "','" + debamount + "')", con);
 
                 selectCMD.ExecuteNonQuery();
                 if (loggedinuser == comboBox1.Text)
@@ -399,22 +394,21 @@ namespace thalbhet
         }
         public void exporttoexcel2()
         {
-            Microsoft.Office.Interop.Excel.Application excl = new Microsoft.Office.Interop.Excel.Application();
-            excl.Application.Workbooks.Add(Type.Missing);
-            for (int i = 1; i < dataGridView1.Columns.Count; i++)
-            {
-                excl.Cells[1, i] = dataGridView1.Columns[i - 1].HeaderText;
-
-            }
-            for (int i = 0; i < dataGridView1.Rows.Count; i++)
-            {
-                for (int j = 0; j < dataGridView1.Columns.Count; j++)
-                {
-                    excl.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[j].Value.ToString();
-                }
-            }
-            excl.Columns.AutoFit();
-            excl.Visible = true;
+            dataGridView1.SelectAll();
+            DataObject dataObj = dataGridView1.GetClipboardContent();
+            if (dataObj != null)
+                Clipboard.SetDataObject(dataObj);
+            Microsoft.Office.Interop.Excel.Application xlexcel;
+            Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
+            Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
+            object misValue = System.Reflection.Missing.Value;
+            xlexcel = new Microsoft.Office.Interop.Excel.Application();
+            xlexcel.Visible = true;
+            xlWorkBook = xlexcel.Workbooks.Add(misValue);
+            xlWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+            Microsoft.Office.Interop.Excel.Range CR = (Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Cells[1, 1];
+            CR.Select();
+            xlWorkSheet.PasteSpecial(CR, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, true);
 
         }
         private void button5_Click(object sender, EventArgs e)
