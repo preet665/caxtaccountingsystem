@@ -237,7 +237,7 @@ namespace thalbhet
                 bal = balsum.ToString();
                 con.Close();
                 MessageBox.Show("Entry has been Done successfully");
-                reportviewer repv = new reportviewer(Convert.ToInt32(SMK).ToString(), label15.Text);
+                reportviewer repv = new reportviewer(Convert.ToInt32(SMK).ToString(), label15.Text, MobileNumber);
                 CrystalReport1 cr = new CrystalReport1();
                 //TextObject balance = (TextObject)cr.ReportDefinition.Sections["Section1"].ReportObjects["Text6"];
                 //balance.Text = "hello";
@@ -325,7 +325,7 @@ namespace thalbhet
             bal = balsum.ToString();
             con.Close();
             MessageBox.Show("Entry has been Done successfully");
-            reportviewer repv = new reportviewer(Convert.ToInt32(SMK).ToString(),label15.Text);
+            reportviewer repv = new reportviewer(Convert.ToInt32(SMK).ToString(),label15.Text,MobileNumber);
             repv.ShowDialog();
             con.Close();
             newentryload();
@@ -481,9 +481,10 @@ namespace thalbhet
         private void button8_Click(object sender, EventArgs e)
         {
             string SMK = textBox4.Text;
+            long MobileNumber = Int64.Parse(textBox3.Text);
             //reportviewer repv = new reportviewer(SMK.ToString());
             //repv.ShowDialog();
-            reportviewer repv = new reportviewer(Convert.ToInt32(SMK).ToString(),label15.Text);
+            reportviewer repv = new reportviewer(Convert.ToInt32(SMK).ToString(),label15.Text,MobileNumber);
             CrystalReport1 cr = new CrystalReport1();
             //TextObject balance = (TextObject)cr.ReportDefinition.Sections["Section1"].ReportObjects["Text6"];
             //balance.Text = "hello";

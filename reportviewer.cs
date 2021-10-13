@@ -21,11 +21,12 @@ namespace thalbhet
     public partial class reportviewer : Form
     {
 
-        public reportviewer(string smk, string bal)
+        public reportviewer(string smk, string bal,long monum)
         {
             InitializeComponent();
             label1.Text = smk;
             label2.Text = bal;
+            label3.Text = monum.ToString();
         }
 
 
@@ -188,8 +189,8 @@ namespace thalbhet
             var client = new RestClient("https://wa.krupacc.com/send-media");
                 client.Timeout = -1;
                 var request = new RestRequest(Method.POST);
-                request.AddParameter("number", "+918866140395");
-                request.AddParameter("caption", "Hi_rkanani");
+                request.AddParameter("number", label3.Text);
+                request.AddParameter("caption", "your bank receipt");
                 request.AddFile("file", @"E:\bmsreceipt.png"); //local file path
                 IRestResponse response = client.Execute(request);
                 Console.WriteLine(response.Content);
