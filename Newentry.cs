@@ -217,8 +217,8 @@ namespace thalbhet
                 //String Nimit = comboBox1.SelectedItem.ToString();
                 //long hastaksmk = Int64.Parse(textBox6.Text);
                 //String hastak = textBox7.Text;
-                string submissiontime = DateTime.Now.ToString("dd-MM-yy");
-                string enrtydatetime = dateTimePicker1.Value.ToString();
+                string submissiontime = DateTime.Now.ToString("dd/MMM/yyyy HH:mm:ss");
+                string enrtydatetime = dateTimePicker1.Value.ToString("dd / MMM / yy");
                 string status = "Credit";
                 string loggedinuser = label2.Text;
                 String query = " Begin tran credit INSERT INTO [dbo].[newentrytable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[CrAmount],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "','" + Amount + "','" + submissiontime + "','" + enrtydatetime + "','" + status + "','" + loggedinuser + "')commit tran credit";
@@ -300,7 +300,7 @@ namespace thalbhet
             //String Nimit = comboBox1.SelectedItem.ToString();
             //long hastaksmk = Int64.Parse(textBox6.Text);
             //String hastak = textBox7.Text;
-            string submissiontime = DateTime.Now.ToString("dd-MM-yy");
+            string submissiontime = DateTime.Now.ToString("dd/MMMM/yyyy HH:mm:ss");
             string enrtydatetime = dateTimePicker1.Value.ToString();
             string status = "Debit";
             string loggedinuser = label2.Text;
@@ -421,7 +421,7 @@ namespace thalbhet
             String Nimit = comboBox1.SelectedItem.ToString();
             //long hastaksmk = Int64.Parse(textBox6.Text);
             //String hastak = textBox7.Text;
-            string submissiontime = DateTime.Now.ToString("F");
+            string submissiontime = DateTime.Now.ToString("dd/MMMM/yyyy HH:mm:ss");
             string enrtydatetime = dateTimePicker1.Value.ToString();
             string status = "Credit";
             string loggedinuser = label2.Text;
@@ -432,8 +432,16 @@ namespace thalbhet
             con.Open();
             cmd.ExecuteNonQuery();
             cmdl.ExecuteNonQuery();
-            con.Close();
+            
+            SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)) FROM newentrytable  where SMK='" + textBox4.Text + "' ", con);
+            //balquery.Connection = con;
+            object balsum = balquery.ExecuteScalar();
+            label15.Text = balsum.ToString();
+            bal = balsum.ToString();
             MessageBox.Show("Entry has been Done successfully");
+            reportviewer repv = new reportviewer(Convert.ToInt32(SMK).ToString(), label15.Text, MobileNumber);
+            repv.ShowDialog();
+            con.Close();
         }
 
         private void textBox3_KeyUp(object sender, KeyEventArgs e)

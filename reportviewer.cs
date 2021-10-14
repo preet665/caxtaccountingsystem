@@ -15,18 +15,22 @@ using RestSharp;
 using System.Drawing.Imaging;
 using Ghostscript.NET.Rasterizer;
 using System.IO;
+using System.Net;
 
 namespace thalbhet
 {
     public partial class reportviewer : Form
     {
-
+        String num;
+        int len;
+        
         public reportviewer(string smk, string bal,long monum)
         {
             InitializeComponent();
             label1.Text = smk;
             label2.Text = bal;
             label3.Text = monum.ToString();
+            
         }
 
 
@@ -39,7 +43,7 @@ namespace thalbhet
         {
 
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
-            SqlCommand selectCMD = new SqlCommand("select * from (SELECT top 7 ID,SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,CrAmount,DebAmount,status,submissiontime,enrtydatetime,loggedinuser,SUM(isnull(CrAmount, 0) - isnull(DebAmount, 0))  OVER (ORDER BY id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as Balance FROM newentrytable  where SMK = '"+label1.Text+"' order by submissiontime desc) as temp order by submissiontime asc; ", con);
+            SqlCommand selectCMD = new SqlCommand("select * from (SELECT top 6 ID,SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,CrAmount,DebAmount,status,enrtydatetime,loggedinuser,SUM(isnull(CrAmount, 0) - isnull(DebAmount, 0)) OVER (ORDER BY id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as Balance FROM newentrytable  where SMK = '" + label1.Text + "' order by enrtydatetime desc) as temp order by enrtydatetime asc;  ", con);
             SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\smk.mdf;Integrated Security=True");
             SqlCommand cmd2 = new SqlCommand("Select FullNameGuj,[Mobile 1],image From [dbo].[Page1$] where SMKId LIKE '" + label1.Text + "'", con2);
             SqlDataAdapter DA = new SqlDataAdapter();
@@ -77,7 +81,7 @@ namespace thalbhet
                 ExportOptions CrExportOptions;
                 DiskFileDestinationOptions CrDiskFileDestinationOptions = new DiskFileDestinationOptions();
                 PdfRtfWordFormatOptions CrFormatTypeOptions = new PdfRtfWordFormatOptions();
-                CrDiskFileDestinationOptions.DiskFileName = "E:\\bmsreceipt.pdf";
+                CrDiskFileDestinationOptions.DiskFileName = "E:\\bank management system\\bmsreceipt.pdf";
                 CrExportOptions = crypt.ExportOptions;
                 {
                     CrExportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
@@ -134,7 +138,7 @@ namespace thalbhet
         private void button1_Click(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
-            SqlCommand selectCMD = new SqlCommand("select * from (SELECT TOP 7 * FROM newentrytable where SMK = '" + label1.Text + "' ORDER BY submissiontime DESC)AS TEMP where SMK LIKE '" + label1.Text + "'  order by submissiontime ASC; ", con);
+            SqlCommand selectCMD = new SqlCommand("select * from (SELECT top 6 ID,SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,CrAmount,DebAmount,status,enrtydatetime,loggedinuser,SUM(isnull(CrAmount, 0) - isnull(DebAmount, 0)) OVER (ORDER BY id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as Balance FROM newentrytable  where SMK = '" + label1.Text + "' order by enrtydatetime desc) as temp order by enrtydatetime asc; ", con);
             SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\smk.mdf;Integrated Security=True");
             SqlCommand cmd2 = new SqlCommand("Select FullNameGuj,[Mobile 1] From [dbo].[Page1$] where SMKId LIKE '" + label1.Text + "'", con2);
             SqlDataAdapter DA = new SqlDataAdapter();
@@ -161,7 +165,7 @@ namespace thalbhet
                 ExportOptions CrExportOptions;
                 DiskFileDestinationOptions CrDiskFileDestinationOptions = new DiskFileDestinationOptions();
                 PdfRtfWordFormatOptions CrFormatTypeOptions = new PdfRtfWordFormatOptions();
-                string text = System.IO.File.ReadAllText(@"E:\\bmsreceipt.txt");
+                string text = System.IO.File.ReadAllText(@"E:\\bank management system\\bmsreceipt.pdf");
                 CrDiskFileDestinationOptions.DiskFileName = text;
                 CrExportOptions = crypt.ExportOptions;
                 {
@@ -181,23 +185,61 @@ namespace thalbhet
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string pdf_filename = "E:\\bmsreceipt.pdf";
-            string png_filename = "E:\\bmsreceipt.png";
+            string pdf_filename = "E:\\bank management system\\bmsreceipt.pdf";
+            string png_filename = "E:\\bank management system\\bmsreceipt.png";
             List<string> errors = cs_pdf_to_image.Pdf2Image.Convert(pdf_filename, png_filename);
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            //var client = new RestClient("http://wa.krupacc.com/send-media");
+            //var request = new RestRequest(Method.POST);
 
+            //var client = new RestClient("https://wa.krupacc.com/send-media");
+            //    client.Timeout = -1;
+            //    var request = new RestRequest(Method.POST);
+            //    request.AddParameter("number", label3.Text);
+            //    request.AddParameter("caption", "your bank receipt");
+            //    request.AddFile("file", @"E:\bmsreceipt.png"); //local file path
+            //    IRestResponse response = client.Execute(request);
+            //    Console.WriteLine(response.Content);
+            //try {
+            //    String path = "/E:/bmsreceipt.png";
+            //    client.Timeout = -1;
+                
+            //    request.AddParameter("number", "+919601282268");
+            //    request.AddParameter("caption", "jay swaminarayan");
+            //    request.AddFile("file", "/E:/bmsreceipt.png");
+            //}
+            //catch
+            //{
+            //    //throw;  
+            //}
+            //finally
+            //{
+            //    IRestResponse response = client.Execute(request);
+            //    Console.WriteLine(response.Content);
+            //}
+            var client = new RestClient("http://wa.krupacc.com/send-media");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.POST);
 
-            var client = new RestClient("https://wa.krupacc.com/send-media");
-                client.Timeout = -1;
-                var request = new RestRequest(Method.POST);
-                request.AddParameter("number", label3.Text);
-                request.AddParameter("caption", "your bank receipt");
-                request.AddFile("file", @"E:\bmsreceipt.png"); //local file path
+            request.AddHeader("Authorization", "Basic a3VuZGFsOkt1bmRhbDIxMiM=");
+            try
+            {
+               
+                request.AddParameter("number", "+919601282268");
+                request.AddParameter("caption", "jay swaminarayan");
+                request.AddFile("file", @"E:\bmsreceipt.png");
                 IRestResponse response = client.Execute(request);
                 Console.WriteLine(response.Content);
                 MessageBox.Show("Sent successfully");
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            
+            
+
+            
+        }
     }
 }
-
-
-
