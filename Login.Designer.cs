@@ -131,7 +131,7 @@ namespace thalbhet
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(494, 584);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(124, 31);
+            this.label2.Size = new System.Drawing.Size(99, 25);
             this.label2.TabIndex = 9;
             this.label2.Text = "username";
             // 
@@ -143,7 +143,7 @@ namespace thalbhet
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(494, 652);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(120, 31);
+            this.label3.Size = new System.Drawing.Size(96, 25);
             this.label3.TabIndex = 10;
             this.label3.Text = "password";
             // 
@@ -151,7 +151,7 @@ namespace thalbhet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::thalbhet.Properties.Resources._1155205__1_;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1580, 998);
             this.Controls.Add(this.label3);
@@ -163,11 +163,13 @@ namespace thalbhet
             this.Controls.Add(this.txtpassword);
             this.Controls.Add(this.txtusername);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Login";
             this.Text = "Login";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Login_FormClosing);
             this.Load += new System.EventHandler(this.Login_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Login_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

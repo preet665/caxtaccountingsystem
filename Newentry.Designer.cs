@@ -267,7 +267,7 @@ namespace thalbhet
             // textBox4
             // 
             this.textBox4.Font = new System.Drawing.Font("Lucida Sans Unicode", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(99, 86);
+            this.textBox4.Location = new System.Drawing.Point(99, 80);
             this.textBox4.Margin = new System.Windows.Forms.Padding(4);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(265, 43);
@@ -572,6 +572,7 @@ namespace thalbhet
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Newentry";
             this.Text = "New Entry";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Newentry_FormClosing);
             this.Load += new System.EventHandler(this.Newentry_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Newentry_MouseDown);
             this.panel1.ResumeLayout(false);

@@ -533,5 +533,22 @@ namespace thalbhet
             Application.Exit();
             Environment.Exit(0);
         }
+
+        private void Newentry_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                dynamic result = MessageBox.Show("Do You Want To Exit?", "Bank Management System", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    Application.Exit();
+                }
+
+                if (result == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
     }
 }

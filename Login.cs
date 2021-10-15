@@ -73,13 +73,10 @@ namespace thalbhet
         {
             MessageBox.Show(txtusername.Text);
         }
-        
-
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void txtpassword_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -119,11 +116,27 @@ namespace thalbhet
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
-
         private void Login_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(this.Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+        }
+
+        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                dynamic result = MessageBox.Show("Do You Want To Exit?", "Bank Management System", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    Application.Exit();
+                }
+
+                if (result == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
         }
     }
 }
