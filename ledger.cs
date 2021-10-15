@@ -121,7 +121,7 @@ namespace thalbhet
             {
                 var smk = row.Cells["SMK"].Value;
                 label2.Text = Convert.ToString(smk);
-                showledger sl = new showledger((int)long.Parse(label2.Text));
+                showledger sl = new showledger(label2.Text);
                 sl.ShowDialog();
             }
         }}
