@@ -227,7 +227,7 @@ namespace thalbhet
                
                 request.AddParameter("number", "+919601282268");
                 request.AddParameter("caption", "jay swaminarayan");
-                request.AddFile("file", @"E:\bmsreceipt.png");
+                request.AddFile("file", png_filename);
                 IRestResponse response = client.Execute(request);
                 Console.WriteLine(response.Content);
                 MessageBox.Show("Sent successfully");

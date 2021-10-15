@@ -23,10 +23,10 @@ namespace thalbhet
 {
     public partial class showledger : Form
     {
-        public showledger(int smkid)
+        public showledger(string smkid)
         {
             InitializeComponent();
-            label1.Text = smkid.ToString();
+            label1.Text = smkid;
         }
 
         private void showledger_Load(object sender, EventArgs e)

@@ -206,7 +206,7 @@ namespace thalbhet
             {
                 SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
                 
-                long SMK = Int64.Parse(textBox4.Text);
+                String SMK = textBox4.Text;
                 String name = textBox8.Text;
                 String Fathername = textBox9.Text;
                 String Surname = textBox10.Text;
@@ -249,8 +249,8 @@ namespace thalbhet
             }
             catch
             {
-                System.FormatException exception = new FormatException();
-                MessageBox.Show("Amount is Empty");
+                //System.FormatException exception = new FormatException();
+                //MessageBox.Show(exception.ToString());
             }
 
         }
@@ -526,6 +526,12 @@ namespace thalbhet
             //    MessageBox.Show(ex.ToString());
             //}
 
+        }
+
+        private void Button9_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+            Environment.Exit(0);
         }
     }
 }

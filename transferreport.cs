@@ -25,6 +25,18 @@ namespace thalbhet
             label1.BackColor = Color.FromArgb(37, 154, 92);
             label4.BackColor = Color.FromArgb(37, 154, 92);
             label12.Text = username;
+            //if (label12.Text != "admin")
+            //{
+            //    label2.Visible = false;
+            //    label5.Visible = false;
+            //    label1.Visible = false;
+            //    label4.Visible = false;
+            //    label1.Visible = false;
+            //    label2.Visible = false;
+            //    label3.Visible = false;
+            //    label8.Visible = false;
+            //    label9.Visible = false;
+            //}
         }
 
         private void transferreport_Load(object sender, EventArgs e)
@@ -50,12 +62,12 @@ namespace thalbhet
                 object debsum = debquery.ExecuteScalar();
                 label5.Text = debsum.ToString();
                 //Transfer sum in label
-                //SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable ");
-                //transquery.Connection = con;
-                //object transsum = transquery.ExecuteScalar();
-                //label9.Text = transsum.ToString();
+                SqlCommand transquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable where (status != 'Credit' AND status != 'Debit')");
+                transquery.Connection = con;
+                object transsum = transquery.ExecuteScalar();
+                label9.Text = transsum.ToString();
                 //Balance sum in label
-                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)) FROM newentrytable");
+                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)) FROM newentrytable where (status != 'Credit' AND status != 'Debit') ");
                 balquery.Connection = con;
                 object balsum = balquery.ExecuteScalar();
                 label6.Text = balsum.ToString();
@@ -82,20 +94,20 @@ namespace thalbhet
                 DA.Fill(DS, "newentrytable");
                 dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
 
-                SqlCommand crquery = new SqlCommand("SELECT SUM(CrAmount) FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) ");
+                SqlCommand crquery = new SqlCommand("SELECT SUM(CrAmount) FROM newentrytable where (loggedinuser ='" + label11.Text + "') ");
                 crquery.Connection = con;
                 object crsum = crquery.ExecuteScalar();
                 label4.Text = crsum.ToString();
-                SqlCommand debquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR giver ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) ");
+                SqlCommand debquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable where (loggedinuser ='" + label11.Text + "' ) ");
                 debquery.Connection = con;
                 object debsum = debquery.ExecuteScalar();
                 label5.Text = debsum.ToString();
-                //SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR giver ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) ");
-                //transquery.Connection = con;
-                //object transsum = transquery.ExecuteScalar();
-                //label9.Text = transsum.ToString();
+                SqlCommand transquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable where (loggedinuser ='" + label11.Text + "') AND (status != 'Credit' AND status != 'Debit') ");
+                transquery.Connection = con;
+                object transsum = transquery.ExecuteScalar();
+                label9.Text = transsum.ToString();
                 //Balance sum in label
-                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)) FROM newentrytable where (loggedinuser = '" + label11.Text + "' OR giver = '" + label11.Text + "')");
+                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)) FROM newentrytable where (loggedinuser = '" + label11.Text + "')");
                 balquery.Connection = con;
                 object balsum = balquery.ExecuteScalar();
                 label6.Text = balsum.ToString();
