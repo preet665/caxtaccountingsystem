@@ -133,48 +133,6 @@ namespace thalbhet
             }*/
         }
 
-        private void textBox4_KeyDown(object sender, KeyEventArgs e)
-        {
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\smk.mdf;Integrated Security=True");
-            //bool isParsable = Int32.TryParse(textBox4.Text, out int number);
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (textBox4.Text != null)
-                {
-                    //int smk = Convert.ToInt32(textBox4.Text);
-                    //MessageBox.Show("Number");
-                    
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[Page1$] where SMKId='"+textBox4.Text+"' ", con);
-                    SqlDataReader reader1 = cmd.ExecuteReader();
-                    if (reader1.Read())
-                    {
-                        textBox8.Text = reader1["First Name Guj"].ToString();
-                        textBox2.Text = reader1["Present City/Village Guj"].ToString();
-                        textBox9.Text = reader1["Middle Name Guj"].ToString();
-                        textBox10.Text = reader1["Last Name GUj"].ToString();
-                        textBox1.Text = reader1["Native Guj"].ToString();
-                        textBox3.Text = reader1["Mobile 1"].ToString();
-
-                        reader1.Close();
-                        con.Close();
-                    }
-
-
-
-                }
-                SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
-                con2.Open();
-                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)) FROM newentrytable  where SMK='" + textBox4.Text + "' ", con2);
-                //balquery.Connection = con;
-                object balsum = balquery.ExecuteScalar();
-                label15.Text = balsum.ToString();
-                bal = balsum.ToString();
-                con2.Close();
-            }
-
-        }
-
         private void textBox6_KeyDown(object sender, KeyEventArgs e)
         {
             bool isParsable = Int32.TryParse(textBox6.Text, out int number);
@@ -490,7 +448,8 @@ namespace thalbhet
         private void button8_Click(object sender, EventArgs e)
         {
             string SMK = textBox4.Text;
-            long MobileNumber = Int64.Parse(textBox3.Text);
+            string mnum = textBox3.Text.Trim();
+            long MobileNumber = Int64.Parse(mnum);
             //reportviewer repv = new reportviewer(SMK.ToString());
             //repv.ShowDialog();
             reportviewer repv = new reportviewer(Convert.ToInt32(SMK).ToString(),label15.Text,MobileNumber);
@@ -550,6 +509,47 @@ namespace thalbhet
                     e.Cancel = true;
                 }
             }
+        }
+
+        private void TextBox4_TextChanged(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\smk.mdf;Integrated Security=True");
+            //bool isParsable = Int32.TryParse(textBox4.Text, out int number);
+            
+            
+                if (textBox4.Text != null)
+                {
+                    //int smk = Convert.ToInt32(textBox4.Text);
+                    //MessageBox.Show("Number");
+
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[Page1$] where SMKId='" + textBox4.Text + "' ", con);
+                    SqlDataReader reader1 = cmd.ExecuteReader();
+                    if (reader1.Read())
+                    {
+                        textBox8.Text = reader1["First Name Guj"].ToString();
+                        textBox2.Text = reader1["Present City/Village Guj"].ToString();
+                        textBox9.Text = reader1["Middle Name Guj"].ToString();
+                        textBox10.Text = reader1["Last Name GUj"].ToString();
+                        textBox1.Text = reader1["Native Guj"].ToString();
+                        textBox3.Text = reader1["Mobile 1"].ToString();
+
+                        reader1.Close();
+                        con.Close();
+                    }
+
+
+
+                }
+                SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
+                con2.Open();
+                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)) FROM newentrytable  where SMK='" + textBox4.Text + "' ", con2);
+                //balquery.Connection = con;
+                object balsum = balquery.ExecuteScalar();
+                label15.Text = balsum.ToString();
+                bal = balsum.ToString();
+                con2.Close();
+            
         }
     }
 }

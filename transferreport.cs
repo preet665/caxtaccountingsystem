@@ -41,11 +41,12 @@ namespace thalbhet
 
         private void transferreport_Load(object sender, EventArgs e)
         {
+            //MessageBox.Show(dateTimePicker1.Text);
             if (label12.Text == "admin")
             {
                 //string debstring = "Transfer";
                 SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
-                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount,DebAmount submissiontime, enrtydatetime, status, loggedinuser FROM newentrytable where ((loggedinuser ='"+label12.Text+"') AND (status != 'Credit' AND status != 'Debit')) ", con);
+                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount,DebAmount, submissiontime, enrtydatetime, status, loggedinuser FROM newentrytable where ((loggedinuser ='"+label12.Text+"') AND (status != 'Credit' AND status != 'Debit')) ", con);
                 SqlDataAdapter DA = new SqlDataAdapter();
                 DA.SelectCommand = selectCMD;
                 con.Open();
@@ -143,12 +144,17 @@ namespace thalbhet
         {
             string constring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True";;
             SqlConnection con = new SqlConnection(constring);
-            string sqlquery = "SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount,DebAmount submissiontime, enrtydatetime, status, loggedinuser FROM newentrytable where ((loggedinuser ='admin') AND (status != 'Credit' AND status != 'Debit'))   where submissiontime between '" + dateTimePicker1.Text + "' and '" + dateTimePicker2.Text + "'";
+            string sqlquery = "SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount,DebAmount,submissiontime, enrtydatetime, status, loggedinuser FROM newentrytable where((loggedinuser = 'admin') AND(status != 'Credit' AND status != 'Debit') AND submissiontime between '"+dateTimePicker1.Text+"' and '"+dateTimePicker2.Text+"') ";
             SqlCommand cmd = new SqlCommand(sqlquery, con);
             con.Open();
-            DataTable dt = new DataTable();
-            dt.Load(cmd.ExecuteReader());
-            dataGridView1.DataSource = dt;
+            //DataTable dt = new DataTable();
+            //dt.Load(cmd.ExecuteReader());
+            //dataGridView1.DataSource = dt;
+            SqlDataAdapter DA = new SqlDataAdapter();
+            DA.SelectCommand = cmd;
+            DataSet DS = new DataSet();
+            DA.Fill(DS, "newentrytable");
+            dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
             con.Close();
         }
         public void exporttoexcel()

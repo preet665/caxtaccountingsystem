@@ -125,20 +125,6 @@ namespace thalbhet
                 label6.Text = balsum.ToString();
                 con.Close();
             }
-
-            //DataView dv = DS.Tables[0].DefaultView;
-            //dv.RowFilter = string.Format("status LIKE '%{0}%'", label11.Text);
-            //dataGridView1.DataSource = dv;
-            //dataGridView1.ReadOnly = true;
-            //dataGridView1.AutoResizeColumns();
-
-            /*DataGridViewCheckBoxColumn chkcol = new DataGridViewCheckBoxColumn();
-            dataGridView1.Columns.Add(chkcol);
-            chkcol.HeaderText = "Select Entry";
-            chkcol.Name = "chkcol";
-            dataGridView1.Columns["chkcol"].DisplayIndex = 0;*/
-            //Credit sum in label
-
             this.Refresh();
             usercombo();
         }
@@ -160,26 +146,6 @@ namespace thalbhet
             }
             con.Close();
         }
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        /*  private void Displayindatagrid()
-        {
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True";);
-            SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount, hastaksmk, hastak, submissiontime, enrtydatetime FROM newentrytable", con);
-            SqlDataAdapter DA = new SqlDataAdapter();
-            DA.SelectCommand = selectCMD;
-            con.Open();
-            DataSet DS = new DataSet();
-            DA.Fill(DS, "newentrytable");
-        }*/
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            dataGridView1.ReadOnly = false;
-        }
         void Displaydata()
         {
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
@@ -192,8 +158,6 @@ namespace thalbhet
         }
         private void button1_Click(object sender, EventArgs e)
         {
-           
-             //Displaydata();
             var deck = new List<int>();
             foreach (DataGridViewRow row in dataGridView1.SelectedRows)
             {
@@ -211,7 +175,6 @@ namespace thalbhet
                 var Nimit = row.Cells["Nimit"].Value;
                 var name = row.Cells["name"].Value;
                 var loggedinuser = row.Cells["loggedinuser"].Value;
-                //string note = textBox1.Text;
                 if (id != null) { }
                 else
                 {
@@ -221,60 +184,15 @@ namespace thalbhet
                 SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True;");
                 con.Open();
                 SqlCommand selectCMD = new SqlCommand("update newentrytable set status = 'Debit', DebAmount = CrAmount  where ID ='" + id + "'", con);
-                //SqlCommand selectCMD1 = new SqlCommand("update newentrytable set DebAmount = CrAmount where ID ='" + id + "'", con);
-                //SqlCommand selectCMD2 = new SqlCommand("update newentrytable set note = '" + note + "' where ID ='" + id + "'", con);
                 SqlCommand selectCMD2 = new SqlCommand("insert into history (SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,status,CrAmount,TransAmount,DebAmount) values " +
                                         "('" + smk + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + FatherName + "',N'" + Surname + "','" + MobileNumber + "',N'" + Nimit + "',N'" + name + "','Debit','"+cramount+"','"+transamount+"',0,'" + debamount + "')", con);
 
                 selectCMD.ExecuteNonQuery();
-                
-                //selectCMD1.ExecuteNonQuery();
-                //selectCMD2.ExecuteNonQuery();
                 con.Close();
-
-
-                /*for(int i =0; i < deck.Count; i++ )
-                {
-                    int id = deck[i] + 1;
-                    string note = textBox1.Text;
-                    SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True;") ;
-                    con.Open();
-                    SqlCommand selectCMD = new SqlCommand("update newentrytable set status = 'Debit' where ID ='" +id + "'", con);
-                    SqlCommand selectCMD1 = new SqlCommand("update newentrytable set DebAmount = CrAmount where ID ='" + id + "'", con);
-                    SqlCommand selectCMD2 = new SqlCommand("update newentrytable set note = '" +note+ "' where ID ='" + id + "'", con);
-                    
-                    selectCMD.ExecuteNonQuery();
-                    selectCMD1.ExecuteNonQuery();
-                    selectCMD2.ExecuteNonQuery();
-                    con.Close();
-                }*/
-
-                //return deck.ToArray();
             }
             reportload();
-            //advancedDataGridView1.Refresh();
             Displaydata();
-        }
-        SqlDataAdapter adap;
-        SqlCommandBuilder cmdl;
-        DataSet DS = new System.Data.DataSet();
-       
-        /*private void button1_Click(object sender, EventArgs e)
-        {
-           
-
-            foreach (DataGridViewRow r in dataGridView1.SelectedRows)
-            {
-                r.Cells["status"].Value = "Debit"; //use the column name instead of column index
-                cmdl = new SqlCommandBuilder(adap);
-                adap.Update(DS, "datagridview1");
-            }
-            this.BindingContext[dataGridView1.DataSource].EndCurrentEdit();
-
-
-        }*/
-
-
+        }    
         private void button2_Click(object sender, EventArgs e)
         {
             var deck = new List<int>();
@@ -296,7 +214,7 @@ namespace thalbhet
                 var name = row.Cells["name"].Value;
                 var loggedinuser = row.Cells["loggedinuser"].Value;
                 MessageBox.Show(amount.ToString());
-                //string From = label11.Text;
+                
                 string To = comboBox1.SelectedItem.ToString();
                 if (id != null) { }
                 else
@@ -347,9 +265,6 @@ namespace thalbhet
 
         private void button4_Click(object sender, EventArgs e)
         {
-            //exporttopdf2(dataGridView1, "test");
-            //export ex = new export();
-            //ex.ShowDialog();
             PdfPTable pdfTable = new PdfPTable(dataGridView1.ColumnCount);
             pdfTable.DefaultCell.Padding = 5;
             pdfTable.WidthPercentage = 100;

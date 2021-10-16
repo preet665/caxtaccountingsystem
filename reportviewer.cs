@@ -220,14 +220,32 @@ namespace thalbhet
             var client = new RestClient("http://wa.krupacc.com/send-media");
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
-            String mnum = label3.Text;
-            if (num.Length == 10)
+            String mnum = label3.Text.Trim();
+            if (mnum.Length == 10)
             {
                 request.AddHeader("Authorization", "Basic a3VuZGFsOkt1bmRhbDIxMiM=");
                 try
                 {
 
-                    request.AddParameter("number", "+91" + num);
+                    request.AddParameter("number", "+91" + mnum);
+                    request.AddParameter("caption", "jay swaminarayan");
+                    request.AddFile("file", png_filename);
+                    IRestResponse response = client.Execute(request);
+                    Console.WriteLine(response.Content);
+                    MessageBox.Show("Sent successfully");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+            else
+            {
+                request.AddHeader("Authorization", "Basic a3VuZGFsOkt1bmRhbDIxMiM=");
+                try
+                {
+
+                    request.AddParameter("number", "+" + mnum);
                     request.AddParameter("caption", "jay swaminarayan");
                     request.AddFile("file", png_filename);
                     IRestResponse response = client.Execute(request);

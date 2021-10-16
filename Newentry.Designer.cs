@@ -273,7 +273,7 @@ namespace thalbhet
             this.textBox4.Size = new System.Drawing.Size(265, 43);
             this.textBox4.TabIndex = 38;
             this.textBox4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox4_MouseClick);
-            this.textBox4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox4_KeyDown);
+            this.textBox4.TextChanged += new System.EventHandler(this.TextBox4_TextChanged);
             // 
             // contextMenuStrip1
             // 
