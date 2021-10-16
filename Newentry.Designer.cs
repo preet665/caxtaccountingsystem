@@ -73,6 +73,8 @@ namespace thalbhet
             this.label8 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newentrytableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -289,6 +291,7 @@ namespace thalbhet
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(273, 43);
             this.textBox5.TabIndex = 39;
+            this.textBox5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox5_KeyDown);
             // 
             // addnimitbutton
             // 
@@ -522,6 +525,10 @@ namespace thalbhet
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
+            // timer3
+            // 
+            this.timer3.Tick += new System.EventHandler(this.Timer3_Tick);
+            // 
             // Newentry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -628,5 +635,7 @@ namespace thalbhet
         private System.Windows.Forms.Button button8;
         public System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Timer timer3;
     }
 }

@@ -19,6 +19,7 @@ namespace thalbhet
         public Login()
         {
             InitializeComponent();
+            //cn.Open();
         }
         public string UserName
         {
@@ -36,6 +37,7 @@ namespace thalbhet
                     this.Hide();
                     Newentry home = new Newentry(UserName);
                     home.ShowDialog();
+                    cn.Close();
                 }
                 else
                 {
@@ -82,6 +84,7 @@ namespace thalbhet
                 dynamic result = MessageBox.Show("Do You Want To Exit?", "Bank Management System", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
+                    cn.Close();
                     Application.Exit();
                 }
 

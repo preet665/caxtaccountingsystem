@@ -20,10 +20,10 @@ namespace thalbhet
     {
         //SqlDataReader reader; // = cmd.ExecuteReader();
         public static string bal;
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
         public Newentry(string UserName)
         {
             InitializeComponent();
-            fill_smk();
             this.ActiveControl = textBox4;
             textBox4.Focus();
             
@@ -36,50 +36,18 @@ namespace thalbhet
                 addnimitbutton.Visible = false;
                 button7.Visible = false;
             }
-            
+            System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
+            timer1.Interval = 1000;//1 seconds
+            timer1.Tick += new System.EventHandler(Timer3_Tick);
+            timer1.Start();
 
             //populatecombobox9();
         }
-        void fill_smk()
-        {
-            /*SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Preet\satyaadi.mdf;Integrated Security=True");
-            SqlCommand cmd = new SqlCommand("SELECT SMK FROM [dbo].[SMKID]", con);
-            con.Open();
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                
-                textBox4.Text = Convert.ToString(reader.GetInt32(0));
-            }*/
-        }
-        void Nimit()
-        {
-           
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
-            
-          
-            SqlCommand cmd = new SqlCommand("SELECT Nimit from Nimit", con);
-            //SqlDataReader reader; //= cmd.ExecuteReader();
-            con.Open();
-            //radDropDownList1.Items.Clear();
-            /*while (reader.Read())
-            {
-                radDropDownList1.Items.Add(new ListViewItem (reader[0].ToString(), reader[0].ToString()));
-            }
-            //reader.Close();*/
-            //radDropDownList1.DataSource = cmd.ExecuteReader();
-            //radDropDownList1.DisplayMember = "Nimit";
-            //radDropDownList1.ValueMember = "Nimit";
-            //radDropDownList1.DataBindings
-            con.Close();
-            con.Open();
-        }
         public void Nimit2()
         {
-            SqlConnection con;
+           
             SqlCommand cmd;
             SqlDataReader dr;
-            con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
             cmd = new SqlCommand();
             con.Open();
             cmd.Connection = con;
@@ -110,7 +78,7 @@ namespace thalbhet
             // TODO: This line of code loads data into the 'newentrydbDataSet.newentrytable' table. You can move, or remove it, as needed.
             //this.newentrytableTableAdapter.Fill(this.newentrydbDataSet.newentrytable);
             newentryload();
-            
+
         }
         private void newentryload()
         {
@@ -543,13 +511,41 @@ namespace thalbhet
                 }
                 SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
                 con2.Open();
-                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)) FROM newentrytable  where SMK='" + textBox4.Text + "' ", con2);
-                //balquery.Connection = con;
-                object balsum = balquery.ExecuteScalar();
-                label15.Text = balsum.ToString();
-                bal = balsum.ToString();
+            getbal();
+
                 con2.Close();
             
+        }
+
+        private void TextBox5_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.Shift && e.KeyCode == Keys.C)
+            {
+                button2.Focus();
+
+                button2_Click(sender, e);
+            }
+
+            if (e.Control && e.Shift && e.KeyCode == Keys.D)
+            {
+                button1.PerformClick();
+            }
+        }
+        private void getbal()
+        {
+            con.Open();
+            SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)) FROM newentrytable  where SMK='" + textBox4.Text + "' ", con);
+            object balsum = balquery.ExecuteScalar();
+            label15.Text = balsum.ToString();
+            bal = balsum.ToString();
+            con.Close();
+        }
+        private void Timer3_Tick(object sender, EventArgs e)
+        {
+
+            getbal();
+
+
         }
     }
 }
