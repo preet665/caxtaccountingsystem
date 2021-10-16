@@ -22,7 +22,7 @@ namespace thalbhet
 
         private void adminpanel_Load(object sender, EventArgs e)
         {
-            //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
+            //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True";);
             //SqlCommand selectCMD = new SqlCommand("select loggedinuser,sum(CrAmount) AS 'Credit',sum(DebAmount) AS 'Debit',(sum(CrAmount)-sum(DebAmount)) AS 'Balance' from newentrytable where loggedinuser = '"+label1.Text+"' group by loggedinuser", con);
             //SqlDataAdapter DA = new SqlDataAdapter();
             //DA.SelectCommand = selectCMD;

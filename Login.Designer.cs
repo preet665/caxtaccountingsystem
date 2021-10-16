@@ -34,7 +34,6 @@ namespace thalbhet
             this.txtpassword = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -87,18 +86,6 @@ namespace thalbhet
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1580, 22);
             this.panel1.TabIndex = 6;
-            // 
-            // button3
-            // 
-            this.button3.BackgroundImage = global::thalbhet.Properties.Resources._493_4933495_close_button_png_transparent_image_close_icon_png;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button3.Location = new System.Drawing.Point(1506, 13);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(61, 48);
-            this.button3.TabIndex = 0;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // pictureBox1
             // 
@@ -158,7 +145,6 @@ namespace thalbhet
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtpassword);
             this.Controls.Add(this.txtusername);
@@ -183,7 +169,6 @@ namespace thalbhet
         private System.Windows.Forms.TextBox txtpassword;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

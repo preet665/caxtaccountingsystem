@@ -141,7 +141,7 @@ namespace thalbhet
 
         private void dateTimePicker2_CloseUp(object sender, EventArgs e)
         {
-            string constring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True";
+            string constring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True";;
             SqlConnection con = new SqlConnection(constring);
             string sqlquery = "SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount,DebAmount submissiontime, enrtydatetime, status, loggedinuser FROM newentrytable where ((loggedinuser ='admin') AND (status != 'Credit' AND status != 'Debit'))   where submissiontime between '" + dateTimePicker1.Text + "' and '" + dateTimePicker2.Text + "'";
             SqlCommand cmd = new SqlCommand(sqlquery, con);

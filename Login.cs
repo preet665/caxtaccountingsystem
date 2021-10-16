@@ -42,6 +42,8 @@ namespace thalbhet
         private void button1_Click(object sender, EventArgs e)
         {
             SqlConnection cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
+            //string newconstring = System.Configuration.ConfigurationManager.ConnectionStrings["connewetb"].ConnectionString;
+            //SqlConnection cn = new SqlConnection(newconstring);
             if (txtpassword.Text != string.Empty || txtusername.Text != string.Empty)
             {
                 SqlCommand cmd = new SqlCommand("select * from LoginTable where username='" + txtusername.Text + "' and password='" + txtpassword.Text + "'", cn);
