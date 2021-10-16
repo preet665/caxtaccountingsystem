@@ -212,7 +212,7 @@ namespace thalbhet
                 var MobileNumber = row.Cells["MobileNumber"].Value;
                 var Nimit = row.Cells["Nimit"].Value;
                 var name = row.Cells["name"].Value;
-                var loggedinuser = row.Cells["loggedinuser"].Value;
+                string loggedinuser = row.Cells["loggedinuser"].Value.ToString();
                 MessageBox.Show(amount.ToString());
                 
                 string To = comboBox1.SelectedItem.ToString();
@@ -237,7 +237,7 @@ namespace thalbhet
                     "                                                       ('"+smk+ "',N'" + PresentCity + "',N'" + NativeCity + "',N'" +FatherName + "',N'" + Surname + "','" + MobileNumber + "',N'" + Nimit + "',N'" + name + "', 'Transfer','" + label11.Text + "','" + To + "','" + cramount + "','" + transamount + "','" + debamount + "')", con);
 
                 selectCMD.ExecuteNonQuery();
-                if (loggedinuser == comboBox1.Text)
+                if (loggedinuser == comboBox1.SelectedItem.ToString())
                 {
                     selectCMD1.ExecuteNonQuery();
                 }
