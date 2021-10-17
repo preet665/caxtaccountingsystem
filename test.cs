@@ -51,7 +51,7 @@ namespace thalbhet
 
         private void ComboBox1_SelectedValueChanged(object sender, EventArgs e)
         {
-            SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity, MobileNumber, Nimit, CrAmount, DebAmount submissiontime, enrtydatetime, status, loggedinuser FROM newentrytable where((loggedinuser = 'admin') AND((status != 'Credit' AND status != 'Debit') AND status = 'Dhotiya'))", con);
+            SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity, MobileNumber, Nimit, CrAmount, DebAmount submissiontime, enrtydatetime, status, loggedinuser FROM newentrytable where((loggedinuser = 'admin') AND ((status != 'Credit' AND status != 'Debit') AND status = 'Dhotiya'))", con);
             SqlDataAdapter DA = new SqlDataAdapter();
             DA.SelectCommand = selectCMD;
             con.Open();

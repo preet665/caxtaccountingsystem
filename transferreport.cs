@@ -17,6 +17,7 @@ namespace thalbhet
 {
     public partial class transferreport : Form
     {
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
         public transferreport(string username)
         {
             InitializeComponent();
@@ -42,10 +43,10 @@ namespace thalbhet
         private void transferreport_Load(object sender, EventArgs e)
         {
             //MessageBox.Show(dateTimePicker1.Text);
+            nimitcombo();
             if (label12.Text == "admin")
             {
                 //string debstring = "Transfer";
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
                 SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount,DebAmount, submissiontime, enrtydatetime, status, loggedinuser FROM newentrytable where ((loggedinuser ='" + label12.Text + "') AND (status != 'Credit' AND status != 'Debit')) ", con);
                 SqlDataAdapter DA = new SqlDataAdapter();
                 DA.SelectCommand = selectCMD;
@@ -86,7 +87,6 @@ namespace thalbhet
                                where row.Cells[9].FormattedValue.ToString() != string.Empty
                                select Convert.ToInt32(row.Cells[9].FormattedValue)).Sum().ToString();*/
                 string debstring = "Transfer";
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
                 SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount,DebAmount submissiontime, enrtydatetime, status, loggedinuser FROM newentrytable where ((loggedinuser ='" + label12.Text + "') AND (status != 'Credit' AND status != 'Debit')) ", con);
                 SqlDataAdapter DA = new SqlDataAdapter();
                 DA.SelectCommand = selectCMD;
@@ -120,30 +120,34 @@ namespace thalbhet
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            string searchValue = textBox1.Text;
+            if (label12.Text == "admin")
+            {
+                //string debstring = "Transfer";
+                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount,DebAmount, submissiontime, enrtydatetime, status, loggedinuser FROM newentrytable where ((loggedinuser ='" + label12.Text + "') AND ((status != 'Credit' AND status != 'Debit')  AND SMK = '" + textBox1.Text+ "')) ", con);
+                SqlDataAdapter DA = new SqlDataAdapter();
+                DA.SelectCommand = selectCMD;
+                con.Open();
+                DataSet DS = new DataSet();
+                DA.Fill(DS, "newentrytable");
+                dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
+                con.Close();
 
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            try
-            {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (row.Cells[1].Value.ToString().Equals(searchValue))
-                    {
-                        row.Selected = true;
-                        break;
-                    }
-                }
             }
-            catch (Exception exc)
+            else
             {
-                //MessageBox.Show(exc.Message);
+                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount,DebAmount submissiontime, enrtydatetime, status, loggedinuser FROM newentrytable where ((loggedinuser ='" + label12.Text + "') AND ((status != 'Credit' AND status != 'Debit') AND SMK = '" + textBox1.Text + "')) ", con);
+                SqlDataAdapter DA = new SqlDataAdapter();
+                DA.SelectCommand = selectCMD;
+                con.Open();
+                DataSet DS = new DataSet();
+                DA.Fill(DS, "newentrytable");
+                dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
+                con.Close();
             }
         }
 
         private void dateTimePicker2_CloseUp(object sender, EventArgs e)
         {
-            string constring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True"; ;
-            SqlConnection con = new SqlConnection(constring);
             string sqlquery = "SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount,DebAmount,submissiontime, enrtydatetime, status, loggedinuser FROM newentrytable where((loggedinuser = 'admin') AND(status != 'Credit' AND status != 'Debit') AND submissiontime between '" + dateTimePicker1.Text + "' and '" + dateTimePicker2.Text + "') ";
             SqlCommand cmd = new SqlCommand(sqlquery, con);
             con.Open();
@@ -229,74 +233,7 @@ namespace thalbhet
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (label12.Text == "admin")
-            {
-                string debstring = "Transfer";
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
-                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount,DebAmount submissiontime, enrtydatetime, status, loggedinuser FROM newentrytable where ((loggedinuser ='admin') AND (status != 'Credit' AND status != 'Debit'))  ", con);
-                SqlDataAdapter DA = new SqlDataAdapter();
-                DA.SelectCommand = selectCMD;
-                con.Open();
-                DataSet DS = new DataSet();
-                DA.Fill(DS, "newentrytable");
-                dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
-                SqlCommand crquery = new SqlCommand("SELECT SUM(CrAmount) FROM newentrytable");
-                crquery.Connection = con;
-                object crsum = crquery.ExecuteScalar();
-                label4.Text = crsum.ToString();
-                //Debit sum in label
-                SqlCommand debquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable ");
-                debquery.Connection = con;
-                object debsum = debquery.ExecuteScalar();
-                label5.Text = debsum.ToString();
-                //Transfer sum in label
-                //SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable ");
-                //transquery.Connection = con;
-                //object transsum = transquery.ExecuteScalar();
-                //label9.Text = transsum.ToString();
-                //Balance sum in label
-                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)) FROM newentrytable");
-                balquery.Connection = con;
-                object balsum = balquery.ExecuteScalar();
-                label6.Text = balsum.ToString();
-                con.Close();
-
-            }
-            else
-            {
-                /*DataView dv = DS.Tables[0].DefaultView;
-                dv.RowFilter = string.Format("loggedinuser LIKE '%{0}%' OR giver LIKE '%{0}%' OR taker LIKE '%{0}%'", label11.Text);
-                dataGridView1.DataSource = dv;*/
-
-
-                /*label4.Text = (from DataGridViewRow row in dataGridView1.Rows
-                               where row.Cells[9].FormattedValue.ToString() != string.Empty
-                               select Convert.ToInt32(row.Cells[9].FormattedValue)).Sum().ToString();*/
-                //string debstring = "Debit";
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
-                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount,DebAmount submissiontime, enrtydatetime, status, loggedinuser FROM newentrytable where ((loggedinuser ='admin') AND (status != 'Credit' AND status != 'Debit')) ", con);
-                SqlDataAdapter DA = new SqlDataAdapter();
-                DA.SelectCommand = selectCMD;
-                con.Open();
-                DataSet DS = new DataSet();
-                DA.Fill(DS, "newentrytable");
-                dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
-
-                SqlCommand crquery = new SqlCommand("SELECT SUM(CrAmount) FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) ");
-                crquery.Connection = con;
-                object crsum = crquery.ExecuteScalar();
-                label4.Text = crsum.ToString();
-                SqlCommand debquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR giver ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) ");
-                debquery.Connection = con;
-                object debsum = debquery.ExecuteScalar();
-                label5.Text = debsum.ToString();
-                //SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR giver ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) ");
-                //transquery.Connection = con;
-                //object transsum = transquery.ExecuteScalar();
-                //label9.Text = transsum.ToString();
-
-
-            }
+            
         }
 
         private void ComboBox1_SelectedValueChanged(object sender, EventArgs e)
@@ -304,27 +241,43 @@ namespace thalbhet
             if (label12.Text == "admin")
             {
                 //string debstring = "Transfer";
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
-                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount,DebAmount, submissiontime, enrtydatetime, status, loggedinuser FROM newentrytable where ((loggedinuser ='" + label12.Text + "') AND (status != 'Credit' AND status != 'Debit')) ", con);
+                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount,DebAmount, submissiontime, enrtydatetime, status, loggedinuser FROM newentrytable where ((loggedinuser ='" + label12.Text + "') AND ((status != 'Credit' AND status != 'Debit') AND status = '"+comboBox1.SelectedItem.ToString()+"'))", con);
                 SqlDataAdapter DA = new SqlDataAdapter();
                 DA.SelectCommand = selectCMD;
                 con.Open();
                 DataSet DS = new DataSet();
                 DA.Fill(DS, "newentrytable");
                 dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
+                con.Close();
+                //MessageBox.Show(());
             }
             else
             {
-                string debstring = "Transfer";
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
-                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount,DebAmount submissiontime, enrtydatetime, status, loggedinuser FROM newentrytable where ((loggedinuser ='" + label12.Text + "') AND (status != 'Credit' AND status != 'Debit')) ", con);
+                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount,DebAmount submissiontime, enrtydatetime, status, loggedinuser FROM newentrytable where ((loggedinuser ='" + label12.Text + "') AND ((status != 'Credit' AND status != 'Debit') AND status = '"+ comboBox1.SelectedItem.ToString()+"'))", con);
                 SqlDataAdapter DA = new SqlDataAdapter();
                 DA.SelectCommand = selectCMD;
                 con.Open();
                 DataSet DS = new DataSet();
                 DA.Fill(DS, "newentrytable");
                 dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
+                con.Close();
             }
+        }
+        private void nimitcombo()
+        {
+            SqlCommand cmd;
+            SqlDataReader dr;
+            cmd = new SqlCommand();
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "SELECT Nimit from Nimit";
+            dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                comboBox1.Items.Add(dr["Nimit"]);
+            }
+            con.Close();
         }
     }
 }
