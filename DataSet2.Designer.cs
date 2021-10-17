@@ -569,7 +569,7 @@ namespace thalbhet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public newentrytableRow AddnewentrytableRow(long SMK, string PresentCity, string NativeCity, string FatherName, string Surname, long MobileNumber, string Nimit, string name, long CrAmount, long DebAmount, string status, string submissiontime, string enrtydatetime, string loggedinuser) {
+            public newentrytableRow AddnewentrytableRow(string SMK, string PresentCity, string NativeCity, string FatherName, string Surname, long MobileNumber, string Nimit, string name, long CrAmount, long DebAmount, string status, string submissiontime, string enrtydatetime, string loggedinuser) {
                 newentrytableRow rownewentrytableRow = ((newentrytableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -631,7 +631,7 @@ namespace thalbhet {
             private void InitClass() {
                 this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
-                this.columnSMK = new global::System.Data.DataColumn("SMK", typeof(long), null, global::System.Data.MappingType.Element);
+                this.columnSMK = new global::System.Data.DataColumn("SMK", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSMK);
                 this.columnPresentCity = new global::System.Data.DataColumn("PresentCity", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPresentCity);
@@ -1570,10 +1570,10 @@ namespace thalbhet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public long SMK {
+            public string SMK {
                 get {
                     try {
-                        return ((long)(this[this.tablenewentrytable.SMKColumn]));
+                        return ((string)(this[this.tablenewentrytable.SMKColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'SMK\' in table \'newentrytable\' is DBNull.", e);

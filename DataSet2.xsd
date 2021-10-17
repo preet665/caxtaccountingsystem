@@ -121,11 +121,11 @@
   <xs:element name="DataSet2" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet2" msprop:Generator_UserDSName="DataSet2">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="newentrytable" msprop:Generator_TableClassName="newentrytableDataTable" msprop:Generator_TableVarName="tablenewentrytable" msprop:Generator_RowChangedName="newentrytableRowChanged" msprop:Generator_TablePropName="newentrytable" msprop:Generator_RowDeletingName="newentrytableRowDeleting" msprop:Generator_RowChangingName="newentrytableRowChanging" msprop:Generator_RowEvHandlerName="newentrytableRowChangeEventHandler" msprop:Generator_RowDeletedName="newentrytableRowDeleted" msprop:Generator_RowClassName="newentrytableRow" msprop:Generator_UserTableName="newentrytable" msprop:Generator_RowEvArgName="newentrytableRowChangeEvent">
+        <xs:element name="newentrytable" msprop:Generator_TableClassName="newentrytableDataTable" msprop:Generator_TableVarName="tablenewentrytable" msprop:Generator_TablePropName="newentrytable" msprop:Generator_RowDeletingName="newentrytableRowDeleting" msprop:Generator_RowChangingName="newentrytableRowChanging" msprop:Generator_RowEvHandlerName="newentrytableRowChangeEventHandler" msprop:Generator_RowDeletedName="newentrytableRowDeleted" msprop:Generator_UserTableName="newentrytable" msprop:Generator_RowChangedName="newentrytableRowChanged" msprop:Generator_RowEvArgName="newentrytableRowChangeEvent" msprop:Generator_RowClassName="newentrytableRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
-              <xs:element name="SMK" msprop:Generator_ColumnVarNameInTable="columnSMK" msprop:Generator_ColumnPropNameInRow="SMK" msprop:Generator_ColumnPropNameInTable="SMKColumn" msprop:Generator_UserColumnName="SMK" type="xs:long" minOccurs="0" />
+              <xs:element name="SMK" msprop:Generator_ColumnVarNameInTable="columnSMK" msprop:Generator_ColumnPropNameInRow="SMK" msprop:Generator_ColumnPropNameInTable="SMKColumn" msprop:Generator_UserColumnName="SMK" type="xs:string" minOccurs="0" />
               <xs:element name="PresentCity" msprop:Generator_ColumnVarNameInTable="columnPresentCity" msprop:Generator_ColumnPropNameInRow="PresentCity" msprop:Generator_ColumnPropNameInTable="PresentCityColumn" msprop:Generator_UserColumnName="PresentCity" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -202,7 +202,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Page1_x0024_" msprop:Generator_TableClassName="_Page1_DataTable" msprop:Generator_TableVarName="_tablePage1_" msprop:Generator_TablePropName="_Page1_" msprop:Generator_RowDeletingName="_Page1_RowDeleting" msprop:Generator_RowChangingName="_Page1_RowChanging" msprop:Generator_RowEvHandlerName="_Page1_RowChangeEventHandler" msprop:Generator_RowDeletedName="_Page1_RowDeleted" msprop:Generator_UserTableName="Page1$" msprop:Generator_RowChangedName="_Page1_RowChanged" msprop:Generator_RowEvArgName="_Page1_RowChangeEvent" msprop:Generator_RowClassName="_Page1_Row">
+        <xs:element name="Page1_x0024_" msprop:Generator_TableClassName="_Page1_DataTable" msprop:Generator_TableVarName="_tablePage1_" msprop:Generator_RowChangedName="_Page1_RowChanged" msprop:Generator_TablePropName="_Page1_" msprop:Generator_RowDeletingName="_Page1_RowDeleting" msprop:Generator_RowChangingName="_Page1_RowChanging" msprop:Generator_RowEvHandlerName="_Page1_RowChangeEventHandler" msprop:Generator_RowDeletedName="_Page1_RowDeleted" msprop:Generator_RowClassName="_Page1_Row" msprop:Generator_UserTableName="Page1$" msprop:Generator_RowEvArgName="_Page1_RowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="SMKId" msprop:Generator_ColumnVarNameInTable="columnSMKId" msprop:Generator_ColumnPropNameInRow="SMKId" msprop:Generator_ColumnPropNameInTable="SMKIdColumn" msprop:Generator_UserColumnName="SMKId" minOccurs="0">
@@ -308,7 +308,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ReportDetail" msprop:Generator_TableClassName="ReportDetailDataTable" msprop:Generator_TableVarName="tableReportDetail" msprop:Generator_TablePropName="ReportDetail" msprop:Generator_RowDeletingName="ReportDetailRowDeleting" msprop:Generator_RowChangingName="ReportDetailRowChanging" msprop:Generator_RowEvHandlerName="ReportDetailRowChangeEventHandler" msprop:Generator_RowDeletedName="ReportDetailRowDeleted" msprop:Generator_UserTableName="ReportDetail" msprop:Generator_RowChangedName="ReportDetailRowChanged" msprop:Generator_RowEvArgName="ReportDetailRowChangeEvent" msprop:Generator_RowClassName="ReportDetailRow">
+        <xs:element name="ReportDetail" msprop:Generator_TableClassName="ReportDetailDataTable" msprop:Generator_TableVarName="tableReportDetail" msprop:Generator_RowChangedName="ReportDetailRowChanged" msprop:Generator_TablePropName="ReportDetail" msprop:Generator_RowDeletingName="ReportDetailRowDeleting" msprop:Generator_RowChangingName="ReportDetailRowChanging" msprop:Generator_RowEvHandlerName="ReportDetailRowChangeEventHandler" msprop:Generator_RowDeletedName="ReportDetailRowDeleted" msprop:Generator_RowClassName="ReportDetailRow" msprop:Generator_UserTableName="ReportDetail" msprop:Generator_RowEvArgName="ReportDetailRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="imagepath" msprop:Generator_ColumnVarNameInTable="columnimagepath" msprop:Generator_ColumnPropNameInRow="imagepath" msprop:Generator_ColumnPropNameInTable="imagepathColumn" msprop:Generator_UserColumnName="imagepath" type="xs:string" minOccurs="0" />

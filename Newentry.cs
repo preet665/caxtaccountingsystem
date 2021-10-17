@@ -164,7 +164,7 @@ namespace thalbhet
                 bal = balsum.ToString();
                 con.Close();
                 MessageBox.Show("Entry has been Done successfully");
-                reportviewer repv = new reportviewer(Convert.ToInt32(SMK).ToString(), label15.Text, MobileNumber);
+                reportviewer repv = new reportviewer(SMK, label15.Text, MobileNumber);
                 CrystalReport1 cr = new CrystalReport1();
                 //TextObject balance = (TextObject)cr.ReportDefinition.Sections["Section1"].ReportObjects["Text6"];
                 //balance.Text = "hello";
@@ -420,7 +420,7 @@ namespace thalbhet
             long MobileNumber = Int64.Parse(mnum);
             //reportviewer repv = new reportviewer(SMK.ToString());
             //repv.ShowDialog();
-            reportviewer repv = new reportviewer(Convert.ToInt32(SMK).ToString(),label15.Text,MobileNumber);
+            reportviewer repv = new reportviewer(SMK,label15.Text,MobileNumber);
             CrystalReport1 cr = new CrystalReport1();
             //TextObject balance = (TextObject)cr.ReportDefinition.Sections["Section1"].ReportObjects["Text6"];
             //balance.Text = "hello";

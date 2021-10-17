@@ -45,7 +45,7 @@ namespace thalbhet
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
             SqlCommand selectCMD = new SqlCommand("select * from (SELECT top 6 ID,SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,CrAmount,DebAmount,status,enrtydatetime,loggedinuser,SUM(isnull(CrAmount, 0) - isnull(DebAmount, 0)) OVER (ORDER BY id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as Balance FROM newentrytable  where SMK = '" + label1.Text + "' order by enrtydatetime desc) as temp order by enrtydatetime asc;  ", con);
             SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\smk.mdf;Integrated Security=True");
-            SqlCommand cmd2 = new SqlCommand("Select FullNameGuj,[Mobile 1],image From [dbo].[Page1$] where SMKId LIKE '" + label1.Text + "'", con2);
+            SqlCommand cmd2 = new SqlCommand("Select FullNameGuj,[Mobile 1],image From [dbo].[Page1$] where SMKId = '" + label1.Text + "'", con2);
             SqlDataAdapter DA = new SqlDataAdapter();
             DA.SelectCommand = selectCMD;
             con.Open();
