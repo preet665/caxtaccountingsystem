@@ -64,6 +64,7 @@ namespace thalbhet
                         this.Hide();
                         Newentry home = new Newentry(UserName);
                         home.ShowDialog();
+                        
                     }
                     else
                     {
@@ -75,6 +76,7 @@ namespace thalbhet
                 {
                     MessageBox.Show("Please enter value in all field.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                cn.Close();
             }
         }
         private void Login_FormClosing(object sender, FormClosingEventArgs e)
@@ -84,7 +86,7 @@ namespace thalbhet
                 dynamic result = MessageBox.Show("Do You Want To Exit?", "Bank Management System", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    cn.Close();
+                    
                     Application.Exit();
                 }
 

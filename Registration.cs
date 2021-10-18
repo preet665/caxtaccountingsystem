@@ -13,6 +13,7 @@ namespace thalbhet
 {
     public partial class Registration : Form
     {
+        SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString);
         public SqlDataReader dr { get; private set; }
 
         public Registration()
@@ -22,7 +23,6 @@ namespace thalbhet
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            SqlConnection cn= new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -34,13 +34,13 @@ namespace thalbhet
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlConnection cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
             if (txtconfirmpassword.Text != string.Empty || txtpassword.Text != string.Empty || txtusername.Text != string.Empty)
             {
                 if (txtpassword.Text == txtconfirmpassword.Text)
                 {
-                    SqlCommand cmd = new SqlCommand("select * from LoginTable where username='" + txtusername.Text + "'", cn);
-                    cn.Open();
+                    SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
+                    SqlCommand cmd = new SqlCommand("select * from LoginTable where username='" + txtusername.Text + "'", con);
+                    con.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
                     if (dr.Read())
                     {
@@ -50,9 +50,7 @@ namespace thalbhet
                     else
                     {
                         dr.Close();
-                        cmd = new SqlCommand("insert into LoginTable values(@username,@password)", cn);
-                        cmd.Parameters.AddWithValue("username", txtusername.Text);
-                        cmd.Parameters.AddWithValue("password", txtpassword.Text);
+                        cmd = new SqlCommand("insert into LoginTable (username, password) values ('"+txtusername.Text+"','"+txtpassword.Text+"')", con);
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Your Account is created . Please login now.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }

@@ -17,8 +17,7 @@ namespace thalbhet
 {
     public partial class transferreport : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
-        public transferreport(string username)
+        SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString); public transferreport(string username)
         {
             InitializeComponent();
             label2.BackColor = Color.FromArgb(246, 73, 0);

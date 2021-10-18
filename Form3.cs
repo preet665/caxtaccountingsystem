@@ -13,6 +13,7 @@ namespace thalbhet
 {
     public partial class Form3 : Form
     {
+        SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString);
         public Form3()
         {
             InitializeComponent();
@@ -20,7 +21,6 @@ namespace thalbhet
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True;");
             String Nimit = nimittextbox.Text.Trim();
             String query = "INSERT INTO Nimit (Nimit) VALUES ('" + Nimit + "')";
             //"Insert into Nimit_Lookup (Nimit) Values('" & txtNimitGuj.Text.Trim & "')";

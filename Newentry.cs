@@ -20,7 +20,8 @@ namespace thalbhet
     {
         //SqlDataReader reader; // = cmd.ExecuteReader();
         public static string bal;
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
+        SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString);
+        SqlConnection con2 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DB"].ConnectionString);
         public Newentry(string UserName)
         {
             InitializeComponent();
@@ -110,17 +111,16 @@ namespace thalbhet
                 {
                     int smk = Convert.ToInt32(textBox4.Text);
                     //MessageBox.Show("Number");
-                    SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\smk.mdf;Integrated Security=True");
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[Page1$] where SMKId='" + textBox6.Text + "' ", con);
+                    con2.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[Page1$] where SMKId='" + textBox6.Text + "' ", con2);
                     SqlDataReader reader2 = cmd.ExecuteReader();
                     if (reader2.Read())
                     {
                         textBox7.Text = reader2["First Name Guj"].ToString();
                         reader2.Close();
-                        con.Close();
+                       
                     }
-
+                    con2.Close();
 
 
                 }
@@ -131,7 +131,6 @@ namespace thalbhet
         {
             try
             {
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
                 
                 String SMK = textBox4.Text;
                 String name = textBox8.Text;
@@ -214,7 +213,6 @@ namespace thalbhet
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
 
             long SMK = Int64.Parse(textBox4.Text);
             String name = textBox8.Text;
@@ -250,7 +248,7 @@ namespace thalbhet
             object balsum = balquery.ExecuteScalar();
             label15.Text = balsum.ToString();
             bal = balsum.ToString();
-            con.Close();
+           
             MessageBox.Show("Entry has been Done successfully");
             reportviewer repv = new reportviewer(Convert.ToInt32(SMK).ToString(),label15.Text,MobileNumber);
             repv.ShowDialog();
@@ -295,7 +293,6 @@ namespace thalbhet
 
         private void textBox3_KeyDown(object sender, KeyEventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\smk.mdf;Integrated Security=True");
             bool isParsable = Int32.TryParse(textBox3.Text, out int number);
             if (e.KeyCode == Keys.Enter)
             {
@@ -323,19 +320,17 @@ namespace thalbhet
 
 
                 }
-                SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
-                con2.Open();
-                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)) FROM newentrytable where [MobileNumber] ='" + textBox3.Text + "'", con2);
+                con.Open();
+                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)) FROM newentrytable where [MobileNumber] ='" + textBox3.Text + "'", con);
                 //balquery.Connection = con;
                 object balsum = balquery.ExecuteScalar();
                 label15.Text = balsum.ToString();
-                con2.Close();
+                con.Close();
             }
         }
 
         private void button5_Click_1(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
 
             long SMK = Int64.Parse(textBox4.Text);
             String name = textBox8.Text;
@@ -376,7 +371,6 @@ namespace thalbhet
             if (e.KeyCode == Keys.Enter)
             {
 
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\smk.mdf;Integrated Security=True");
                 bool isParsable = Int32.TryParse(textBox3.Text, out int number);
                 if (textBox3.Text != null)
                 {
@@ -384,8 +378,9 @@ namespace thalbhet
                     //double smk = Convert.ToInt64(textBox3.Text);
                     //MessageBox.Show("Number");
 
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[Page1$] where [Mobile 1] ='" + textBox3.Text + "' ", con);
+                    
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[Page1$] where [Mobile 1] ='" + textBox3.Text + "' ", con2);
+                    con2.Open();
                     SqlDataReader reader1 = cmd.ExecuteReader();
                     if (reader1.Read())
                     {
@@ -397,19 +392,18 @@ namespace thalbhet
                         textBox4.Text = reader1["SMKId"].ToString();
 
                         reader1.Close();
-                        con.Close();
+                        con2.Close();
                     }
 
 
 
                 }
-                SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
-                con2.Open();
-                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)) FROM newentrytable where [MobileNumber] ='" + textBox3.Text + "'", con2);
+                con.Open();
+                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)) FROM newentrytable where [MobileNumber] ='" + textBox3.Text + "'", con);
                 //balquery.Connection = con;
                 object balsum = balquery.ExecuteScalar();
                 label15.Text = balsum.ToString();
-                con2.Close();
+                con.Close();
             }
         }
 
@@ -481,17 +475,16 @@ namespace thalbhet
 
         private void TextBox4_TextChanged(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\smk.mdf;Integrated Security=True");
             //bool isParsable = Int32.TryParse(textBox4.Text, out int number);
-            
-            
-                if (textBox4.Text != null)
+
+            SqlConnection con2 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DB"].ConnectionString);
+            if (textBox4.Text != null)
                 {
                     //int smk = Convert.ToInt32(textBox4.Text);
                     //MessageBox.Show("Number");
 
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[Page1$] where SMKId='" + textBox4.Text + "' ", con);
+                    con2.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[Page1$] where SMKId='" + textBox4.Text + "' ", con2);
                     SqlDataReader reader1 = cmd.ExecuteReader();
                     if (reader1.Read())
                     {
@@ -503,18 +496,14 @@ namespace thalbhet
                         textBox3.Text = reader1["Mobile 1"].ToString();
 
                         reader1.Close();
-                        con.Close();
+                        con2.Close();
                     }
-
+                
+                
 
 
                 }
-                SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
-                con2.Open();
-            getbal();
-
-                con2.Close();
-            
+                     getbal();
         }
 
         private void TextBox5_KeyDown(object sender, KeyEventArgs e)

@@ -15,6 +15,7 @@ namespace thalbhet
 {
     public partial class newsmk : Form
     {
+        SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DB"].ConnectionString);
         public newsmk()
         {
             InitializeComponent();
@@ -22,7 +23,6 @@ namespace thalbhet
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\smk.mdf;Integrated Security=True");
             String num = label8.Text;
             String Name = textBox2.Text;
             String Fathername = textBox4.Text;

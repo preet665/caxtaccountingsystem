@@ -17,10 +17,13 @@ using Ghostscript.NET.Rasterizer;
 using System.IO;
 using System.Net;
 
+
 namespace thalbhet
 {
     public partial class reportviewer : Form
     {
+        SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString);
+        SqlConnection con2 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DB"].ConnectionString);
         String num;
         int len;
         
@@ -42,9 +45,7 @@ namespace thalbhet
         public void reportload()
         {
 
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
             SqlCommand selectCMD = new SqlCommand("select * from (SELECT top 6 ID,SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,CrAmount,DebAmount,status,enrtydatetime,loggedinuser,SUM(isnull(CrAmount, 0) - isnull(DebAmount, 0)) OVER (ORDER BY id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as Balance FROM newentrytable  where SMK = '" + label1.Text + "' order by enrtydatetime desc) as temp order by enrtydatetime asc;  ", con);
-            SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\smk.mdf;Integrated Security=True");
             SqlCommand cmd2 = new SqlCommand("Select FullNameGuj,[Mobile 1],image From [dbo].[Page1$] where SMKId = '" + label1.Text + "'", con2);
             SqlDataAdapter DA = new SqlDataAdapter();
             DA.SelectCommand = selectCMD;
@@ -95,6 +96,8 @@ namespace thalbhet
             {
                 MessageBox.Show(ex.ToString());
             }
+            con.Close();
+            con2.Close();
         }
 
         public void oreportload()
@@ -137,50 +140,8 @@ namespace thalbhet
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
-            SqlCommand selectCMD = new SqlCommand("select * from (SELECT top 6 ID,SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,CrAmount,DebAmount,status,enrtydatetime,loggedinuser,SUM(isnull(CrAmount, 0) - isnull(DebAmount, 0)) OVER (ORDER BY id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as Balance FROM newentrytable  where SMK = '" + label1.Text + "' order by enrtydatetime desc) as temp order by enrtydatetime asc; ", con);
-            SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\smk.mdf;Integrated Security=True");
-            SqlCommand cmd2 = new SqlCommand("Select FullNameGuj,[Mobile 1] From [dbo].[Page1$] where SMKId LIKE '" + label1.Text + "'", con2);
-            SqlDataAdapter DA = new SqlDataAdapter();
-            DA.SelectCommand = selectCMD;
-            con.Open();
-            con2.Open();
-            DataSet2 DS = new DataSet2();
 
-            DA.Fill(DS, "newentrytable");
-            DA.SelectCommand = cmd2;
-            DA.Fill(DS, "Page1$");
-            //dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
-
-            CrystalReport1 crypt = new CrystalReport1();
-            crypt.Database.Tables["newentrytable"].SetDataSource(DS);
-            crypt.Database.Tables["Page1_"].SetDataSource(DS);
-            crypt.SetParameterValue("balance", label2.Text);
-            //crypt.SetParameterValue("balance", Newentry.balance);
-            //Text
-            crystalReportViewer1.ReportSource = null;
-            crystalReportViewer1.ReportSource = crypt;
-            try
-            {
-                ExportOptions CrExportOptions;
-                DiskFileDestinationOptions CrDiskFileDestinationOptions = new DiskFileDestinationOptions();
-                PdfRtfWordFormatOptions CrFormatTypeOptions = new PdfRtfWordFormatOptions();
-                string text = System.IO.File.ReadAllText(@"E:\\bank management system\\bmsreceipt.pdf");
-                CrDiskFileDestinationOptions.DiskFileName = text;
-                CrExportOptions = crypt.ExportOptions;
-                {
-                    CrExportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
-                    CrExportOptions.ExportFormatType = ExportFormatType.PortableDocFormat;
-                    CrExportOptions.DestinationOptions = CrDiskFileDestinationOptions;
-                    CrExportOptions.FormatOptions = CrFormatTypeOptions;
-                }
-                crypt.Export();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-            crystalReportViewer1.PrintReport();
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
