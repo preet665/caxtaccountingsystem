@@ -142,7 +142,7 @@ namespace thalbhet
                 //long hastaksmk = Int64.Parse(textBox6.Text);
                 //String hastak = textBox7.Text;
                 string submissiontime = DateTime.Now.ToString("dd/MMM/yyyy HH:mm:ss");
-                string enrtydatetime = dateTimePicker1.Value.ToString("dd / MMM / yy");
+                string enrtydatetime = dateTimePicker1.Value.ToString("dd / MMM / yyyy HH: mm:ss:ffff");
                 string status = "Credit";
                 string loggedinuser = label2.Text;
                 String query = "Begin tran credit INSERT INTO [dbo].[newentrytable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[CrAmount],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "','" + Amount + "','" + submissiontime + "','" + enrtydatetime + "','" + status + "','" + loggedinuser + "')commit tran credit";
@@ -221,7 +221,7 @@ namespace thalbhet
             //long hastaksmk = Int64.Parse(textBox6.Text);
             //String hastak = textBox7.Text;
             string submissiontime = DateTime.Now.ToString("dd/MMMM/yyyy HH:mm:ss");
-            string enrtydatetime = dateTimePicker1.Value.ToString();
+            string enrtydatetime = dateTimePicker1.Value.ToString("dd / MMM / yyyy HH: mm:ss:ffff");
             string status = "Debit";
             string loggedinuser = label2.Text;
             String query = "INSERT INTO [dbo].[newentrytable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[DebAmount],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "' ,N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "','" + Amount + "','" + submissiontime + "','" + enrtydatetime + "','" + status + "','" + loggedinuser + "')";
@@ -339,10 +339,10 @@ namespace thalbhet
             //long hastaksmk = Int64.Parse(textBox6.Text);
             //String hastak = textBox7.Text;
             string submissiontime = DateTime.Now.ToString("dd/MMMM/yyyy HH:mm:ss");
-            string enrtydatetime = dateTimePicker1.Value.ToString();
+            string enrtydatetime = dateTimePicker1.Value.ToString("dd / MMM / yyyy HH: mm:ss:ffff");
             string status = "Credit";
             string loggedinuser = label2.Text;
-            String query = " Begin  transfer INSERT INTO [dbo].[newentrytable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[DebAmount],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "','" + Amount + "','" + submissiontime + "','" + enrtydatetime + "','" + Nimit + "','" + loggedinuser + "')commit tran credit";
+            String query = "INSERT INTO [dbo].[newentrytable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[DebAmount],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "','" + Amount + "','" + submissiontime + "','" + enrtydatetime + "','" + Nimit + "','" + loggedinuser + "')";
             String ledgequery = "INSERT INTO [dbo].[history]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[DebAmount],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "','" + Amount + "','" + submissiontime + "','" + enrtydatetime + "','" + Nimit + "','" + loggedinuser + "')";
             SqlCommand cmd = new SqlCommand(@query, con);
             SqlCommand cmdl = new SqlCommand(@ledgequery, con);
