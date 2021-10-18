@@ -22,6 +22,7 @@ namespace thalbhet
 {
     public partial class ledger : Form
     {
+        SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString);
         public ledger()
         {
             InitializeComponent();
@@ -29,7 +30,6 @@ namespace thalbhet
 
         private void ledger_Load(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
             SqlCommand selectCMD = new SqlCommand("SELECT SMK,name,MobileNumber,PresentCity, Count(*) FROM newentrytable GROUP BY SMK,name,MobileNumber,PresentCity", con);
             SqlDataAdapter DA = new SqlDataAdapter();
             DA.SelectCommand = selectCMD;
@@ -37,11 +37,12 @@ namespace thalbhet
             DataSet DS = new DataSet();
             DA.Fill(DS, "history");
             dataGridView1.DataSource = DS.Tables["history"].DefaultView;
+
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
             SqlCommand selectCMD = new SqlCommand("SELECT SMK,name,MobileNumber,PresentCity, Count(*) FROM newentrytable where SMK like '" + textBox1.Text + "' GROUP BY SMK,name,MobileNumber,PresentCity", con);
             SqlDataAdapter DA = new SqlDataAdapter();
             DA.SelectCommand = selectCMD;

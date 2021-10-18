@@ -19,7 +19,6 @@ namespace thalbhet
         public Login()
         {
             InitializeComponent();
-            //cn.Open();
         }
         public string UserName
         {

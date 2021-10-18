@@ -129,10 +129,8 @@ namespace thalbhet
 
         private void button2_Click(object sender, EventArgs e)
         {
-            try
-            {
-                
-                String SMK = textBox4.Text;
+            //SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True;");
+            String SMK = textBox4.Text;
                 String name = textBox8.Text;
                 String Fathername = textBox9.Text;
                 String Surname = textBox10.Text;
@@ -147,7 +145,8 @@ namespace thalbhet
                 string enrtydatetime = dateTimePicker1.Value.ToString("dd / MMM / yy");
                 string status = "Credit";
                 string loggedinuser = label2.Text;
-                String query = " Begin tran credit INSERT INTO [dbo].[newentrytable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[CrAmount],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "','" + Amount + "','" + submissiontime + "','" + enrtydatetime + "','" + status + "','" + loggedinuser + "')commit tran credit";
+                String query = "Begin tran credit INSERT INTO [dbo].[newentrytable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[CrAmount],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "','" + Amount + "','" + submissiontime + "','" + enrtydatetime + "','" + status + "','" + loggedinuser + "')commit tran credit";
+                //String query = "INSERT INTO newentrytable ([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[CrAmount]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "','" + Amount + "')";
                 String ledgequery = "INSERT INTO [dbo].[history]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[CrAmount],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "','" + Amount + "','" + submissiontime + "','" + enrtydatetime + "','" + status + "','" + loggedinuser + "')";
                 SqlCommand cmd = new SqlCommand(@query, con);
                 SqlCommand cmdl = new SqlCommand(@ledgequery, con);
@@ -172,12 +171,8 @@ namespace thalbhet
                 repv.Show();
                 
                 newentryload();
-            }
-            catch
-            {
-                //System.FormatException exception = new FormatException();
-                //MessageBox.Show(exception.ToString());
-            }
+           
+            
 
         }
 
@@ -347,19 +342,15 @@ namespace thalbhet
             string enrtydatetime = dateTimePicker1.Value.ToString();
             string status = "Credit";
             string loggedinuser = label2.Text;
-            String query = " Begin tran transfer INSERT INTO [dbo].[newentrytable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[DebAmount],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "','" + Amount + "','" + submissiontime + "','" + enrtydatetime + "','" + Nimit + "','" + loggedinuser + "')commit tran credit";
+            String query = " Begin  transfer INSERT INTO [dbo].[newentrytable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[DebAmount],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "','" + Amount + "','" + submissiontime + "','" + enrtydatetime + "','" + Nimit + "','" + loggedinuser + "')commit tran credit";
             String ledgequery = "INSERT INTO [dbo].[history]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[DebAmount],[submissiontime],[enrtydatetime],[status],[loggedinuser]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "','" + Amount + "','" + submissiontime + "','" + enrtydatetime + "','" + Nimit + "','" + loggedinuser + "')";
             SqlCommand cmd = new SqlCommand(@query, con);
             SqlCommand cmdl = new SqlCommand(@ledgequery, con);
             con.Open();
             cmd.ExecuteNonQuery();
             cmdl.ExecuteNonQuery();
-            
-            SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)) FROM newentrytable  where SMK='" + textBox4.Text + "' ", con);
-            //balquery.Connection = con;
-            object balsum = balquery.ExecuteScalar();
-            label15.Text = balsum.ToString();
-            bal = balsum.ToString();
+
+            getbal();
             MessageBox.Show("Entry has been Done successfully");
             reportviewer repv = new reportviewer(Convert.ToInt32(SMK).ToString(), label15.Text, MobileNumber);
             repv.ShowDialog();
@@ -496,13 +487,13 @@ namespace thalbhet
                         textBox3.Text = reader1["Mobile 1"].ToString();
 
                         reader1.Close();
-                        con2.Close();
+                        
                     }
-                
-                
+                    con2.Close();
 
 
-                }
+
+            }
                      getbal();
         }
 
@@ -522,7 +513,15 @@ namespace thalbhet
         }
         private void getbal()
         {
-            con.Open();
+            if (con.State != ConnectionState.Open)
+            {
+                con.Open();
+            }
+            else
+            {
+                con.Close();
+                con.Open();
+            }
             SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)) FROM newentrytable  where SMK='" + textBox4.Text + "' ", con);
             object balsum = balquery.ExecuteScalar();
             label15.Text = balsum.ToString();

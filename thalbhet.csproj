@@ -583,13 +583,6 @@
     <None Include="Resources\493-4933495_close-button-png-transparent-image-close-icon-png.png" />
     <None Include="Resources\Daco_4933495.png" />
     <None Include="Resources\1155205 %281%29.jpg" />
-    <Content Include="newentrydb.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="newentrydb_log.ldf">
-      <DependentUpon>newentrydb.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\download.jfif" />
     <Content Include="satyaadi.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
