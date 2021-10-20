@@ -24,6 +24,7 @@ namespace thalbhet
             button1.BackColor = Color.FromArgb(37, 154, 92);
             if(label1.Text != "admin")
             {
+                button5.Visible = false;
                 button4.Visible = false;
                 button1.Visible = false;
                 button2.Visible = false;
