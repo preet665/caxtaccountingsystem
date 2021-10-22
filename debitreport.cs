@@ -39,7 +39,7 @@ namespace thalbhet
             if (label11.Text == "admin")
             {
                 string debstring = "Debit";
-                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount,submissiontime, enrtydatetime, status,   loggedinuser FROM newentrytable where status LIKE '"+debstring+"' ", con);
+                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, status,  CrAmount,submissiontime, enrtydate, enrtytime, loggedinuser FROM newentrytable where status LIKE '" + debstring+"' ", con);
                 SqlDataAdapter DA = new SqlDataAdapter();
                 DA.SelectCommand = selectCMD;
                 con.Open();
@@ -56,10 +56,10 @@ namespace thalbhet
                 object debsum = debquery.ExecuteScalar();
                 label5.Text = debsum.ToString();
                 //Transfer sum in label
-                //SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable ");
-                //transquery.Connection = con;
-                //object transsum = transquery.ExecuteScalar();
-                //label10.Text = transsum.ToString();
+                SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable ");
+                transquery.Connection = con;
+                object transsum = transquery.ExecuteScalar();
+                label9.Text = transsum.ToString();
                 //Balance sum in label
                 SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount) ) FROM newentrytable");
                 balquery.Connection = con;
@@ -79,7 +79,7 @@ namespace thalbhet
                                where row.Cells[9].FormattedValue.ToString() != string.Empty
                                select Convert.ToInt32(row.Cells[9].FormattedValue)).Sum().ToString();*/
                 string debstring = "Debit";
-                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount, TransAmount, submissiontime, enrtydatetime, status,   loggedinuser FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) AND (status IS NULL OR status ='" + debstring + "')", con);
+                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, status,  CrAmount, TransAmount, submissiontime, enrtydate, enrtytime, status, loggedinuser FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) AND (status IS NULL OR status ='" + debstring + "')", con);
                 SqlDataAdapter DA = new SqlDataAdapter();
                 DA.SelectCommand = selectCMD;
                 con.Open();
@@ -95,10 +95,10 @@ namespace thalbhet
                 debquery.Connection = con;
                 object debsum = debquery.ExecuteScalar();
                 label5.Text = debsum.ToString();
-                //SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR giver ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) ");
-                //transquery.Connection = con;
-                //object transsum = transquery.ExecuteScalar();
-                //label10.Text = transsum.ToString();
+                SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR giver ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) ");
+                transquery.Connection = con;
+                object transsum = transquery.ExecuteScalar();
+                label10.Text = transsum.ToString();
 
 
             }
@@ -195,7 +195,7 @@ namespace thalbhet
             if (label11.Text == "admin")
             {
                 string debstring = "Debit";
-                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount, submissiontime, enrtydatetime, status,   loggedinuser FROM newentrytable where (status LIKE '" + debstring + "' AND SMK like '" + textBox1.Text + "') ", con);
+                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, status, CrAmount, submissiontime,enrtydate, enrtytime, loggedinuser FROM newentrytable where (status LIKE '" + debstring + "' AND SMK like '" + textBox1.Text + "') ", con);
                 SqlDataAdapter DA = new SqlDataAdapter();
                 DA.SelectCommand = selectCMD;
                 con.Open();
@@ -212,10 +212,10 @@ namespace thalbhet
                 object debsum = debquery.ExecuteScalar();
                 label5.Text = debsum.ToString();
                 //Transfer sum in label
-                //SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable ");
-                //transquery.Connection = con;
-                //object transsum = transquery.ExecuteScalar();
-                //label10.Text = transsum.ToString();
+                SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable ");
+                transquery.Connection = con;
+                object transsum = transquery.ExecuteScalar();
+                label9.Text = transsum.ToString();
                 //Balance sum in label
                 SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount) ) FROM newentrytable");
                 balquery.Connection = con;
@@ -235,7 +235,7 @@ namespace thalbhet
                                where row.Cells[9].FormattedValue.ToString() != string.Empty
                                select Convert.ToInt32(row.Cells[9].FormattedValue)).Sum().ToString();*/
                 string debstring = "Debit";
-                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount, TransAmount, submissiontime, enrtydatetime, status,   loggedinuser FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) AND (status IS NULL OR status ='" + debstring + "') AND SMK like '" + textBox1.Text + "' ", con);
+                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, status, CrAmount, TransAmount, submissiontime, enrtydate, enrtytime, loggedinuser FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) AND (status IS NULL OR status ='" + debstring + "') AND SMK like '" + textBox1.Text + "' ", con);
                 SqlDataAdapter DA = new SqlDataAdapter();
                 DA.SelectCommand = selectCMD;
                 con.Open();
@@ -251,13 +251,18 @@ namespace thalbhet
                 debquery.Connection = con;
                 object debsum = debquery.ExecuteScalar();
                 label5.Text = debsum.ToString();
-                //SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR giver ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) ");
-                //transquery.Connection = con;
-                //object transsum = transquery.ExecuteScalar();
-                //label10.Text = transsum.ToString();
+                SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR giver ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) ");
+                transquery.Connection = con;
+                object transsum = transquery.ExecuteScalar();
+                label9.Text = transsum.ToString();
 
 
             }
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            debitreportload();
         }
     }
 }

@@ -539,6 +539,8 @@
   <ItemGroup>
     <None Include="Resources\Chesta %28223%29.png" />
     <None Include="Resources\avatar_generic_118.png" />
+    <None Include="Resources\pngfind.com-refresh-icon-png-transparent-6863128.png" />
+    <None Include="Resources\pngfind.com-ichthus-png-6173786.png" />
     <Content Include="smk.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -129,5 +129,25 @@ namespace thalbhet.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pngfind_com_ichthus_png_6173786 {
+            get {
+                object obj = ResourceManager.GetObject("pngfind.com-ichthus-png-6173786", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pngfind_com_refresh_icon_png_transparent_6863128 {
+            get {
+                object obj = ResourceManager.GetObject("pngfind.com-refresh-icon-png-transparent-6863128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

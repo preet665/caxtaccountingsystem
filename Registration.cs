@@ -38,7 +38,7 @@ namespace thalbhet
             {
                 if (txtpassword.Text == txtconfirmpassword.Text)
                 {
-                    SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
+                    
                     SqlCommand cmd = new SqlCommand("select * from LoginTable where username='" + txtusername.Text + "'", con);
                     con.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
