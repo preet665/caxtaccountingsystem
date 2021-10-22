@@ -30,7 +30,7 @@ namespace thalbhet
 
         private void ledger_Load(object sender, EventArgs e)
         {
-            SqlCommand selectCMD = new SqlCommand("SELECT SMK,name,MobileNumber,PresentCity, Count(*) FROM newentrytable GROUP BY SMK,name,MobileNumber,PresentCity", con);
+            SqlCommand selectCMD = new SqlCommand("SELECT SMK,name,FatherName,Surname,MobileNumber,PresentCity, Count(*) FROM newentrytable GROUP BY SMK,name,FatherName,Surname,MobileNumber,PresentCity", con);
             SqlDataAdapter DA = new SqlDataAdapter();
             DA.SelectCommand = selectCMD;
             con.Open();
