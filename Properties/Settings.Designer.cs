@@ -55,5 +55,27 @@ namespace thalbhet.Properties {
                 return ((string)(this["smkConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-BH74KO7F;Initial Catalog=smk.mdf;Persist Security Info=True;Us" +
+            "er ID=sa;Password=admin")]
+        public string smk_mdfConnectionString {
+            get {
+                return ((string)(this["smk_mdfConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-BH74KO7F;Initial Catalog=newentrydb.mdf;Persist Security Info=" +
+            "True;User ID=sa;Password=admin")]
+        public string newentrydb_mdfConnectionString {
+            get {
+                return ((string)(this["newentrydb_mdfConnectionString"]));
+            }
+        }
     }
 }

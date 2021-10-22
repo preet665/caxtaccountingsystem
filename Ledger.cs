@@ -37,6 +37,7 @@ namespace thalbhet
             DataSet DS = new DataSet();
             DA.Fill(DS, "history");
             dataGridView1.DataSource = DS.Tables["history"].DefaultView;
+            con.Close();
 
             
         }
@@ -50,6 +51,7 @@ namespace thalbhet
             DataSet DS = new DataSet();
             DA.Fill(DS, "history");
             dataGridView1.DataSource = DS.Tables["history"].DefaultView;
+            con.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)

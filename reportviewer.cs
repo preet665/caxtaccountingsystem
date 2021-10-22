@@ -45,7 +45,7 @@ namespace thalbhet
         public void reportload()
         {
 
-            SqlCommand selectCMD = new SqlCommand("select * from (SELECT top 6 ID,SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,CrAmount,DebAmount,status,enrtydatetime,loggedinuser,SUM(isnull(CrAmount, 0) - isnull(DebAmount, 0)) OVER (ORDER BY id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as Balance FROM newentrytable  where SMK = '" + label1.Text + "' order by enrtydatetime desc) as temp order by enrtydatetime asc;  ", con);
+            SqlCommand selectCMD = new SqlCommand("select * from (SELECT top 6 ID,SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,CrAmount,DebAmount,status,enrtydate,enrtytime,loggedinuser,SUM(isnull(CrAmount, 0) - isnull(DebAmount, 0)) OVER (ORDER BY id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as Balance FROM newentrytable  where SMK = '" + label1.Text + "' order by enrtytime desc) as temp order by enrtytime asc;  ", con);
             SqlCommand cmd2 = new SqlCommand("Select FullNameGuj,[Mobile 1],image From [dbo].[Page1$] where SMKId = '" + label1.Text + "'", con2);
             SqlDataAdapter DA = new SqlDataAdapter();
             DA.SelectCommand = selectCMD;
@@ -62,7 +62,7 @@ namespace thalbhet
             CrystalReport1 crypt = new CrystalReport1();
             crypt.Database.Tables["newentrytable"].SetDataSource(DS);
             crypt.Database.Tables["Page1_"].SetDataSource(DS);
-            crypt.Database.Tables["ReportDetail"].SetDataSource(DS);
+            //crypt.Database.Tables["ReportDetail"].SetDataSource(DS);
             crypt.SetParameterValue("balance", label2.Text);
             /*String dac = "E:\\smkphotos\\" +label1.Text+".jpg";
             Bitmap b = new Bitmap(dac);

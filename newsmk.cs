@@ -30,7 +30,7 @@ namespace thalbhet
             String PresentCity = textBox3.Text;
             String NativeCity = textBox1.Text;
             String MobileNumber = textBox6.Text;
-            String query = "INSERT INTO [dbo].[Page1$] ([SMKId],[First Name Guj],[Middle Name Guj],[Last Name Guj],[Present City/Village Guj],[Native Guj],[Mobile 1]) VALUES ('" + num + "',N'" + Name + "',N'" + Fathername + "',N'" + Surname + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + MobileNumber + "')";
+            String query = "INSERT INTO [dbo].[Page1$] ([SMKId],[First Name Guj],[Middle Name Guj],[Last Name Guj],[FullNameGuj],[Present City/Village Guj],[Native Guj],[Mobile 1]) VALUES ('" + num + "',N'" + Name + "',N'" + Fathername + "',N'" + Surname + "',N'"+Name+" "+Fathername+" "+Surname+"',N'" + PresentCity + "',N'" + NativeCity + "',N'" + MobileNumber + "')";
             SqlCommand cmd = new SqlCommand(@query, con);
             con.Open();
             cmd.ExecuteNonQuery();
