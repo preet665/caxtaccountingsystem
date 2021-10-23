@@ -43,10 +43,9 @@ namespace thalbhet
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(13, 151);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Location = new System.Drawing.Point(10, 123);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(343, 106);
+            this.button1.Size = new System.Drawing.Size(257, 86);
             this.button1.TabIndex = 0;
             this.button1.Text = "CREDIT (જમા/આવક)";
             this.button1.UseVisualStyleBackColor = true;
@@ -55,10 +54,9 @@ namespace thalbhet
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(187, 271);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Location = new System.Drawing.Point(140, 220);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(343, 106);
+            this.button2.Size = new System.Drawing.Size(257, 86);
             this.button2.TabIndex = 1;
             this.button2.Text = "DEBIT (જાવક)";
             this.button2.UseVisualStyleBackColor = true;
@@ -67,10 +65,9 @@ namespace thalbhet
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(26, 24);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Location = new System.Drawing.Point(20, 20);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(343, 106);
+            this.button3.Size = new System.Drawing.Size(257, 86);
             this.button3.TabIndex = 2;
             this.button3.Text = "TRANSFER";
             this.button3.UseVisualStyleBackColor = true;
@@ -80,18 +77,20 @@ namespace thalbhet
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(637, 74);
+            this.label1.Location = new System.Drawing.Point(478, 60);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 29);
+            this.label1.Size = new System.Drawing.Size(60, 24);
             this.label1.TabIndex = 3;
             this.label1.Text = "label1";
             // 
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(363, 153);
+            this.button4.Location = new System.Drawing.Point(272, 124);
+            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(250, 104);
+            this.button4.Size = new System.Drawing.Size(188, 84);
             this.button4.TabIndex = 4;
             this.button4.Text = "Ledger";
             this.button4.UseVisualStyleBackColor = true;
@@ -101,9 +100,10 @@ namespace thalbhet
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::thalbhet.Properties.Resources.avatardefault_92824;
-            this.pictureBox1.Location = new System.Drawing.Point(642, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(482, 10);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(57, 50);
+            this.pictureBox1.Size = new System.Drawing.Size(43, 41);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
@@ -111,9 +111,10 @@ namespace thalbhet
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(388, 24);
+            this.button5.Location = new System.Drawing.Point(291, 20);
+            this.button5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(225, 106);
+            this.button5.Size = new System.Drawing.Size(169, 86);
             this.button5.TabIndex = 6;
             this.button5.Text = "Admin Panel";
             this.button5.UseVisualStyleBackColor = true;
@@ -121,11 +122,11 @@ namespace thalbhet
             // 
             // Reportoption
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::thalbhet.Properties.Resources._1155205__1_;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(734, 392);
+            this.ClientSize = new System.Drawing.Size(550, 318);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button4);
@@ -134,7 +135,6 @@ namespace thalbhet
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Reportoption";
             this.Text = "Reportoption";
             this.Load += new System.EventHandler(this.Reportoption_Load);

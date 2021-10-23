@@ -65,9 +65,9 @@ namespace thalbhet
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(24, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(149, 31);
+            this.label1.Size = new System.Drawing.Size(156, 31);
             this.label1.TabIndex = 0;
-            this.label1.Text = "CREDIT - ";
+            this.label1.Text = "CREDIT = ";
             // 
             // label2
             // 
@@ -77,9 +77,9 @@ namespace thalbhet
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(346, 13);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(126, 31);
+            this.label2.Size = new System.Drawing.Size(133, 31);
             this.label2.TabIndex = 1;
-            this.label2.Text = "DEBIT - ";
+            this.label2.Text = "DEBIT = ";
             // 
             // label3
             // 
@@ -89,9 +89,9 @@ namespace thalbhet
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(1064, 13);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(174, 31);
+            this.label3.Size = new System.Drawing.Size(181, 31);
             this.label3.TabIndex = 2;
-            this.label3.Text = "BALANCE - ";
+            this.label3.Text = "BALANCE = ";
             // 
             // label4
             // 
@@ -166,9 +166,9 @@ namespace thalbhet
             this.label8.ForeColor = System.Drawing.Color.White;
             this.label8.Location = new System.Drawing.Point(649, 13);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(196, 31);
+            this.label8.Size = new System.Drawing.Size(203, 31);
             this.label8.TabIndex = 9;
-            this.label8.Text = "TRANSFER - ";
+            this.label8.Text = "TRANSFER = ";
             // 
             // label9
             // 

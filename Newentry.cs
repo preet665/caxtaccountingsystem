@@ -144,7 +144,7 @@ namespace thalbhet
                 //String hastak = textBox7.Text;
                 string submissiontime = DateTime.Now.ToString("dd/MMM/yyyy HH:mm:ss");
                 string entrytime = DateTime.Now.ToString("HH:mm:ss");
-                string enrtydatetime = dateTimePicker1.Value.ToString("dd / MM / yyyy");
+                string enrtydatetime = dateTimePicker1.Value.ToString("yyyy-MM-dd");
                 string status = "Credit";
                 string loggedinuser = label2.Text;
                 String query = "Begin tran credit INSERT INTO [dbo].[newentrytable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[CrAmount],[submissiontime],[enrtydate],[enrtytime],[status],[loggedinuser]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "','" + Amount + "','" + submissiontime + "','"+ enrtydatetime+" "+entrytime+"',CONVERT(TIME, GETDATE()),'" + status + "','" + loggedinuser + "')commit tran credit";
@@ -195,6 +195,7 @@ namespace thalbhet
             textBox8.Text = null;
             textBox1.Text = null;
             textBox2.Text = null;
+            textBox5.Text = null;
         
         }
 
@@ -225,7 +226,7 @@ namespace thalbhet
             //String hastak = textBox7.Text;
             string submissiontime = DateTime.Now.ToString("dd/MMMM/yyyy HH:mm:ss");
             string entrytime = DateTime.Now.ToString("HH:mm:ss");
-            string enrtydatetime = dateTimePicker1.Value.ToString("dd / MM / yyyy");
+            string enrtydatetime = dateTimePicker1.Value.ToString("yyyy-MM-dd");
             string status = "Debit";
             string loggedinuser = label2.Text;
             String query = "INSERT INTO [dbo].[newentrytable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[DebAmount],[submissiontime],[enrtydate],[enrtytime],[status],[loggedinuser]) VALUES ('" + SMK + "' ,N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "','" + Amount + "','" + submissiontime + "','" + enrtydatetime + " " + entrytime + "',CONVERT(TIME, GETDATE()),'" + status + "','" + loggedinuser + "')";
@@ -344,7 +345,7 @@ namespace thalbhet
             //String hastak = textBox7.Text;
             string submissiontime = DateTime.Now.ToString("dd/MMMM/yyyy ");
             string entrytime = DateTime.Now.ToString("HH:mm:ss");
-            string enrtydatetime = dateTimePicker1.Value.ToString("dd / MM / yyyy");
+            string enrtydatetime = dateTimePicker1.Value.ToString("yyyy-MM-dd");
             string status = "Credit";
             string loggedinuser = label2.Text;
             String query = "INSERT INTO [dbo].[newentrytable]([SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[name],[DebAmount],[submissiontime],[enrtydate],[enrtytime],[status],[loggedinuser]) VALUES ('" + SMK + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + Fathername + "',N'" + Surname + "','" + MobileNumber + "',N'" + name + "','" + Amount + "','" + submissiontime + "','" + enrtydatetime + " " + entrytime + "',CONVERT(TIME, GETDATE()),'" + Nimit + "','" + loggedinuser + "')";
@@ -479,7 +480,7 @@ namespace thalbhet
         private void TextBox4_TextChanged(object sender, EventArgs e)
         {
             //bool isParsable = Int32.TryParse(textBox4.Text, out int number);
-
+            textBox5.Text = null;
             SqlConnection con2 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DB"].ConnectionString);
             if (textBox4.Text != null)
                 {
@@ -497,12 +498,10 @@ namespace thalbhet
                         textBox10.Text = reader1["Last Name GUj"].ToString();
                         textBox1.Text = reader1["Native Guj"].ToString();
                         textBox3.Text = reader1["Mobile 1"].ToString();
-
-                        reader1.Close();
-                        
+                        reader1.Close();                       
                     }
                     con2.Close();
-
+                
 
 
             }

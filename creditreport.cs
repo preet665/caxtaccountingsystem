@@ -34,6 +34,10 @@ namespace thalbhet
             label5.BackColor = Color.FromArgb(246, 73, 0);
             label1.BackColor = Color.FromArgb(37, 154, 92);
             label4.BackColor = Color.FromArgb(37, 154, 92);
+            label9.BackColor = Color.FromArgb(246, 73, 0);
+            label3.BackColor = Color.FromArgb(37, 154, 92);
+            label6.BackColor = Color.FromArgb(37, 154, 92);
+            label10.BackColor = Color.FromArgb(246, 73, 0);
             label11.Text = Username; 
 
 
@@ -57,29 +61,33 @@ namespace thalbhet
             
             if (label11.Text == "admin")
             {
-                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, status, CrAmount, submissiontime, enrtydate, enrtytime, loggedinuser FROM newentrytable where status = 'Credit'", con);
+                string fromReportDate = dateTimePicker2.Value.ToString("yyyy-MM-dd") + " 00:00:00";
+                string toReportDate = dateTimePicker3.Value.ToString("yyyy-MM-dd") + " 23:59:59";
+                //MessageBox.Show(fromReportDate);
+                //MessageBox.Show(toReportDate);
+                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, status, CrAmount, submissiontime, enrtydate, enrtytime, loggedinuser FROM newentrytable where ((status='Credit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))", con);
                 SqlDataAdapter DA = new SqlDataAdapter();
                 DA.SelectCommand = selectCMD;
                 con.Open();
                 DataSet DS = new DataSet();
                 DA.Fill(DS, "newentrytable");
                 dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
-                SqlCommand crquery = new SqlCommand("SELECT SUM(CrAmount) FROM newentrytable");
+                SqlCommand crquery = new SqlCommand("SELECT SUM(CrAmount) FROM newentrytable where ((status='Credit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
                 crquery.Connection = con;
                 object crsum = crquery.ExecuteScalar();
                 label4.Text = crsum.ToString();
                 //Debit sum in label
-                SqlCommand debquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable ");
+                SqlCommand debquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable where ((status='Debit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
                 debquery.Connection = con;
                 object debsum = debquery.ExecuteScalar();
                 label5.Text = debsum.ToString();
                 //Transfer sum in label
-                SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable ");
+                SqlCommand transquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable where ((status != 'Credit' AND status != 'Debit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
                 transquery.Connection = con;
                 object transsum = transquery.ExecuteScalar();
                 label10.Text = transsum.ToString();
                 //Balance sum in label
-                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount) ) FROM newentrytable");
+                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount) ) FROM newentrytable where (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "')");
                 balquery.Connection = con;
                 object balsum = balquery.ExecuteScalar();
                 label6.Text = balsum.ToString();
@@ -96,9 +104,11 @@ namespace thalbhet
                 /*label4.Text = (from DataGridViewRow row in dataGridView1.Rows
                                where row.Cells[9].FormattedValue.ToString() != string.Empty
                                select Convert.ToInt32(row.Cells[9].FormattedValue)).Sum().ToString();*/
-                string transstring = "Transfer";
+                //string transstring = "Transfer";
                 string crestring = "Credit";
-                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, status, CrAmount, TransAmount, submissiontime, enrtydate, enrtytime, taker, loggedinuser FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) AND (status IS NULL OR status ='" + transstring + "' OR status ='" + crestring + "' OR flag='1')", con);
+                string fromReportDate = dateTimePicker2.Value.ToString("yyyy-MM-dd") + " 00:00:00";
+                string toReportDate = dateTimePicker3.Value.ToString("yyyy-MM-dd") + " 23:59:59";
+                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, status, CrAmount, TransAmount, submissiontime, enrtydate, enrtytime, taker, loggedinuser FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) AND ((status='Credit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))", con);
                 SqlDataAdapter DA = new SqlDataAdapter();
                 DA.SelectCommand = selectCMD;
                 con.Open();
@@ -106,19 +116,19 @@ namespace thalbhet
                 DA.Fill(DS, "newentrytable");
                 dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
 
-                SqlCommand crquery = new SqlCommand("SELECT SUM(CrAmount) FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) ");
+                SqlCommand crquery = new SqlCommand("SELECT SUM(CrAmount) FROM newentrytable where ((loggedinuser ='" + label11.Text + "') AND (status='Credit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
                 crquery.Connection = con;
                 object crsum = crquery.ExecuteScalar();
                 label4.Text = crsum.ToString();
-                SqlCommand debquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable where (loggedinuser ='"+label11.Text+ "' OR giver ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) ");
+                SqlCommand debquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable where ((loggedinuser ='"+label11.Text+ "') AND (status='Debit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
                 debquery.Connection = con;
                 object debsum = debquery.ExecuteScalar();
                 label5.Text = debsum.ToString();
-                SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR giver ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) ");
+                SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable where ((loggedinuser ='" + label11.Text + "') AND (status != 'Credit' AND status != 'Debit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
                 transquery.Connection = con;
                 object transsum = transquery.ExecuteScalar();
                 label10.Text = transsum.ToString();
-                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount) ) FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR giver ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) ");
+                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount) ) FROM newentrytable where ((loggedinuser ='" + label11.Text + "') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "')");
                 balquery.Connection = con;
                 object balsum = balquery.ExecuteScalar();
                 label6.Text = balsum.ToString();
@@ -418,6 +428,24 @@ namespace thalbhet
         private void Button6_Click(object sender, EventArgs e)
         {
             reportload();
+        }
+
+        private void Button7_Click(object sender, EventArgs e)
+        {
+
+            string fromReportDate = dateTimePicker2.Value.ToString("yyyy-MM-dd") + " 00:00:00";
+            string toReportDate = dateTimePicker3.Value.ToString("yyyy-MM-dd") + " 23:59:59";
+            MessageBox.Show(fromReportDate);
+            MessageBox.Show(toReportDate);
+            string sqlquery = "SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, status, CrAmount, enrtydate, enrtytime, submissiontime, loggedinuser FROM newentrytable where ((status='Credit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))";
+            SqlCommand cmd = new SqlCommand(sqlquery, con);
+            con.Open();
+            SqlDataAdapter DA = new SqlDataAdapter();
+            DA.SelectCommand = cmd;
+            DataSet DS = new DataSet();
+            DA.Fill(DS, "newentrytable");
+            dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
+            con.Close();
         }
     }
 }
