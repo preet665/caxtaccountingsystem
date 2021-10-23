@@ -17,7 +17,8 @@ namespace thalbhet
 {
     public partial class transferreport : Form
     {
-        SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString); public transferreport(string username)
+        SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString);
+        public transferreport(string username)
         {
             InitializeComponent();
             label2.BackColor = Color.FromArgb(246, 73, 0);
@@ -64,7 +65,7 @@ namespace thalbhet
                 object crsum = crquery.ExecuteScalar();
                 label4.Text = crsum.ToString();
                 //Debit sum in label
-                SqlCommand debquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable ");
+                SqlCommand debquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable where ((loggedinuser ='" + label12.Text + "' ) AND (status = 'Debit'))");
                 debquery.Connection = con;
                 object debsum = debquery.ExecuteScalar();
                 label5.Text = debsum.ToString();
@@ -100,24 +101,24 @@ namespace thalbhet
                 DA.Fill(DS, "newentrytable");
                 dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
 
-                //SqlCommand crquery = new SqlCommand("SELECT SUM(CrAmount) FROM newentrytable where (loggedinuser ='" + label12.Text + "') ");
-                //crquery.Connection = con;
-                //object crsum = crquery.ExecuteScalar();
-                //label4.Text = crsum.ToString();
-                //SqlCommand debquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable where (loggedinuser ='" + label12.Text + "' ) ");
-                //debquery.Connection = con;
-                //object debsum = debquery.ExecuteScalar();
-                //label5.Text = debsum.ToString();
-                SqlCommand transquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable where (loggedinuser ='" + label12.Text + "') AND (status != 'Credit' AND status != 'Debit') ");
+                SqlCommand crquery = new SqlCommand("SELECT SUM(CrAmount) FROM newentrytable where (loggedinuser ='" + label12.Text + "') ");
+                crquery.Connection = con;
+                object crsum = crquery.ExecuteScalar();
+                label4.Text = crsum.ToString();
+                SqlCommand debquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable where ((loggedinuser ='" + label12.Text + "' ) AND (status = 'Debit'))");
+                debquery.Connection = con;
+                object debsum = debquery.ExecuteScalar();
+                label5.Text = debsum.ToString();
+                SqlCommand transquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable where ((loggedinuser ='" + label12.Text + "') AND (status != 'Credit' AND status != 'Debit')) ");
                 transquery.Connection = con;
                 object transsum = transquery.ExecuteScalar();
                 label9.Text = transsum.ToString();
                 //Balance sum in label
-                //SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)) FROM newentrytable where (loggedinuser = '" + label12.Text + "')");
-                //balquery.Connection = con;
-                //object balsum = balquery.ExecuteScalar();
-                //label6.Text = balsum.ToString();
-                //con.Close();
+                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)) FROM newentrytable where (loggedinuser = '" + label12.Text + "')");
+                balquery.Connection = con;
+                object balsum = balquery.ExecuteScalar();
+                label6.Text = balsum.ToString();
+                con.Close();
 
 
             }
@@ -288,18 +289,35 @@ namespace thalbhet
         private void Button3_Click_1(object sender, EventArgs e)
         {
             MessageBox.Show(dateTimePicker1.Text);
-            string sqlquery = "SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, status, CrAmount,DebAmount,submissiontime, enrtydate, loggedinuser FROM newentrytable where((loggedinuser = 'admin') AND(status != 'Credit' AND status != 'Debit') AND enrtydate between '" + dateTimePicker1.Text+"' and '"+ dateTimePicker2.Text+"') ";
-            SqlCommand cmd = new SqlCommand(sqlquery, con);
-            con.Open();
-            //DataTable dt = new DataTable();
-            //dt.Load(cmd.ExecuteReader());
-            //dataGridView1.DataSource = dt;
-            SqlDataAdapter DA = new SqlDataAdapter();
-            DA.SelectCommand = cmd;
-            DataSet DS = new DataSet();
-            DA.Fill(DS, "newentrytable");
-            dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
-            con.Close();
+            if (comboBox1.SelectedItem.ToString() != null) {
+                String sqlquery2 = "SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, status, CrAmount,DebAmount,submissiontime, enrtydate, loggedinuser FROM newentrytable where((loggedinuser = 'admin') AND(status != 'Credit' AND status != 'Debit') AND enrtydate between '" + dateTimePicker1.Text + "' and '" + dateTimePicker2.Text + "' AND status = '" + comboBox1.SelectedItem.ToString() + "') ";
+                SqlCommand cmd = new SqlCommand(sqlquery2, con);
+                con.Open();
+                //DataTable dt = new DataTable();
+                //dt.Load(cmd.ExecuteReader());
+                //dataGridView1.DataSource = dt;
+                SqlDataAdapter DA = new SqlDataAdapter();
+                DA.SelectCommand = cmd;
+                DataSet DS = new DataSet();
+                DA.Fill(DS, "newentrytable");
+                dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
+                con.Close();
+            }
+            else
+            {
+                string sqlquery = "SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, status, CrAmount,DebAmount,submissiontime, enrtydate, loggedinuser FROM newentrytable where((loggedinuser = 'admin') AND(status != 'Credit' AND status != 'Debit') AND enrtydate between '" + dateTimePicker1.Text + "' and '" + dateTimePicker2.Text + "' ) ";
+                SqlCommand cmd = new SqlCommand(sqlquery, con);
+                con.Open();
+                //DataTable dt = new DataTable();
+                //dt.Load(cmd.ExecuteReader());
+                //dataGridView1.DataSource = dt;
+                SqlDataAdapter DA = new SqlDataAdapter();
+                DA.SelectCommand = cmd;
+                DataSet DS = new DataSet();
+                DA.Fill(DS, "newentrytable");
+                dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
+                con.Close();
+            }
         }
 
         private void Button4_Click(object sender, EventArgs e)

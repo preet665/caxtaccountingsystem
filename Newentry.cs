@@ -188,13 +188,14 @@ namespace thalbhet
 
         private void button3_Click(object sender, EventArgs e)
         {
-            foreach (Control c in Controls)
-            {
-                if (c is TextBoxBase)
-                {
-                    c.Text = String.Empty;
-                }
-            }
+            textBox3.Text = null;
+            textBox4.Text = null;
+            textBox9.Text = null;
+            textBox10.Text = null;
+            textBox8.Text = null;
+            textBox1.Text = null;
+            textBox2.Text = null;
+        
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
@@ -211,7 +212,7 @@ namespace thalbhet
         private void button1_Click(object sender, EventArgs e)
         {
 
-            long SMK = Int64.Parse(textBox4.Text);
+            String SMK = textBox4.Text;
             String name = textBox8.Text;
             String Fathername = textBox9.Text;
             String Surname = textBox10.Text;
@@ -248,7 +249,7 @@ namespace thalbhet
             bal = balsum.ToString();
            
             MessageBox.Show("Entry has been Done successfully");
-            reportviewer repv = new reportviewer(Convert.ToInt32(SMK).ToString(),label15.Text,MobileNumber);
+            reportviewer repv = new reportviewer(SMK,label15.Text,MobileNumber);
             repv.ShowDialog();
             con.Close();
             newentryload();
@@ -330,7 +331,7 @@ namespace thalbhet
         private void button5_Click_1(object sender, EventArgs e)
         {
 
-            long SMK = Int64.Parse(textBox4.Text);
+            String SMK = textBox4.Text;
             String name = textBox8.Text;
             String Fathername = textBox9.Text;
             String Surname = textBox10.Text;
@@ -351,12 +352,19 @@ namespace thalbhet
             SqlCommand cmd = new SqlCommand(@query, con);
             SqlCommand cmdl = new SqlCommand(@ledgequery, con);
             con.Open();
-            cmd.ExecuteNonQuery();
-            cmdl.ExecuteNonQuery();
+            if (Int64.Parse(textBox5.Text) > Int64.Parse(label15.Text))
+            {
+                MessageBox.Show("Amount is greaer than balance");
+            }
+            else
+            {
+                cmd.ExecuteNonQuery();
+                cmdl.ExecuteNonQuery();
+            }
 
             getbal();
             MessageBox.Show("Entry has been Done successfully");
-            reportviewer repv = new reportviewer(Convert.ToInt32(SMK).ToString(), label15.Text, MobileNumber);
+            reportviewer repv = new reportviewer(SMK, label15.Text, MobileNumber);
             repv.ShowDialog();
             con.Close();
         }
@@ -537,6 +545,11 @@ namespace thalbhet
 
             getbal();
 
+
+        }
+
+        private void TableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }
