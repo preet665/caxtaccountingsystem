@@ -52,7 +52,6 @@ namespace thalbhet
             con.Open();
             con2.Open();
             DataSet2 DS = new DataSet2();
-
             DA.Fill(DS, "newentrytable");
             DA.SelectCommand = cmd2;
             DA.Fill(DS, "Page1$");

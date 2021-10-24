@@ -279,6 +279,25 @@ namespace thalbhet
             DataSet DS = new DataSet();
             DA.Fill(DS, "newentrytable");
             dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
+            SqlCommand crquery = new SqlCommand("SELECT SUM(CrAmount) FROM newentrytable where ((status='Credit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
+            crquery.Connection = con;
+            object crsum = crquery.ExecuteScalar();
+            label4.Text = crsum.ToString();
+            //Debit sum in label
+            SqlCommand debquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable where ((status='Debit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
+            debquery.Connection = con;
+            object debsum = debquery.ExecuteScalar();
+            label5.Text = debsum.ToString();
+            //Transfer sum in label
+            SqlCommand transquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable where ((status != 'Credit' AND status != 'Debit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
+            transquery.Connection = con;
+            object transsum = transquery.ExecuteScalar();
+            label9.Text = transsum.ToString();
+            //Balance sum in label
+            SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)) FROM newentrytable where (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "')");
+            balquery.Connection = con;
+            object balsum = balquery.ExecuteScalar();
+            label6.Text = balsum.ToString();
             con.Close();
         }
     }

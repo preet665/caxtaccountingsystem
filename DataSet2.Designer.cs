@@ -1127,7 +1127,7 @@ namespace thalbhet {
                         string status, 
                         string note, 
                         string submissiontime, 
-                        string enrtydate, 
+                        System.DateTime enrtydate, 
                         string enrtytime, 
                         string giver, 
                         string taker, 
@@ -1242,7 +1242,7 @@ namespace thalbhet {
                 base.Columns.Add(this.columnnote);
                 this.columnsubmissiontime = new global::System.Data.DataColumn("submissiontime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsubmissiontime);
-                this.columnenrtydate = new global::System.Data.DataColumn("enrtydate", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnenrtydate = new global::System.Data.DataColumn("enrtydate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnenrtydate);
                 this.columnenrtytime = new global::System.Data.DataColumn("enrtytime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnenrtytime);
@@ -1272,7 +1272,7 @@ namespace thalbhet {
                 this.columnstatus.MaxLength = 2147483647;
                 this.columnnote.MaxLength = 2147483647;
                 this.columnsubmissiontime.MaxLength = 2147483647;
-                this.columnenrtydate.MaxLength = 2147483647;
+                this.columnenrtydate.AllowDBNull = false;
                 this.columnenrtytime.MaxLength = 2147483647;
                 this.columngiver.MaxLength = 2147483647;
                 this.columntaker.MaxLength = 2147483647;
@@ -2144,14 +2144,9 @@ namespace thalbhet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string enrtydate {
+            public System.DateTime enrtydate {
                 get {
-                    try {
-                        return ((string)(this[this.tablenewentrytable.enrtydateColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'enrtydate\' in table \'newentrytable\' is DBNull.", e);
-                    }
+                    return ((global::System.DateTime)(this[this.tablenewentrytable.enrtydateColumn]));
                 }
                 set {
                     this[this.tablenewentrytable.enrtydateColumn] = value;
@@ -2416,18 +2411,6 @@ namespace thalbhet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetsubmissiontimeNull() {
                 this[this.tablenewentrytable.submissiontimeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsenrtydateNull() {
-                return this.IsNull(this.tablenewentrytable.enrtydateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetenrtydateNull() {
-                this[this.tablenewentrytable.enrtydateColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3092,7 +3075,7 @@ namespace thalbhet.DataSet2TableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@status", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "status", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@note", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@submissiontime", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "submissiontime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@enrtydate", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "enrtydate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@enrtydate", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "enrtydate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@enrtytime", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "enrtytime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@giver", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "giver", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@taker", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "taker", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -3194,7 +3177,7 @@ namespace thalbhet.DataSet2TableAdapters {
                     string status, 
                     string note, 
                     string submissiontime, 
-                    string enrtydate, 
+                    System.DateTime enrtydate, 
                     string enrtytime, 
                     string giver, 
                     string taker, 
@@ -3291,12 +3274,7 @@ namespace thalbhet.DataSet2TableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[15].Value = ((string)(submissiontime));
             }
-            if ((enrtydate == null)) {
-                this.Adapter.InsertCommand.Parameters[16].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[16].Value = ((string)(enrtydate));
-            }
+            this.Adapter.InsertCommand.Parameters[16].Value = ((System.DateTime)(enrtydate));
             if ((enrtytime == null)) {
                 this.Adapter.InsertCommand.Parameters[17].Value = global::System.DBNull.Value;
             }

@@ -60,5 +60,11 @@ namespace thalbhet
             adminpanel adp = new adminpanel(label1.Text);
             adp.ShowDialog();
         }
+
+        private void Button6_Click(object sender, EventArgs e)
+        {
+            modify md = new modify();
+            md.ShowDialog();
+        }
     }
 }
