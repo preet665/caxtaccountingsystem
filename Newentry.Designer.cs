@@ -58,10 +58,8 @@ namespace thalbhet
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.newentrytableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button7 = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -76,11 +74,13 @@ namespace thalbhet
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            ((System.ComponentModel.ISupportInitialize)(this.newentrytableBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.newentrytableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.newentrytableBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label4
@@ -106,7 +106,7 @@ namespace thalbhet
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(3, 138);
+            this.label5.Location = new System.Drawing.Point(314, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(285, 46);
             this.label5.TabIndex = 4;
@@ -120,7 +120,7 @@ namespace thalbhet
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(3, 276);
+            this.label6.Location = new System.Drawing.Point(314, 138);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(285, 46);
             this.label6.TabIndex = 5;
@@ -135,7 +135,7 @@ namespace thalbhet
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.label7.Location = new System.Drawing.Point(314, 138);
+            this.label7.Location = new System.Drawing.Point(625, 138);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(285, 46);
             this.label7.TabIndex = 6;
@@ -177,7 +177,7 @@ namespace thalbhet
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(625, 138);
+            this.label11.Location = new System.Drawing.Point(3, 138);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(285, 46);
             this.label11.TabIndex = 10;
@@ -191,9 +191,9 @@ namespace thalbhet
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(936, 0);
+            this.label12.Location = new System.Drawing.Point(3, 276);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(287, 46);
+            this.label12.Size = new System.Drawing.Size(285, 46);
             this.label12.TabIndex = 11;
             this.label12.Text = "રકમ\r\nAmount";
             // 
@@ -205,7 +205,7 @@ namespace thalbhet
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(314, 0);
+            this.label3.Location = new System.Drawing.Point(625, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(285, 46);
             this.label3.TabIndex = 13;
@@ -219,9 +219,9 @@ namespace thalbhet
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(625, 0);
+            this.label14.Location = new System.Drawing.Point(936, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(285, 46);
+            this.label14.Size = new System.Drawing.Size(287, 46);
             this.label14.TabIndex = 14;
             this.label14.Text = "અટક\r\nSurname";
             // 
@@ -242,7 +242,7 @@ namespace thalbhet
             this.button2.ForeColor = System.Drawing.Color.Black;
             this.button2.Location = new System.Drawing.Point(3, 463);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(256, 37);
+            this.button2.Size = new System.Drawing.Size(256, 54);
             this.button2.TabIndex = 28;
             this.button2.Text = "CREDIT (જમા/આવક)";
             this.button2.UseVisualStyleBackColor = true;
@@ -252,9 +252,9 @@ namespace thalbhet
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.Red;
-            this.button3.Location = new System.Drawing.Point(314, 509);
+            this.button3.Location = new System.Drawing.Point(314, 524);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(256, 37);
+            this.button3.Size = new System.Drawing.Size(256, 36);
             this.button3.TabIndex = 29;
             this.button3.Text = "RESET/CLEAR";
             this.button3.UseVisualStyleBackColor = true;
@@ -265,7 +265,7 @@ namespace thalbhet
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.Font = new System.Drawing.Font("Lucida Sans Unicode", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(314, 187);
+            this.textBox1.Location = new System.Drawing.Point(625, 187);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(285, 37);
             this.textBox1.TabIndex = 30;
@@ -277,7 +277,7 @@ namespace thalbhet
             this.textBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.textBox2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.textBox2.Font = new System.Drawing.Font("Lucida Sans Unicode", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(3, 325);
+            this.textBox2.Location = new System.Drawing.Point(314, 187);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(285, 37);
             this.textBox2.TabIndex = 31;
@@ -287,7 +287,7 @@ namespace thalbhet
             this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox3.Font = new System.Drawing.Font("Lucida Sans Unicode", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(625, 187);
+            this.textBox3.Location = new System.Drawing.Point(3, 187);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(285, 36);
             this.textBox3.TabIndex = 32;
@@ -316,9 +316,9 @@ namespace thalbhet
             this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox5.Font = new System.Drawing.Font("Lucida Sans Unicode", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(936, 49);
+            this.textBox5.Location = new System.Drawing.Point(3, 325);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(287, 36);
+            this.textBox5.Size = new System.Drawing.Size(285, 36);
             this.textBox5.TabIndex = 39;
             this.textBox5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox5_KeyDown);
             // 
@@ -340,7 +340,7 @@ namespace thalbhet
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(314, 463);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(256, 37);
+            this.button1.Size = new System.Drawing.Size(256, 54);
             this.button1.TabIndex = 45;
             this.button1.Text = "DEBIT (જાવક)";
             this.button1.UseVisualStyleBackColor = true;
@@ -351,7 +351,7 @@ namespace thalbhet
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.Location = new System.Drawing.Point(625, 463);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(256, 37);
+            this.button4.Size = new System.Drawing.Size(256, 54);
             this.button4.TabIndex = 47;
             this.button4.Text = "REPORT";
             this.button4.UseVisualStyleBackColor = true;
@@ -362,7 +362,7 @@ namespace thalbhet
             this.textBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox8.Font = new System.Drawing.Font("Lucida Sans Unicode", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox8.Location = new System.Drawing.Point(3, 187);
+            this.textBox8.Location = new System.Drawing.Point(314, 49);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(285, 37);
             this.textBox8.TabIndex = 48;
@@ -372,7 +372,7 @@ namespace thalbhet
             this.textBox9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox9.Font = new System.Drawing.Font("Lucida Sans Unicode", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox9.Location = new System.Drawing.Point(314, 49);
+            this.textBox9.Location = new System.Drawing.Point(625, 49);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(285, 37);
             this.textBox9.TabIndex = 49;
@@ -382,9 +382,9 @@ namespace thalbhet
             this.textBox10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox10.Font = new System.Drawing.Font("Lucida Sans Unicode", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox10.Location = new System.Drawing.Point(625, 49);
+            this.textBox10.Location = new System.Drawing.Point(936, 49);
             this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(285, 37);
+            this.textBox10.Size = new System.Drawing.Size(287, 37);
             this.textBox10.TabIndex = 50;
             // 
             // comboBox1
@@ -424,25 +424,13 @@ namespace thalbhet
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::thalbhet.Properties.Resources.avatardefault_92824;
-            this.pictureBox1.Location = new System.Drawing.Point(260, 2);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(80, 52);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 55;
-            this.pictureBox1.TabStop = false;
-            // 
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button7.Location = new System.Drawing.Point(935, 462);
             this.button7.Margin = new System.Windows.Forms.Padding(2);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(256, 37);
+            this.button7.Size = new System.Drawing.Size(256, 55);
             this.button7.TabIndex = 56;
             this.button7.Text = "New SMK id";
             this.button7.UseVisualStyleBackColor = true;
@@ -546,7 +534,7 @@ namespace thalbhet
             // button8
             // 
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.Location = new System.Drawing.Point(624, 508);
+            this.button8.Location = new System.Drawing.Point(624, 523);
             this.button8.Margin = new System.Windows.Forms.Padding(2);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(256, 37);
@@ -573,22 +561,8 @@ namespace thalbhet
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.Controls.Add(this.textBox4, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.textBox8, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label6, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.textBox2, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.dateTimePicker1, 6, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label14, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.label4, 6, 3);
-            this.tableLayoutPanel1.Controls.Add(this.textBox3, 4, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label12, 6, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label11, 4, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.textBox9, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.textBox1, 2, 4);
-            this.tableLayoutPanel1.Controls.Add(this.textBox10, 4, 1);
-            this.tableLayoutPanel1.Controls.Add(this.textBox5, 6, 1);
             this.tableLayoutPanel1.Controls.Add(this.label10, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label9, 2, 6);
             this.tableLayoutPanel1.Controls.Add(this.comboBox1, 2, 7);
@@ -604,6 +578,20 @@ namespace thalbhet
             this.tableLayoutPanel1.Controls.Add(this.button6, 6, 7);
             this.tableLayoutPanel1.Controls.Add(this.button3, 2, 11);
             this.tableLayoutPanel1.Controls.Add(this.button8, 4, 11);
+            this.tableLayoutPanel1.Controls.Add(this.label14, 6, 0);
+            this.tableLayoutPanel1.Controls.Add(this.textBox10, 6, 1);
+            this.tableLayoutPanel1.Controls.Add(this.textBox9, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label3, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label5, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.textBox8, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.textBox1, 4, 4);
+            this.tableLayoutPanel1.Controls.Add(this.label7, 4, 3);
+            this.tableLayoutPanel1.Controls.Add(this.textBox3, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.label11, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label6, 2, 3);
+            this.tableLayoutPanel1.Controls.Add(this.textBox2, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this.label12, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.textBox5, 0, 7);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 69);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 12;
@@ -617,8 +605,8 @@ namespace thalbhet
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.01243F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.282416F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -661,6 +649,18 @@ namespace thalbhet
             this.tableLayoutPanel3.Size = new System.Drawing.Size(516, 56);
             this.tableLayoutPanel3.TabIndex = 62;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::thalbhet.Properties.Resources.avatardefault_92824;
+            this.pictureBox1.Location = new System.Drawing.Point(260, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(80, 52);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 55;
+            this.pictureBox1.TabStop = false;
+            // 
             // Newentry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -678,13 +678,13 @@ namespace thalbhet
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Newentry_FormClosing);
             this.Load += new System.EventHandler(this.Newentry_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Newentry_MouseDown);
-            ((System.ComponentModel.ISupportInitialize)(this.newentrytableBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.newentrytableBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

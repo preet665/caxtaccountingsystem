@@ -36,7 +36,7 @@ namespace thalbhet
             if(label2.Text != "admin")
             {
                 addnimitbutton.Visible = false;
-                button7.Visible = false;
+                //button7.Visible = false;
             }
             System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
             timer1.Interval = 1000;//1 seconds

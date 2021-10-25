@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
@@ -22,39 +23,59 @@ namespace thalbhet
 
         private void Modify_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'newentrydbDataSet1._newentrytable__1390627997_' table. You can move, or remove it, as needed.
-            //this.newentrytable__1390627997_TableAdapter.Fill(this.newentrydbDataSet1._newentrytable__1390627997_);
-            // TODO: This line of code loads data into the 'dataSet2.newentrytable' table. You can move, or remove it, as needed.
-            //this.newentrytableTableAdapter.Fill(this.dataSet2.newentrytable);
+            modifyload();
+        }
+        private void modifyload()
+        {
             con.Open();
+            SqlCommand cmd = new SqlCommand("Select * from newentrytable", con);
+            SqlDataAdapter d = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
-            SqlDataAdapter adapt = new SqlDataAdapter("select * from newentrytable", con);
-            adapt.Fill(dt);
-            advancedDataGridView1.DataSource = dt;
+            d.Fill(dt);
+            dataGridView1.DataSource = dt;
             con.Close();
+        }
+
+
+        private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (MessageBox.Show("Are you sure , you want to delete ?", "delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                {
+                    int rowid = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["ID"].Value);
+                    con.Open();
+                    SqlCommand c = new SqlCommand("DELETE newentrytable where ID = '" + rowid + "'", con);
+                    c.ExecuteNonQuery();
+                    con.Close();
+                    MessageBox.Show("Successfully deleted");
+                    smksearch();
+                }
+            }
+            else
+            {
+                modifyload();
+            }
 
         }
 
-        private void AdvancedDataGridView1_SortStringChanged(object sender, EventArgs e)
+        private void TextBox1_TextChanged(object sender, EventArgs e)
         {
-            this.newentrytableBindingSource.Sort = this.advancedDataGridView1.SortString;
+            smksearch();
         }
-
-        private void AdvancedDataGridView1_FilterStringChanged(object sender, EventArgs e)
+        private void smksearch()
         {
-            this.newentrytableBindingSource.Filter = this.advancedDataGridView1.FilterString;
+            con.Open();
+            SqlCommand cmd = new SqlCommand("Select * from newentrytable where SMK = '" + textBox1.Text + "'", con);
+            SqlDataAdapter d = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            d.Fill(dt);
+            dataGridView1.DataSource = dt;
+            con.Close();
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            DialogResult dr = MessageBox.Show("Are you sure to save Changes", "Message", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
-            if (dr == DialogResult.Yes)
-            {
-                
-
-                this.advancedDataGridView1.Refresh();
-                MessageBox.Show("Record Updated");
-            }
+            modifyload();
         }
     }
 }

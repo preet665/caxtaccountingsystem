@@ -29,7 +29,6 @@ namespace thalbhet
             cmd.ExecuteNonQuery();
             con.Close();
             MessageBox.Show("Nimit added successfully");
-            con.Open();
         }
 
         private void button2_Click(object sender, EventArgs e)

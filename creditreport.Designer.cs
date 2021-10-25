@@ -57,7 +57,6 @@ namespace thalbhet
             this.label10 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.button3 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.newentrytableBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -162,7 +161,7 @@ namespace thalbhet
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(195, 29);
             this.textBox2.TabIndex = 12;
-            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
+            this.textBox2.TextChanged += new System.EventHandler(this.TextBox2_TextChanged);
             // 
             // label8
             // 
@@ -367,18 +366,6 @@ namespace thalbhet
             this.dateTimePicker3.Size = new System.Drawing.Size(202, 28);
             this.dateTimePicker3.TabIndex = 23;
             // 
-            // button3
-            // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(252, 80);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(71, 33);
-            this.button3.TabIndex = 25;
-            this.button3.Text = "search";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click_1);
-            // 
             // button6
             // 
             this.button6.BackgroundImage = global::thalbhet.Properties.Resources.pngfind_com_refresh_icon_png_transparent_6863128;
@@ -423,7 +410,6 @@ namespace thalbhet
             this.ClientSize = new System.Drawing.Size(1430, 589);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dateTimePicker3);
             this.Controls.Add(this.button5);
@@ -507,7 +493,6 @@ namespace thalbhet
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DateTimePicker dateTimePicker3;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
     }

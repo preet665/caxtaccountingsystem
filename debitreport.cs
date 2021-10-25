@@ -107,6 +107,7 @@ namespace thalbhet
                 transquery.Connection = con;
                 object transsum = transquery.ExecuteScalar();
                 label10.Text = transsum.ToString();
+                con.Close();
 
 
             }
@@ -185,74 +186,34 @@ namespace thalbhet
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-          
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
             if (label11.Text == "admin")
             {
                 string debstring = "Debit";
-                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, status, DebAmount, submissiontime,enrtydate, enrtytime, loggedinuser FROM newentrytable where (status LIKE '" + debstring + "' AND SMK like '" + textBox1.Text + "') ", con);
+                string fromReportDate = dateTimePicker1.Value.ToString("yyyy-MM-dd") + " 00:00:00";
+                string toReportDate = dateTimePicker2.Value.ToString("yyyy-MM-dd") + " 23:59:59";
+                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, status,  DebAmount,submissiontime, enrtydate, enrtytime, loggedinuser FROM newentrytable where ((SMK = '" + textBox1.Text + "') AND (status='Debit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))", con);
                 SqlDataAdapter DA = new SqlDataAdapter();
                 DA.SelectCommand = selectCMD;
                 con.Open();
                 DataSet DS = new DataSet();
                 DA.Fill(DS, "newentrytable");
                 dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
-                SqlCommand crquery = new SqlCommand("SELECT SUM(CrAmount) FROM newentrytable");
-                crquery.Connection = con;
-                object crsum = crquery.ExecuteScalar();
-                label4.Text = crsum.ToString();
-                //Debit sum in label
-                SqlCommand debquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable ");
-                debquery.Connection = con;
-                object debsum = debquery.ExecuteScalar();
-                label5.Text = debsum.ToString();
-                //Transfer sum in label
-                SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable ");
-                transquery.Connection = con;
-                object transsum = transquery.ExecuteScalar();
-                label9.Text = transsum.ToString();
-                //Balance sum in label
-                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount) ) FROM newentrytable");
-                balquery.Connection = con;
-                object balsum = balquery.ExecuteScalar();
-                label6.Text = balsum.ToString();
                 con.Close();
 
             }
             else
             {
-                /*DataView dv = DS.Tables[0].DefaultView;
-                dv.RowFilter = string.Format("loggedinuser LIKE '%{0}%' OR giver LIKE '%{0}%' OR taker LIKE '%{0}%'", label11.Text);
-                dataGridView1.DataSource = dv;*/
-
-
-                /*label4.Text = (from DataGridViewRow row in dataGridView1.Rows
-                               where row.Cells[9].FormattedValue.ToString() != string.Empty
-                               select Convert.ToInt32(row.Cells[9].FormattedValue)).Sum().ToString();*/
                 string debstring = "Debit";
-                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, status, DebAmount, TransAmount, submissiontime, enrtydate, enrtytime, loggedinuser FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) AND (status IS NULL OR status ='" + debstring + "') AND SMK like '" + textBox1.Text + "' ", con);
+                string fromReportDate = dateTimePicker1.Value.ToString("yyyy-MM-dd") + " 00:00:00";
+                string toReportDate = dateTimePicker2.Value.ToString("yyyy-MM-dd") + " 23:59:59";
+                SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, status,  DebAmount, TransAmount, submissiontime, enrtydate, enrtytime, status, loggedinuser FROM newentrytable where ((SMK = '" + textBox1.Text + "') AND (loggedinuser ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) AND (status IS NULL OR status ='" + debstring + "') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))", con);
                 SqlDataAdapter DA = new SqlDataAdapter();
                 DA.SelectCommand = selectCMD;
                 con.Open();
                 DataSet DS = new DataSet();
                 DA.Fill(DS, "newentrytable");
                 dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
-
-                SqlCommand crquery = new SqlCommand("SELECT SUM(CrAmount) FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) ");
-                crquery.Connection = con;
-                object crsum = crquery.ExecuteScalar();
-                label4.Text = crsum.ToString();
-                SqlCommand debquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR giver ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) ");
-                debquery.Connection = con;
-                object debsum = debquery.ExecuteScalar();
-                label5.Text = debsum.ToString();
-                SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR giver ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) ");
-                transquery.Connection = con;
-                object transsum = transquery.ExecuteScalar();
-                label9.Text = transsum.ToString();
+                con.Close();
 
 
             }

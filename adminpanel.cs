@@ -34,8 +34,10 @@ namespace thalbhet
         {
             string fromReportDate = dateTimePicker1.Value.ToString("yyyy-MM-dd") + " 00:00:00";
             string toReportDate = dateTimePicker2.Value.ToString("yyyy-MM-dd") + " 23:59:59";
+            MessageBox.Show(fromReportDate);
+            MessageBox.Show(toReportDate);
             var c = con;
-            var select = "select loggedinuser,sum(CrAmount) AS 'Credit',sum(DebAmount) AS 'Debit',(sum(CrAmount)-sum(DebAmount)) AS 'Balance' from newentrytable where (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "') group by loggedinuser";
+            var select = "select loggedinuser, sum(CrAmount) AS 'Credit',sum(DebAmount) AS 'Debit',(sum(CrAmount)-sum(DebAmount)) AS 'Balance' from newentrytable where (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "') group by loggedinuser";
             var dataAdapter = new SqlDataAdapter(select, c);
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
