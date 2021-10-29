@@ -69,18 +69,6 @@ namespace thalbhet
             }
             con.Close();
         }
-        public void populatecombobox9()
-        {
-            DataTable table = new DataTable();
-            table.Columns.Add("Nimit");
-            table.Rows.Add("Rajipo");
-            table.Rows.Add("Utsav");
-            table.Rows.Add("Ravi Sabha");
-            table.Rows.Add("Marriage");
-            table.Rows.Add("Birthday");
-            //comboBox9.DataSource = table;
-            //comboBox9.DisplayMember = "Nimit";
-        }
 
         private void Newentry_Load(object sender, EventArgs e)
         {
@@ -149,7 +137,7 @@ namespace thalbhet
                 //String Nimit = comboBox1.SelectedItem.ToString();
                 //long hastaksmk = Int64.Parse(textBox6.Text);
                 //String hastak = textBox7.Text;
-                string submissiontime = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                string submissiontime = DateTime.Now.ToString("dd-MM-yyyy");
                 string entrytime = DateTime.Now.ToString("HH:mm:ss");
                 string enrtydatetime = dateTimePicker1.Value.ToString("yyyy-MM-dd");
                 string status = "Credit";
@@ -185,7 +173,8 @@ namespace thalbhet
                     //System.Diagnostics.Debug.WriteLine(file + "will be deleted");
                     System.IO.File.Delete(file);
                 }
-            repv.crystalReportViewer1.ReportSource = cr;
+                MessageBox.Show(submissiontime);
+                repv.crystalReportViewer1.ReportSource = cr;
                 repv.Show();
                 
                 newentryload();

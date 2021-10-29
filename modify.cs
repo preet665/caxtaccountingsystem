@@ -15,9 +15,10 @@ namespace thalbhet
     {
         SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString);
         SqlConnection con2 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DB"].ConnectionString);
-        public modify()
+        public modify(string UserName)
         {
             InitializeComponent();
+            label2.Text = UserName;
         }
         private void Modify_Load(object sender, EventArgs e)
         {
@@ -27,8 +28,9 @@ namespace thalbhet
         {
             //string fromReportDate = dateTimePicker1.Value.ToString("yyyy-MM-dd") + " 00:00:00";
             //string toReportDate = dateTimePicker2.Value.ToString("yyyy-MM-dd") + " 23:59:59";
+            //MessageBox.Show(DateTime.Now.ToString("dd-MM-yyyy"));
             con.Open();
-            SqlCommand cmd = new SqlCommand("Select * from newentrytable", con);
+            SqlCommand cmd = new SqlCommand("SELECT [ID],[SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[Nimit],[name],[CrAmount],[DebAmount],[TransAmount],[hastaksmk],[hastak],[status],[note],[submissiontime1] ,[enrtydate],[enrtytime],[giver],[taker],[loggedinuser],[flag],[submissiontime] from newentrytable where submissiontime LIKE '"+DateTime.Now.ToString("dd-MM-yyyy") +"'", con);
             SqlDataAdapter d = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             d.Fill(dt);
