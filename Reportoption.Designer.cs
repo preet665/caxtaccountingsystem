@@ -44,7 +44,7 @@ namespace thalbhet
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(10, 123);
+            this.button1.Location = new System.Drawing.Point(7, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(257, 86);
             this.button1.TabIndex = 0;
@@ -55,7 +55,7 @@ namespace thalbhet
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(7, 220);
+            this.button2.Location = new System.Drawing.Point(266, 12);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(257, 86);
             this.button2.TabIndex = 1;
@@ -66,7 +66,7 @@ namespace thalbhet
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(20, 20);
+            this.button3.Location = new System.Drawing.Point(529, 11);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(257, 86);
             this.button3.TabIndex = 2;
@@ -78,7 +78,7 @@ namespace thalbhet
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(478, 60);
+            this.label1.Location = new System.Drawing.Point(801, 61);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 24);
@@ -88,7 +88,7 @@ namespace thalbhet
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(272, 124);
+            this.button4.Location = new System.Drawing.Point(538, 137);
             this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(188, 84);
@@ -100,7 +100,7 @@ namespace thalbhet
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(291, 20);
+            this.button5.Location = new System.Drawing.Point(291, 137);
             this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(169, 86);
@@ -112,7 +112,7 @@ namespace thalbhet
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(272, 220);
+            this.button6.Location = new System.Drawing.Point(33, 137);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(188, 86);
             this.button6.TabIndex = 7;
@@ -124,7 +124,7 @@ namespace thalbhet
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::thalbhet.Properties.Resources.avatardefault_92824;
-            this.pictureBox1.Location = new System.Drawing.Point(482, 10);
+            this.pictureBox1.Location = new System.Drawing.Point(805, 11);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(43, 41);
@@ -138,7 +138,7 @@ namespace thalbhet
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(550, 318);
+            this.ClientSize = new System.Drawing.Size(872, 235);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.pictureBox1);

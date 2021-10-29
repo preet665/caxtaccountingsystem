@@ -13,13 +13,15 @@ using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 using RestSharp;
 using System.Configuration;
+using Microsoft.Win32;
+using System.IO;
 
 namespace thalbhet
 {
     public partial class Newentry : Form
     {
         //SqlDataReader reader; // = cmd.ExecuteReader();
-        
+
         public static string bal;
         SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString);
         SqlConnection con2 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DB"].ConnectionString);
@@ -38,11 +40,16 @@ namespace thalbhet
                 addnimitbutton.Visible = false;
                 //button7.Visible = false;
             }
+
+            if(newsmk.temp_smkno!=null)
+            {
+                textBox4.Text = newsmk.temp_smkno;
+            }
+
             System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
             timer1.Interval = 1000;//1 seconds
             timer1.Tick += new System.EventHandler(Timer3_Tick);
             timer1.Start();
-
             //populatecombobox9();
         }
         public void Nimit2()
@@ -142,7 +149,7 @@ namespace thalbhet
                 //String Nimit = comboBox1.SelectedItem.ToString();
                 //long hastaksmk = Int64.Parse(textBox6.Text);
                 //String hastak = textBox7.Text;
-                string submissiontime = DateTime.Now.ToString("dd/MMM/yyyy HH:mm:ss");
+                string submissiontime = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                 string entrytime = DateTime.Now.ToString("HH:mm:ss");
                 string enrtydatetime = dateTimePicker1.Value.ToString("yyyy-MM-dd");
                 string status = "Credit";
@@ -164,12 +171,21 @@ namespace thalbhet
                 bal = balsum.ToString();
                 con.Close();
                 MessageBox.Show("Entry has been Done successfully");
+                con.Close();
                 reportviewer repv = new reportviewer(SMK, label15.Text, MobileNumber);
                 CrystalReport1 cr = new CrystalReport1();
                 //TextObject balance = (TextObject)cr.ReportDefinition.Sections["Section1"].ReportObjects["Text6"];
                 //balance.Text = "hello";
-
-                repv.crystalReportViewer1.ReportSource = cr;
+                string userName = Environment.UserName;
+                string folderepath = "C:\\Users\\" + userName + "\\AppData\\Local\\Temp";
+                string filesToDelete = @"*temp_*.rpt";
+                string[] fileList = System.IO.Directory.GetFiles(folderepath, filesToDelete);
+                foreach (string file in fileList)
+                {
+                    //System.Diagnostics.Debug.WriteLine(file + "will be deleted");
+                    System.IO.File.Delete(file);
+                }
+            repv.crystalReportViewer1.ReportSource = cr;
                 repv.Show();
                 
                 newentryload();
@@ -224,7 +240,7 @@ namespace thalbhet
             //String Nimit = comboBox1.SelectedItem.ToString();
             //long hastaksmk = Int64.Parse(textBox6.Text);
             //String hastak = textBox7.Text;
-            string submissiontime = DateTime.Now.ToString("dd/MMMM/yyyy HH:mm:ss");
+            string submissiontime = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             string entrytime = DateTime.Now.ToString("HH:mm:ss");
             string enrtydatetime = dateTimePicker1.Value.ToString("yyyy-MM-dd");
             string status = "Debit";
@@ -250,6 +266,17 @@ namespace thalbhet
             bal = balsum.ToString();
            
             MessageBox.Show("Entry has been Done successfully");
+
+            string userName = Environment.UserName;
+            string folderepath = "C:\\Users\\" + userName + "\\AppData\\Local\\Temp";
+            string filesToDelete = @"*temp_*.rpt";
+            string[] fileList = System.IO.Directory.GetFiles(folderepath, filesToDelete);
+            foreach (string file in fileList)
+            {
+                //System.Diagnostics.Debug.WriteLine(file + "will be deleted");
+                System.IO.File.Delete(file);
+            }
+
             reportviewer repv = new reportviewer(SMK,label15.Text,MobileNumber);
             repv.ShowDialog();
             con.Close();
@@ -343,7 +370,7 @@ namespace thalbhet
             String Nimit = comboBox1.SelectedItem.ToString();
             //long hastaksmk = Int64.Parse(textBox6.Text);
             //String hastak = textBox7.Text;
-            string submissiontime = DateTime.Now.ToString("dd/MMMM/yyyy ");
+            string submissiontime = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             string entrytime = DateTime.Now.ToString("HH:mm:ss");
             string enrtydatetime = dateTimePicker1.Value.ToString("yyyy-MM-dd");
             string status = "Credit";
@@ -398,6 +425,10 @@ namespace thalbhet
                         reader1.Close();
                         con2.Close();
                     }
+                    else
+                    {
+                        con2.Close();
+                    }
 
 
 
@@ -416,6 +447,15 @@ namespace thalbhet
             string SMK = textBox4.Text;
             string mnum = textBox3.Text.Trim();
             long MobileNumber = Int64.Parse(mnum);
+            string userName = Environment.UserName;
+            string folderepath = "C:\\Users\\" + userName + "\\AppData\\Local\\Temp";
+            string filesToDelete = @"*temp_*.rpt";
+            string[] fileList = System.IO.Directory.GetFiles(folderepath, filesToDelete);
+            foreach (string file in fileList)
+            {
+                //System.Diagnostics.Debug.WriteLine(file + "will be deleted");
+                System.IO.File.Delete(file);
+            }
             //reportviewer repv = new reportviewer(SMK.ToString());
             //repv.ShowDialog();
             reportviewer repv = new reportviewer(SMK,label15.Text,MobileNumber);
@@ -551,5 +591,44 @@ namespace thalbhet
         {
 
         }
+
+        private void Button9_Click_1(object sender, EventArgs e)
+        {
+            //string numbers = "1234567890";
+
+            //string characters = numbers;
+            //int length = 6;
+            //string id = string.Empty;
+            //for (int i = 0; i < length; i++)
+            //{
+            //    string character = string.Empty;
+            //    do
+            //    {
+            //        int index = new Random().Next(0, characters.Length);
+            //        character = characters.ToCharArray()[index].ToString();
+            //    } while (id.IndexOf(character) != -1);
+            //    id += character;
+            //}
+            //textBox4.Text = "T" + id;
+            //String num = textBox4.Text;
+            //String Name = textBox8.Text;
+            //String Fathername = textBox9.Text;
+            //String Surname = textBox10.Text;
+            //String PresentCity = textBox2.Text;
+            //String NativeCity = textBox1.Text;
+            //String MobileNumber = textBox3.Text;
+            //String query = "INSERT INTO [dbo].[Page1$] ([SMKId],[First Name Guj],[Middle Name Guj],[Last Name Guj],[FullNameGuj],[Present City/Village Guj],[Native Guj],[Mobile 1]) VALUES ('" + num + "',N'" + Name + "',N'" + Fathername + "',N'" + Surname + "',N'" + Name + " " + Fathername + " " + Surname + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + MobileNumber + "')";
+            //SqlCommand cmd = new SqlCommand(@query, con2);
+            //con2.Open();
+            //cmd.ExecuteNonQuery();
+            //con2.Close();
+            //MessageBox.Show("successs");
+        }
+
+        private void Button10_Click(object sender, EventArgs e)
+        {
+            
+        }
+       
     }
 }

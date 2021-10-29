@@ -15,6 +15,7 @@ namespace thalbhet
 {
     public partial class newsmk : Form
     {
+        public static string temp_smkno;
         SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DB"].ConnectionString);
         public newsmk()
         {
@@ -23,32 +24,33 @@ namespace thalbhet
 
         private void button1_Click(object sender, EventArgs e)
         {
-            String num = label8.Text;
-            String Name = textBox2.Text;
-            String Fathername = textBox4.Text;
-            String Surname = textBox5.Text;
-            String PresentCity = textBox3.Text;
-            String NativeCity = textBox1.Text;
-            String MobileNumber = textBox6.Text;
-            String query = "INSERT INTO [dbo].[Page1$] ([SMKId],[First Name Guj],[Middle Name Guj],[Last Name Guj],[FullNameGuj],[Present City/Village Guj],[Native Guj],[Mobile 1]) VALUES ('" + num + "',N'" + Name + "',N'" + Fathername + "',N'" + Surname + "',N'"+Name+" "+Fathername+" "+Surname+"',N'" + PresentCity + "',N'" + NativeCity + "',N'" + MobileNumber + "')";
-            SqlCommand cmd = new SqlCommand(@query, con);
+            //SqlConnection con = new SqlConnection(con);
+            string s = @"SELECT COUNT(*) FROM [dbo].[Page1$] WHERE ([First Name Guj] = '"+textBox2.Text+"' and [Middle Name Guj] = '"+textBox4.Text+"')";
+            SqlCommand sCommand = new SqlCommand(s, con);
+            //sCommand.Parameters.AddWithValue("@SMKId", label8.Text);
             con.Open();
-            cmd.ExecuteNonQuery();
+            int records = (int)sCommand.ExecuteScalar();
             con.Close();
+            if (records == 0)
+            {
+                String Name = textBox2.Text;
+                String Fathername = textBox4.Text;
+                String Surname = textBox5.Text;
+                String PresentCity = textBox3.Text;
+                String NativeCity = textBox1.Text;
+                String MobileNumber = textBox6.Text;
+                String query = "INSERT INTO [dbo].[Page1$] ([SMKId],[First Name Guj],[Middle Name Guj],[Last Name Guj],[FullNameGuj],[Present City/Village Guj],[Native Guj],[Mobile 1]) VALUES ('" + temp_smkno + "',N'" + Name + "',N'" + Fathername + "',N'" + Surname + "',N'" + Name + " " + Fathername + " " + Surname + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + MobileNumber + "')";
+                SqlCommand cmd = new SqlCommand(@query, con);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                MessageBox.Show("New SMK has generated successfully");
 
-            //var accountSid = "AC51cc33bf09ad302f975388ea751e066c";
-            //var authToken = "cc328a2bd06019ace917806bb24fc1fe";
-            //TwilioClient.Init(accountSid, authToken);
-
-            //var messageOptions = new CreateMessageOptions(
-            //    new Twilio.Types.PhoneNumber("whatsapp:+918488020665"));
-            //messageOptions.From = new Twilio.Types.PhoneNumber("whatsapp:+14155238886");
-            //messageOptions.Body = "Hello! This is an editable text message. You are free to change it and write whatever you like.";
-
-            //var message = MessageResource.Create(messageOptions);
-            //Console.WriteLine(message.Body);
-            MessageBox.Show("New SMK has generated successfully");
-
+            }
+            else
+            {
+                MessageBox.Show("Records Already Exists");
+            }
         }
 
         private void newsmk_Load(object sender, EventArgs e)
@@ -68,10 +70,26 @@ namespace thalbhet
             //    MessageBox.Show("who are you?");
 
             //}
-            string num = GenerateRandomString(5);
-            MessageBox.Show(num);
-            label8.Text = num;
+            //string num = GenerateRandomString(5);
+            //MessageBox.Show(num);
+            string numbers = "1234567890";
 
+            string characters = numbers;
+            int length = 6;
+            string id = string.Empty;
+            for (int i = 0; i < length; i++)
+            {
+                string character = string.Empty;
+                do
+                {
+                    int index = new Random().Next(0, characters.Length);
+                    character = characters.ToCharArray()[index].ToString();
+                } while (id.IndexOf(character) != -1);
+                id += character;
+            }
+            label8.Text = "T"+id;
+            temp_smkno = "T"+id;
+            Clipboard.SetText(temp_smkno);
         }
         public static string GenerateRandomString(int Length)
         {

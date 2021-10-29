@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace thalbhet
 {
     public partial class modify : Form
@@ -20,13 +19,14 @@ namespace thalbhet
         {
             InitializeComponent();
         }
-
         private void Modify_Load(object sender, EventArgs e)
         {
             modifyload();
         }
         private void modifyload()
         {
+            //string fromReportDate = dateTimePicker1.Value.ToString("yyyy-MM-dd") + " 00:00:00";
+            //string toReportDate = dateTimePicker2.Value.ToString("yyyy-MM-dd") + " 23:59:59";
             con.Open();
             SqlCommand cmd = new SqlCommand("Select * from newentrytable", con);
             SqlDataAdapter d = new SqlDataAdapter(cmd);
@@ -35,8 +35,6 @@ namespace thalbhet
             dataGridView1.DataSource = dt;
             con.Close();
         }
-
-
         private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (MessageBox.Show("Are you sure , you want to delete ?", "delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -57,7 +55,6 @@ namespace thalbhet
             }
 
         }
-
         private void TextBox1_TextChanged(object sender, EventArgs e)
         {
             smksearch();

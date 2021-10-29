@@ -26,8 +26,6 @@ namespace thalbhet
             {
                 button5.Visible = false;
                 button4.Visible = false;
-                button1.Visible = false;
-                button2.Visible = false;
             }
         }
 

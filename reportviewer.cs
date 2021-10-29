@@ -35,13 +35,10 @@ namespace thalbhet
             label3.Text = monum.ToString();
             
         }
-
-
         public void reportviewer_Load(object sender, EventArgs e)
         {
             reportload();
         }
-
         public void reportload()
         {
 
@@ -81,7 +78,7 @@ namespace thalbhet
                 ExportOptions CrExportOptions;
                 DiskFileDestinationOptions CrDiskFileDestinationOptions = new DiskFileDestinationOptions();
                 PdfRtfWordFormatOptions CrFormatTypeOptions = new PdfRtfWordFormatOptions();
-                CrDiskFileDestinationOptions.DiskFileName = "E:\\bank management system\\bmsreceipt.pdf";
+                CrDiskFileDestinationOptions.DiskFileName = "\\bmsreceipt.pdf";
                 CrExportOptions = crypt.ExportOptions;
                 {
                     CrExportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
@@ -98,7 +95,6 @@ namespace thalbhet
             con.Close();
             con2.Close();
         }
-
         public void oreportload()
         {
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
@@ -136,17 +132,15 @@ namespace thalbhet
             //reportDocument.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
             //reportDocument.PrintToPrinter(printDialog.PrinterSettings.Copies, printDialog.PrinterSettings.Collate, printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
 
             
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
-            string pdf_filename = "E:\\bank management system\\bmsreceipt.pdf";
-            string png_filename = "E:\\bank management system\\bmsreceipt.png";
+            string pdf_filename = "\\bmsreceipt.pdf";
+            string png_filename = "\\bmsreceipt.png";
             List<string> errors = cs_pdf_to_image.Pdf2Image.Convert(pdf_filename, png_filename);
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             //var client = new RestClient("http://wa.krupacc.com/send-media");
@@ -181,6 +175,7 @@ namespace thalbhet
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
             String mnum = label3.Text.Trim();
+            MessageBox.Show(mnum);
             if (mnum.Length == 10)
             {
                 request.AddHeader("Authorization", "Basic a3VuZGFsOkt1bmRhbDIxMiM=");
@@ -217,11 +212,7 @@ namespace thalbhet
                     MessageBox.Show(ex.ToString());
                 }
             }
-            
-            
-            
-
-            
+  
         }
     }
 }

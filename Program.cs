@@ -16,7 +16,7 @@ namespace thalbhet
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new modify());
+            Application.Run(new Login());
         }
     }
 }
