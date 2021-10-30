@@ -23,19 +23,40 @@ namespace thalbhet
         private void Modify_Load(object sender, EventArgs e)
         {
             modifyload();
+            if (label2.Text != "admin")
+            {
+                dateTimePicker1.Visible = false;
+                button2.Visible = false;
+            }
         }
         private void modifyload()
         {
-            //string fromReportDate = dateTimePicker1.Value.ToString("yyyy-MM-dd") + " 00:00:00";
-            //string toReportDate = dateTimePicker2.Value.ToString("yyyy-MM-dd") + " 23:59:59";
+            
             //MessageBox.Show(DateTime.Now.ToString("dd-MM-yyyy"));
-            con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT [ID],[SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[Nimit],[name],[CrAmount],[DebAmount],[TransAmount],[hastaksmk],[hastak],[status],[note],[submissiontime1] ,[enrtydate],[enrtytime],[giver],[taker],[loggedinuser],[flag],[submissiontime] from newentrytable where submissiontime LIKE '"+DateTime.Now.ToString("dd-MM-yyyy") +"'", con);
-            SqlDataAdapter d = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            d.Fill(dt);
-            dataGridView1.DataSource = dt;
-            con.Close();
+            if (label2.Text == "admin")
+            {
+                string fromReportDate = dateTimePicker1.Value.ToString("dd-MM-yyyy");
+                //string toReportDate = dateTimePicker2.Value.ToString("dd-MM-yyyy") + " 23:59:59";
+                MessageBox.Show(fromReportDate);
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT [ID],[SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[Nimit],[name],[CrAmount],[DebAmount],[TransAmount],[hastaksmk],[hastak],[status],[note],[submissiontime1] ,[enrtydate],[enrtytime],[giver],[taker],[loggedinuser],[flag],[submissiontime] from newentrytable where submissiontime LIKE '" + fromReportDate + "'", con);
+                SqlDataAdapter d = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                d.Fill(dt);
+                dataGridView1.DataSource = dt;
+                con.Close();
+            }
+            else
+            {
+                string fromReportDate = DateTime.Now.ToString("dd-MM-yyyy");
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT [ID],[SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[Nimit],[name],[CrAmount],[DebAmount],[TransAmount],[hastaksmk],[hastak],[status],[note],[submissiontime1] ,[enrtydate],[enrtytime],[giver],[taker],[loggedinuser],[flag],[submissiontime] from newentrytable where (submissiontime LIKE '" + fromReportDate + "' and loggedinuser = '"+label2.Text+"')", con);
+                SqlDataAdapter d = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                d.Fill(dt);
+                dataGridView1.DataSource = dt;
+                con.Close();
+            }
         }
         private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -63,13 +84,31 @@ namespace thalbhet
         }
         private void smksearch()
         {
-            con.Open();
-            SqlCommand cmd = new SqlCommand("Select * from newentrytable where SMK = '" + textBox1.Text + "'", con);
-            SqlDataAdapter d = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            d.Fill(dt);
-            dataGridView1.DataSource = dt;
-            con.Close();
+            if (label2.Text == "admin")
+            {
+                string fromReportDate = dateTimePicker1.Value.ToString("dd-MM-yyyy");
+                //string toReportDate = dateTimePicker2.Value.ToString("dd-MM-yyyy") + " 23:59:59";
+                //MessageBox.Show(fromReportDate);
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT [ID],[SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[Nimit],[name],[CrAmount],[DebAmount],[TransAmount],[hastaksmk],[hastak],[status],[note],[submissiontime1] ,[enrtydate],[enrtytime],[giver],[taker],[loggedinuser],[flag],[submissiontime] from newentrytable where (submissiontime LIKE '" + fromReportDate + "' and SMK = '"+textBox1.Text+"')", con);
+                SqlDataAdapter d = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                d.Fill(dt);
+                dataGridView1.DataSource = dt;
+                con.Close();
+            }
+            else
+            {
+                string fromReportDate = DateTime.Now.ToString("dd-MM-yyyy");
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT [ID],[SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[Nimit],[name],[CrAmount],[DebAmount],[TransAmount],[hastaksmk],[hastak],[status],[note],[submissiontime1] ,[enrtydate],[enrtytime],[giver],[taker],[loggedinuser],[flag],[submissiontime] from newentrytable where (submissiontime LIKE '" + fromReportDate + "' and loggedinuser = '" + label2.Text + "' and SMK = '" + textBox1.Text + "')", con);
+                SqlDataAdapter d = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                d.Fill(dt);
+                dataGridView1.DataSource = dt;
+                con.Close();
+            }
+            
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -80,6 +119,23 @@ namespace thalbhet
         private void Button2_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void Button2_Click_1(object sender, EventArgs e)
+        {
+            if (label2.Text == "admin")
+            {
+                string fromReportDate = dateTimePicker1.Value.ToString("dd-MM-yyyy");
+                //string toReportDate = dateTimePicker2.Value.ToString("dd-MM-yyyy") + " 23:59:59";
+                MessageBox.Show(fromReportDate);
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT [ID],[SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[Nimit],[name],[CrAmount],[DebAmount],[TransAmount],[hastaksmk],[hastak],[status],[note],[submissiontime1] ,[enrtydate],[enrtytime],[giver],[taker],[loggedinuser],[flag],[submissiontime] from newentrytable where submissiontime LIKE '" + fromReportDate + "'", con);
+                SqlDataAdapter d = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                d.Fill(dt);
+                dataGridView1.DataSource = dt;
+                con.Close();
+            }
         }
     }
 }

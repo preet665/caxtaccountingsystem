@@ -128,7 +128,7 @@ namespace thalbhet
                 transquery.Connection = con;
                 object transsum = transquery.ExecuteScalar();
                 label10.Text = transsum.ToString();
-                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount) ) FROM newentrytable where ((loggedinuser ='" + label11.Text + "') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "')");
+                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount) ) FROM newentrytable where ((loggedinuser ='" + label11.Text + "') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
                 balquery.Connection = con;
                 object balsum = balquery.ExecuteScalar();
                 label6.Text = balsum.ToString();

@@ -61,7 +61,7 @@ namespace thalbhet
 
         private void Button6_Click(object sender, EventArgs e)
         {
-            modify md = new modify();
+            modify md = new modify(label1.Text);
             md.ShowDialog();
         }
     }

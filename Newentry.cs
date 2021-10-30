@@ -173,7 +173,7 @@ namespace thalbhet
                     //System.Diagnostics.Debug.WriteLine(file + "will be deleted");
                     System.IO.File.Delete(file);
                 }
-                MessageBox.Show(submissiontime);
+                //MessageBox.Show(submissiontime);
                 repv.crystalReportViewer1.ReportSource = cr;
                 repv.Show();
                 
@@ -266,8 +266,10 @@ namespace thalbhet
                 System.IO.File.Delete(file);
             }
 
-            reportviewer repv = new reportviewer(SMK,label15.Text,MobileNumber);
-            repv.ShowDialog();
+            reportviewer repv = new reportviewer(SMK, label15.Text, MobileNumber);
+            CrystalReport1 cr = new CrystalReport1();
+            repv.crystalReportViewer1.ReportSource = cr;
+            repv.Show();
             con.Close();
             newentryload();
 

@@ -103,13 +103,15 @@ namespace thalbhet
                 debquery.Connection = con;
                 object debsum = debquery.ExecuteScalar();
                 label5.Text = debsum.ToString();
-                SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR giver ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) ");
+                SqlCommand transquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable where ((loggedinuser ='" + label12.Text + "') AND (status != 'Credit' AND status != 'Debit')) ");
                 transquery.Connection = con;
                 object transsum = transquery.ExecuteScalar();
-                label10.Text = transsum.ToString();
+                label9.Text = transsum.ToString();
+                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount) ) FROM newentrytable where (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "')");
+                balquery.Connection = con;
+                object balsum = balquery.ExecuteScalar();
+                label6.Text = balsum.ToString();
                 con.Close();
-
-
             }
         }
 
