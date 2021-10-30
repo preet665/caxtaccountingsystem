@@ -51,6 +51,8 @@ namespace thalbhet
                 colsum += Convert.ToInt32(dataGridView1.Rows[r].Cells[3].Value);
             }
             label2.Text = colsum.ToString();
+            long sum = (long)ds.Tables[0].Compute("Sum(Credit)", "True");
+            label2.Text = sum.ToString();
         }
 
         private void Button1_Click(object sender, EventArgs e)
