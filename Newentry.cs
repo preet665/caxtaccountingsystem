@@ -229,7 +229,7 @@ namespace thalbhet
             //String Nimit = comboBox1.SelectedItem.ToString();
             //long hastaksmk = Int64.Parse(textBox6.Text);
             //String hastak = textBox7.Text;
-            string submissiontime = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+            string submissiontime = dateTimePicker1.Value.ToString("dd-MM-yyyy");
             string entrytime = DateTime.Now.ToString("HH:mm:ss");
             string enrtydatetime = dateTimePicker1.Value.ToString("yyyy-MM-dd");
             string status = "Debit";

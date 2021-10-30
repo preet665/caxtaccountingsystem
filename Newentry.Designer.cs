@@ -78,6 +78,7 @@ namespace thalbhet
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.newentrytableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -596,6 +597,7 @@ namespace thalbhet
             this.tableLayoutPanel1.Controls.Add(this.button9, 6, 8);
             this.tableLayoutPanel1.Controls.Add(this.button6, 6, 6);
             this.tableLayoutPanel1.Controls.Add(this.button10, 4, 8);
+            this.tableLayoutPanel1.Controls.Add(this.dateTimePicker2, 6, 9);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 69);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 12;
@@ -687,6 +689,13 @@ namespace thalbhet
             this.pictureBox1.TabIndex = 55;
             this.pictureBox1.TabStop = false;
             // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(936, 417);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker2.TabIndex = 65;
+            // 
             // Newentry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -765,5 +774,6 @@ namespace thalbhet
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
     }
 }
