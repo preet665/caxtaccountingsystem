@@ -38,10 +38,11 @@ namespace thalbhet
         public void reportviewer_Load(object sender, EventArgs e)
         {
             reportload();
+            
         }
         public void reportload()
         {
-
+            
             SqlCommand selectCMD = new SqlCommand("select * from (SELECT top 6 ID,SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,CrAmount,DebAmount,status,enrtydate,enrtytime,loggedinuser,SUM(isnull(CrAmount, 0) - isnull(DebAmount, 0)) OVER (ORDER BY id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as Balance FROM newentrytable  where SMK = '" + label1.Text + "' order by enrtytime desc) as temp order by enrtytime asc;  ", con);
             SqlCommand cmd2 = new SqlCommand("Select FullNameGuj,[Mobile 1],image From [dbo].[Page1$] where SMKId = '" + label1.Text + "'", con2);
             SqlDataAdapter DA = new SqlDataAdapter();
@@ -95,43 +96,6 @@ namespace thalbhet
             con.Close();
             con2.Close();
         }
-        public void oreportload()
-        {
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\newentrydb.mdf;Integrated Security=True");
-            SqlCommand selectCMD = new SqlCommand("select * from (SELECT TOP 4 * FROM newentrytable where SMK = '" + label1.Text + "' ORDER BY submissiontime DESC)AS TEMP where SMK LIKE '" + label1.Text + "'  order by submissiontime ASC; ", con);
-            SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\bank management system\thalbhet\smk.mdf;Integrated Security=True");
-            SqlCommand cmd2 = new SqlCommand("Select FullNameGuj,[Mobile 1] From [dbo].[Page1$] where SMKId LIKE '" + label1.Text + "'", con2);
-            SqlDataAdapter DA = new SqlDataAdapter();
-            DA.SelectCommand = selectCMD;
-            con.Open();
-            con2.Open();
-            DataSet2 DS = new DataSet2();
-
-            DA.Fill(DS, "newentrytable");
-            DA.SelectCommand = cmd2;
-            DA.Fill(DS, "Page1$");
-            //dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
-
-            CrystalReport1 crypt = new CrystalReport1();
-            crypt.Database.Tables["newentrytable"].SetDataSource(DS);
-            crypt.Database.Tables["Page1_"].SetDataSource(DS);
-
-            //crypt.SetParameterValue("balance", Newentry.balance);
-            //Text
-            crystalReportViewer1.ReportSource = null;
-            crystalReportViewer1.ReportSource = crypt;
-            crystalReportViewer1.Refresh();
-            crystalReportViewer1.Show();
-            PrintDialog printDialog = new PrintDialog();
-
-            //PictureBox pb1 = new PictureBox();
-            //pb1.ImageLocation = "../SamuderaJayaMotor.png";
-            //pb1.SizeMode = PictureBoxSizeMode.AutoSize;
-            //ReportDocument reportDocument = new ReportDocument();
-            //reportDocument.Load(crypt.ToString());
-            //reportDocument.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
-            //reportDocument.PrintToPrinter(printDialog.PrinterSettings.Copies, printDialog.PrinterSettings.Collate, printDialog.PrinterSettings.FromPage, printDialog.PrinterSettings.ToPage);
-        }
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -143,34 +107,6 @@ namespace thalbhet
             string png_filename = "\\bmsreceipt.png";
             List<string> errors = cs_pdf_to_image.Pdf2Image.Convert(pdf_filename, png_filename);
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            //var client = new RestClient("http://wa.krupacc.com/send-media");
-            //var request = new RestRequest(Method.POST);
-
-            //var client = new RestClient("https://wa.krupacc.com/send-media");
-            //    client.Timeout = -1;
-            //    var request = new RestRequest(Method.POST);
-            //    request.AddParameter("number", label3.Text);
-            //    request.AddParameter("caption", "your bank receipt");
-            //    request.AddFile("file", @"E:\bmsreceipt.png"); //local file path
-            //    IRestResponse response = client.Execute(request);
-            //    Console.WriteLine(response.Content);
-            //try {
-            //    String path = "/E:/bmsreceipt.png";
-            //    client.Timeout = -1;
-                
-            //    request.AddParameter("number", "+919601282268");
-            //    request.AddParameter("caption", "jay swaminarayan");
-            //    request.AddFile("file", "/E:/bmsreceipt.png");
-            //}
-            //catch
-            //{
-            //    //throw;  
-            //}
-            //finally
-            //{
-            //    IRestResponse response = client.Execute(request);
-            //    Console.WriteLine(response.Content);
-            //}
             var client = new RestClient("http://wa.krupacc.com/send-media");
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
@@ -213,6 +149,11 @@ namespace thalbhet
                 }
             }
   
+        }
+
+        private void Reportviewer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //crystalReportViewer1.Dispos();
         }
     }
 }

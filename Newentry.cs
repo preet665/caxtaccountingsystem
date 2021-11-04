@@ -33,24 +33,23 @@ namespace thalbhet
             
             button1.BackColor = Color.FromArgb(246, 73, 0);
             button2.BackColor = Color.FromArgb(37, 154, 92);
-            
             label2.Text = UserName;
             if(label2.Text != "admin")
             {
                 addnimitbutton.Visible = false;
                 //button7.Visible = false;
             }
-
             if(newsmk.temp_smkno!=null)
             {
                 textBox4.Text = newsmk.temp_smkno;
             }
-
             System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
             timer1.Interval = 1000;//1 seconds
             timer1.Tick += new System.EventHandler(Timer3_Tick);
             timer1.Start();
-            //populatecombobox9();
+            string submissiontime = dateTimePicker2.Value.ToString("dd-MM-yyyy");
+            MessageBox.Show(submissiontime);
+            ////populatecombobox9();
         }
         public void Nimit2()
         {
@@ -164,20 +163,11 @@ namespace thalbhet
                 CrystalReport1 cr = new CrystalReport1();
                 //TextObject balance = (TextObject)cr.ReportDefinition.Sections["Section1"].ReportObjects["Text6"];
                 //balance.Text = "hello";
-                string userName = Environment.UserName;
-                string folderepath = "C:\\Users\\" + userName + "\\AppData\\Local\\Temp";
-                string filesToDelete = @"*temp_*.rpt";
-                string[] fileList = System.IO.Directory.GetFiles(folderepath, filesToDelete);
-                foreach (string file in fileList)
-                {
-                    //System.Diagnostics.Debug.WriteLine(file + "will be deleted");
-                    System.IO.File.Delete(file);
-                }
                 //MessageBox.Show(submissiontime);
                 repv.crystalReportViewer1.ReportSource = cr;
                 repv.Show();
                 
-                newentryload();
+            newentryload();
            
             
 
@@ -229,7 +219,7 @@ namespace thalbhet
             //String Nimit = comboBox1.SelectedItem.ToString();
             //long hastaksmk = Int64.Parse(textBox6.Text);
             //String hastak = textBox7.Text;
-            string submissiontime = dateTimePicker1.Value.ToString("dd-MM-yyyy");
+            string submissiontime = dateTimePicker2.Value.ToString("dd-MM-yyyy");
             string entrytime = DateTime.Now.ToString("HH:mm:ss");
             string enrtydatetime = dateTimePicker1.Value.ToString("yyyy-MM-dd");
             string status = "Debit";
@@ -255,16 +245,6 @@ namespace thalbhet
             bal = balsum.ToString();
            
             MessageBox.Show("Entry has been Done successfully");
-
-            string userName = Environment.UserName;
-            string folderepath = "C:\\Users\\" + userName + "\\AppData\\Local\\Temp";
-            string filesToDelete = @"*temp_*.rpt";
-            string[] fileList = System.IO.Directory.GetFiles(folderepath, filesToDelete);
-            foreach (string file in fileList)
-            {
-                //System.Diagnostics.Debug.WriteLine(file + "will be deleted");
-                System.IO.File.Delete(file);
-            }
 
             reportviewer repv = new reportviewer(SMK, label15.Text, MobileNumber);
             CrystalReport1 cr = new CrystalReport1();
@@ -438,15 +418,6 @@ namespace thalbhet
             string SMK = textBox4.Text;
             string mnum = textBox3.Text.Trim();
             long MobileNumber = Int64.Parse(mnum);
-            string userName = Environment.UserName;
-            string folderepath = "C:\\Users\\" + userName + "\\AppData\\Local\\Temp";
-            string filesToDelete = @"*temp_*.rpt";
-            string[] fileList = System.IO.Directory.GetFiles(folderepath, filesToDelete);
-            foreach (string file in fileList)
-            {
-                //System.Diagnostics.Debug.WriteLine(file + "will be deleted");
-                System.IO.File.Delete(file);
-            }
             //reportviewer repv = new reportviewer(SMK.ToString());
             //repv.ShowDialog();
             reportviewer repv = new reportviewer(SMK,label15.Text,MobileNumber);
@@ -618,7 +589,23 @@ namespace thalbhet
 
         private void Button10_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                string userName = Environment.UserName;
+                string folderepath = "C:\\Users\\" + userName + "\\AppData\\Local\\Temp";
+                string filesToDelete = @"*temp_*.rpt";
+                string[] fileList = System.IO.Directory.GetFiles(folderepath, filesToDelete);
+                foreach (string file in fileList)
+                {
+                    FileInfo fi = new FileInfo(file);
+                    if (fi.LastAccessTime < DateTime.Now.AddSeconds(-60))
+                        System.IO.File.Delete(file);
+                }
+            }
+            catch
+            {
+
+            }
         }
        
     }

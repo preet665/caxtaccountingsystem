@@ -15,6 +15,7 @@ namespace thalbhet
     {
         SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString);
         SqlConnection con2 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DB"].ConnectionString);
+        int rind ;
         public modify(string UserName)
         {
             InitializeComponent();
@@ -28,6 +29,8 @@ namespace thalbhet
                 dateTimePicker1.Visible = false;
                 button2.Visible = false;
             }
+            string fromReportDate = dateTimePicker1.Value.Date.ToString();
+            MessageBox.Show(fromReportDate);
         }
         private void modifyload()
         {
@@ -39,7 +42,7 @@ namespace thalbhet
                 //string toReportDate = dateTimePicker2.Value.ToString("dd-MM-yyyy") + " 23:59:59";
                 MessageBox.Show(fromReportDate);
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT [ID],[SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[Nimit],[name],[CrAmount],[DebAmount],[TransAmount],[hastaksmk],[hastak],[status],[note],[submissiontime1] ,[enrtydate],[enrtytime],[giver],[taker],[loggedinuser],[flag],[submissiontime] from newentrytable where submissiontime LIKE '" + fromReportDate + "'", con);
+                SqlCommand cmd = new SqlCommand("SELECT [ID],[SMK],[PresentCity],[NativeCity],[FatherName],[Surname],[MobileNumber],[Nimit],[name],[CrAmount],[DebAmount],[TransAmount],[hastaksmk],[hastak],[status],[note],[submissiontime1] ,[enrtydate],[enrtytime],[giver],[taker],[loggedinuser],[flag],[submissiontime] from newentrytable where submissiontime = '" + fromReportDate + "'", con);
                 SqlDataAdapter d = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 d.Fill(dt);
@@ -60,22 +63,7 @@ namespace thalbhet
         }
         private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (MessageBox.Show("Are you sure , you want to delete ?", "delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                {
-                    int rowid = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["ID"].Value);
-                    con.Open();
-                    SqlCommand c = new SqlCommand("DELETE newentrytable where ID = '" + rowid + "'", con);
-                    c.ExecuteNonQuery();
-                    con.Close();
-                    MessageBox.Show("Successfully deleted");
-                    smksearch();
-                }
-            }
-            else
-            {
-                modifyload();
-            }
+            rind = e.RowIndex;
 
         }
         private void TextBox1_TextChanged(object sender, EventArgs e)
@@ -135,6 +123,26 @@ namespace thalbhet
                 d.Fill(dt);
                 dataGridView1.DataSource = dt;
                 con.Close();
+            }
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure , you want to delete ?", "delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                {
+                    int rowid = Convert.ToInt32(dataGridView1.Rows[rind].Cells["ID"].Value);
+                    con.Open();
+                    SqlCommand c = new SqlCommand("DELETE newentrytable where ID = '" + rowid + "'", con);
+                    c.ExecuteNonQuery();
+                    con.Close();
+                    MessageBox.Show("Successfully deleted");
+                    smksearch();
+                }
+            }
+            else
+            {
+                modifyload();
             }
         }
     }
