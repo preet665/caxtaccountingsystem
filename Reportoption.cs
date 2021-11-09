@@ -25,6 +25,7 @@ namespace thalbhet
             if(label1.Text != "admin")
             {
                 button4.Visible = false;
+                button7.Visible = false;
             }
         }
 
@@ -51,5 +52,26 @@ namespace thalbhet
             ledger ledge = new ledger();
             ledge.ShowDialog();
         }
+<<<<<<< Updated upstream
+=======
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            adminpanel adp = new adminpanel(label1.Text);
+            adp.ShowDialog();
+        }
+
+        private void Button6_Click(object sender, EventArgs e)
+        {
+            modify md = new modify(label1.Text);
+            md.ShowDialog();
+        }
+
+        private void Button7_Click(object sender, EventArgs e)
+        {
+            deleted del = new deleted();
+            del.ShowDialog();
+        }
+>>>>>>> Stashed changes
     }
 }

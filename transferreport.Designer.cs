@@ -49,7 +49,14 @@ namespace thalbhet
             this.button2 = new System.Windows.Forms.Button();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+<<<<<<< Updated upstream
             this.button3 = new System.Windows.Forms.Button();
+=======
+            this.button5 = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
+>>>>>>> Stashed changes
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -86,8 +93,12 @@ namespace thalbhet
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
+<<<<<<< Updated upstream
             this.label3.Location = new System.Drawing.Point(1419, 16);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+=======
+            this.label3.Location = new System.Drawing.Point(579, 13);
+>>>>>>> Stashed changes
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(217, 39);
             this.label3.TabIndex = 2;
@@ -125,8 +136,12 @@ namespace thalbhet
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
+<<<<<<< Updated upstream
             this.label6.Location = new System.Drawing.Point(1630, 16);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+=======
+            this.label6.Location = new System.Drawing.Point(737, 13);
+>>>>>>> Stashed changes
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(115, 39);
             this.label6.TabIndex = 5;
@@ -170,8 +185,12 @@ namespace thalbhet
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
+<<<<<<< Updated upstream
             this.label8.Location = new System.Drawing.Point(865, 16);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+=======
+            this.label8.Location = new System.Drawing.Point(1051, 13);
+>>>>>>> Stashed changes
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(243, 39);
             this.label8.TabIndex = 9;
@@ -183,8 +202,12 @@ namespace thalbhet
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.White;
+<<<<<<< Updated upstream
             this.label9.Location = new System.Drawing.Point(1135, 16);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+=======
+            this.label9.Location = new System.Drawing.Point(1253, 13);
+>>>>>>> Stashed changes
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(115, 39);
             this.label9.TabIndex = 10;
@@ -268,6 +291,53 @@ namespace thalbhet
             this.dateTimePicker2.Size = new System.Drawing.Size(266, 34);
             this.dateTimePicker2.TabIndex = 18;
             // 
+<<<<<<< Updated upstream
+=======
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(659, 62);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(44, 20);
+            this.label13.TabIndex = 21;
+            this.label13.Text = "Nimit";
+            this.label13.Visible = false;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(709, 59);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(148, 28);
+            this.comboBox1.TabIndex = 22;
+            this.comboBox1.Visible = false;
+            // 
+            // button4
+            // 
+            this.button4.BackgroundImage = global::thalbhet.Properties.Resources.pngfind_com_refresh_icon_png_transparent_6863128;
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button4.Location = new System.Drawing.Point(933, 58);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(38, 30);
+            this.button4.TabIndex = 24;
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.BackgroundImage = global::thalbhet.Properties.Resources.pngfind_com_ichthus_png_6173786;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button3.Location = new System.Drawing.Point(616, 56);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(35, 32);
+            this.button3.TabIndex = 23;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3_Click_1);
+            // 
+>>>>>>> Stashed changes
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
@@ -279,6 +349,7 @@ namespace thalbhet
             this.pictureBox1.TabIndex = 19;
             this.pictureBox1.TabStop = false;
             // 
+<<<<<<< Updated upstream
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(373, 74);
@@ -288,6 +359,54 @@ namespace thalbhet
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
+=======
+            // button5
+            // 
+            this.button5.BackgroundImage = global::thalbhet.Properties.Resources.pngfind_com_ichthus_png_6173786;
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button5.Location = new System.Drawing.Point(863, 58);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(36, 30);
+            this.button5.TabIndex = 25;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Visible = false;
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.Transparent;
+            this.label14.Location = new System.Drawing.Point(895, 13);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(52, 31);
+            this.label14.TabIndex = 26;
+            this.label14.Text = "NA";
+            this.label14.Visible = false;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.Transparent;
+            this.label15.Location = new System.Drawing.Point(952, 13);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(101, 31);
+            this.label15.TabIndex = 27;
+            this.label15.Text = "label15";
+            this.label15.Visible = false;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(26, 542);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 28;
+            this.button6.Text = "Accept";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Visible = false;
+            this.button6.Click += new System.EventHandler(this.Button6_Click);
+>>>>>>> Stashed changes
             // 
             // transferreport
             // 
@@ -295,7 +414,16 @@ namespace thalbhet
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::thalbhet.Properties.Resources._1155205__1_;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+<<<<<<< Updated upstream
             this.ClientSize = new System.Drawing.Size(1797, 645);
+=======
+            this.ClientSize = new System.Drawing.Size(1348, 527);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button4);
+>>>>>>> Stashed changes
             this.Controls.Add(this.button3);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dateTimePicker2);
@@ -350,5 +478,13 @@ namespace thalbhet
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button3;
+<<<<<<< Updated upstream
+=======
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button button6;
+>>>>>>> Stashed changes
     }
 }

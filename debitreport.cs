@@ -56,12 +56,20 @@ namespace thalbhet
                 object debsum = debquery.ExecuteScalar();
                 label5.Text = debsum.ToString();
                 //Transfer sum in label
+<<<<<<< Updated upstream
                 SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable ");
+=======
+                SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable where ((status != 'Credit' AND status != 'Debit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
+>>>>>>> Stashed changes
                 transquery.Connection = con;
                 object transsum = transquery.ExecuteScalar();
                 label10.Text = transsum.ToString();
                 //Balance sum in label
+<<<<<<< Updated upstream
                 SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)-SUM(TransAmount)) FROM newentrytable");
+=======
+                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)   ) FROM newentrytable where (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "')");
+>>>>>>> Stashed changes
                 balquery.Connection = con;
                 object balsum = balquery.ExecuteScalar();
                 label6.Text = balsum.ToString();
@@ -96,12 +104,24 @@ namespace thalbhet
                 debquery.Connection = con;
                 object debsum = debquery.ExecuteScalar();
                 label5.Text = debsum.ToString();
+<<<<<<< Updated upstream
                 SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR giver ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) ");
                 transquery.Connection = con;
                 object transsum = transquery.ExecuteScalar();
                 label10.Text = transsum.ToString();
 
 
+=======
+                SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable where ((loggedinuser ='" + label12.Text + "') AND (status != 'Credit' AND status != 'Debit')) ");
+                transquery.Connection = con;
+                object transsum = transquery.ExecuteScalar();
+                label9.Text = transsum.ToString();
+                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)   ) FROM newentrytable where (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "')");
+                balquery.Connection = con;
+                object balsum = balquery.ExecuteScalar();
+                label6.Text = balsum.ToString();
+                con.Close();
+>>>>>>> Stashed changes
             }
         }
             private void dateTimePicker2_CloseUp(object sender, EventArgs e)
@@ -262,7 +282,44 @@ namespace thalbhet
                 label10.Text = transsum.ToString();
 
 
+<<<<<<< Updated upstream
             }
+=======
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            string fromReportDate = dateTimePicker1.Value.ToString("yyyy-MM-dd") + " 00:00:00";
+            string toReportDate = dateTimePicker2.Value.ToString("yyyy-MM-dd") + " 23:59:59";
+            MessageBox.Show(fromReportDate);
+            MessageBox.Show(toReportDate);
+            string sqlquery = "SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity, MobileNumber, status, DebAmount, submissiontime, enrtydate, enrtytime, loggedinuser FROM newentrytable where ((status='Debit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))";
+            SqlCommand cmd = new SqlCommand(sqlquery, con);
+            con.Open();
+            SqlDataAdapter DA = new SqlDataAdapter();
+            DA.SelectCommand = cmd;
+            DataSet DS = new DataSet();
+            DA.Fill(DS, "newentrytable");
+            dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
+            SqlCommand crquery = new SqlCommand("SELECT SUM(CrAmount) FROM newentrytable where ((status='Credit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
+            crquery.Connection = con;
+            object crsum = crquery.ExecuteScalar();
+            label4.Text = crsum.ToString();
+            //Debit sum in label
+            SqlCommand debquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable where ((status='Debit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
+            debquery.Connection = con;
+            object debsum = debquery.ExecuteScalar();
+            label5.Text = debsum.ToString();
+            //Transfer sum in label
+            SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable where ((status != 'Credit' AND status != 'Debit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
+            transquery.Connection = con;
+            object transsum = transquery.ExecuteScalar();
+            label9.Text = transsum.ToString();
+            //Balance sum in label
+            SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)   ) FROM newentrytable where (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "')");
+            balquery.Connection = con;
+            object balsum = balquery.ExecuteScalar();
+            label6.Text = balsum.ToString();
+            con.Close();
+>>>>>>> Stashed changes
         }
     }
 }

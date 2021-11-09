@@ -261,8 +261,12 @@ namespace thalbhet
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
+<<<<<<< Updated upstream
             this.label6.Location = new System.Drawing.Point(2204, 10);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+=======
+            this.label6.Location = new System.Drawing.Point(815, 8);
+>>>>>>> Stashed changes
             this.label6.Name = "label6";
             this.label6.Padding = new System.Windows.Forms.Padding(0, 6, 0, 6);
             this.label6.Size = new System.Drawing.Size(115, 51);
@@ -274,8 +278,12 @@ namespace thalbhet
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
+<<<<<<< Updated upstream
             this.label3.Location = new System.Drawing.Point(1970, 10);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+=======
+            this.label3.Location = new System.Drawing.Point(640, 8);
+>>>>>>> Stashed changes
             this.label3.Name = "label3";
             this.label3.Padding = new System.Windows.Forms.Padding(0, 6, 0, 6);
             this.label3.Size = new System.Drawing.Size(226, 51);
@@ -326,8 +334,12 @@ namespace thalbhet
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.White;
+<<<<<<< Updated upstream
             this.label9.Location = new System.Drawing.Point(1358, 16);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+=======
+            this.label9.Location = new System.Drawing.Point(1063, 18);
+>>>>>>> Stashed changes
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(252, 39);
             this.label9.TabIndex = 7;
@@ -338,8 +350,12 @@ namespace thalbhet
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.White;
+<<<<<<< Updated upstream
             this.label10.Location = new System.Drawing.Point(1610, 16);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+=======
+            this.label10.Location = new System.Drawing.Point(1253, 18);
+>>>>>>> Stashed changes
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(135, 39);
             this.label10.TabIndex = 8;
@@ -399,8 +415,14 @@ namespace thalbhet
             this.AutoSize = true;
             this.BackgroundImage = global::thalbhet.Properties.Resources._1155205__1_;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+<<<<<<< Updated upstream
             this.ClientSize = new System.Drawing.Size(1924, 793);
             this.Controls.Add(this.button3);
+=======
+            this.ClientSize = new System.Drawing.Size(1430, 654);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.button6);
+>>>>>>> Stashed changes
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dateTimePicker3);
             this.Controls.Add(this.button5);

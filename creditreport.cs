@@ -56,8 +56,16 @@ namespace thalbhet
             
             if (label11.Text == "admin")
             {
+<<<<<<< Updated upstream
                 SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
                 SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount, hastaksmk, hastak, submissiontime, enrtydatetime, status, note, giver, taker, loggedinuser, flag FROM newentrytable", con);
+=======
+                string fromReportDate = dateTimePicker2.Value.ToString("yyyy-MM-dd") + " 00:00:00";
+                string toReportDate = dateTimePicker3.Value.ToString("yyyy-MM-dd") + " 23:59:59";
+                //MessageBox.Show(fromReportDate);
+                //MessageBox.Show(toReportDate);
+                SqlCommand selectCMD = new SqlCommand("SELECT * FROM newentrytable where ((status='Credit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "') AND(giver = '"+label11.Text+ "' or taker = '" + label11.Text + "' or loggedinuser = '" + label11.Text + "'))", con);
+>>>>>>> Stashed changes
                 SqlDataAdapter DA = new SqlDataAdapter();
                 DA.SelectCommand = selectCMD;
                 con.Open();
@@ -74,12 +82,20 @@ namespace thalbhet
                 object debsum = debquery.ExecuteScalar();
                 label5.Text = debsum.ToString();
                 //Transfer sum in label
+<<<<<<< Updated upstream
                 SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable ");
+=======
+                SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable where ((status != 'Credit' AND status != 'Debit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
+>>>>>>> Stashed changes
                 transquery.Connection = con;
                 object transsum = transquery.ExecuteScalar();
                 label10.Text = transsum.ToString();
                 //Balance sum in label
+<<<<<<< Updated upstream
                 SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)-SUM(TransAmount)) FROM newentrytable");
+=======
+                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)    ) FROM newentrytable where (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "')");
+>>>>>>> Stashed changes
                 balquery.Connection = con;
                 object balsum = balquery.ExecuteScalar();
                 label6.Text = balsum.ToString();
@@ -88,6 +104,7 @@ namespace thalbhet
             }
             else
             {
+<<<<<<< Updated upstream
                 /*DataView dv = DS.Tables[0].DefaultView;
                 dv.RowFilter = string.Format("loggedinuser LIKE '%{0}%' OR giver LIKE '%{0}%' OR taker LIKE '%{0}%'", label11.Text);
                 dataGridView1.DataSource = dv;*/
@@ -100,6 +117,12 @@ namespace thalbhet
                 string crestring = "Credit";
                 SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
                 SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount, TransAmount, hastaksmk, hastak, submissiontime, enrtydatetime, status, note, giver, taker, loggedinuser FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) AND (status IS NULL OR status ='" + transstring + "' OR status ='" + crestring + "' OR flag='1')", con);
+=======
+                string crestring = "Credit";
+                string fromReportDate = dateTimePicker2.Value.ToString("yyyy-MM-dd") + " 00:00:00";
+                string toReportDate = dateTimePicker3.Value.ToString("yyyy-MM-dd") + " 23:59:59";
+                SqlCommand selectCMD = new SqlCommand("SELECT * FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) AND ((status='Credit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))", con);
+>>>>>>> Stashed changes
                 SqlDataAdapter DA = new SqlDataAdapter();
                 DA.SelectCommand = selectCMD;
                 con.Open();
@@ -107,6 +130,7 @@ namespace thalbhet
                 DA.Fill(DS, "newentrytable");
                 dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
 
+<<<<<<< Updated upstream
                 SqlCommand crquery = new SqlCommand("SELECT SUM(CrAmount) FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) ");
                 crquery.Connection = con;
                 object crsum = crquery.ExecuteScalar();
@@ -120,6 +144,21 @@ namespace thalbhet
                 object transsum = transquery.ExecuteScalar();
                 label10.Text = transsum.ToString();
                 SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)-SUM(TransAmount)) FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR giver ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) ");
+=======
+                SqlCommand crquery = new SqlCommand("SELECT SUM(CrAmount) FROM newentrytable where ((loggedinuser ='" + label11.Text + "' or taker = '" + label11.Text + "') AND (status='Credit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
+                crquery.Connection = con;
+                object crsum = crquery.ExecuteScalar();
+                label4.Text = crsum.ToString();
+                SqlCommand debquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable where ((loggedinuser ='" + label11.Text + "' or taker = '" + label11.Text + "') AND (status='Debit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
+                debquery.Connection = con;
+                object debsum = debquery.ExecuteScalar();
+                label5.Text = debsum.ToString();
+                SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable where ((loggedinuser ='" + label11.Text + "' or taker = '" + label11.Text + "') AND (status != 'Credit' AND status != 'Debit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
+                transquery.Connection = con;
+                object transsum = transquery.ExecuteScalar();
+                label10.Text = transsum.ToString();
+                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)    ) FROM newentrytable where ((loggedinuser ='" + label11.Text + "' or taker = '" + label11.Text + "') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
+>>>>>>> Stashed changes
                 balquery.Connection = con;
                 object balsum = balquery.ExecuteScalar();
                 label6.Text = balsum.ToString();
@@ -222,11 +261,17 @@ namespace thalbhet
 
                 SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True;");
                 con.Open();
+<<<<<<< Updated upstream
                 SqlCommand selectCMD = new SqlCommand("update newentrytable set status = 'Debit', DebAmount = CrAmount , note = '" + note + "'  where ID ='" + id + "'", con);
                 //SqlCommand selectCMD1 = new SqlCommand("update newentrytable set DebAmount = CrAmount where ID ='" + id + "'", con);
                 //SqlCommand selectCMD2 = new SqlCommand("update newentrytable set note = '" + note + "' where ID ='" + id + "'", con);
                 SqlCommand selectCMD2 = new SqlCommand("insert into history (SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,hastaksmk,hastak,status,CrAmount,TransAmount,DebAmount,note) values " +
                                         "('" + smk + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + FatherName + "',N'" + Surname + "','" + MobileNumber + "',N'" + Nimit + "',N'" + name + "','" + hastaksmk + "',N'" + hastak + "','Debit','"+cramount+"','"+transamount+"',0,'" + debamount + "','" + note + "')", con);
+=======
+                SqlCommand selectCMD = new SqlCommand("update newentrytable set status = 'Debit', DebAmount = CrAmount, CrAmount= 0  where ID ='" + id + "'", con);
+                SqlCommand selectCMD2 = new SqlCommand("insert into history (SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,status,CrAmount,TransAmount,DebAmount) values " +
+                                        "('" + smk + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + FatherName + "',N'" + Surname + "','" + MobileNumber + "',N'" + Nimit + "',N'" + name + "','Debit','" + cramount + "','" + transamount + "',0,'" + debamount + "')", con);
+>>>>>>> Stashed changes
 
                 selectCMD.ExecuteNonQuery();
                 
@@ -311,6 +356,7 @@ namespace thalbhet
                 }
                 SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True;");
                 con.Open();
+<<<<<<< Updated upstream
 
                 //if(label11.Text== row.Cells["taker"].Value)
                 //{
@@ -348,6 +394,27 @@ namespace thalbhet
             dataGridView1.DataSource = dt;
             con.Close();
 
+=======
+                //SqlCommand selectCMD = new SqlCommand("update newentrytable set status = 'Transfer' , giver = '" + label11.Text + "', taker = '" + To + "' , TransAmount = CrAmount, CrAmount= 0    where ID ='" + id + "'", con);
+                SqlCommand selectCMD = new SqlCommand("insert into newentrytable (SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,status,giver,taker,DebAmount,CrAmount,loggedinuser) " +
+                    "values " +
+                    "('" + smk + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + FatherName + "',N'" + Surname + "','" + MobileNumber + "',N'" + Nimit + "',N'" + name + "','Debit','" + label11.Text + "','" + To + "','" + amount + "',0,'" + loggedinuser + "')", con);
+                SqlCommand selectCMD1 = new SqlCommand("insert into newentrytable (SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,status,giver,taker,CrAmount,DebAmount,loggedinuser) " +
+                    "values " +
+                    "('" + smk + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + FatherName + "',N'" + Surname + "','" + MobileNumber + "',N'" + Nimit + "',N'" + name + "','Transfer','" + label11.Text + "','" + To + "','" + amount + "',0,'" + To + "')", con);
+                //"status = 'Credit' , giver = '"+label11.Text+"', taker = '"+To+ "' , Cramount = TransAmount, TransAmount = 0 , note = '" + note + "'  where ID ='" + id + "'", con);
+                SqlCommand selectCMD2 = new SqlCommand("insert into history (SMK,PresentCity,NativeCity,FatherName,Surname,MobileNumber,Nimit,name,status,taker,CrAmount,TransAmount,DebAmount) values " +
+                    "                                                       ('" + smk + "',N'" + PresentCity + "',N'" + NativeCity + "',N'" + FatherName + "',N'" + Surname + "','" + MobileNumber + "',N'" + Nimit + "',N'" + name + "', 'Transfer','" + label11.Text + "','" + cramount + "','" + transamount + "','" + debamount + "')", con);
+
+                selectCMD.ExecuteNonQuery();
+                selectCMD1.ExecuteNonQuery();
+                selectCMD2.ExecuteNonQuery();
+                con.Close();
+                
+            }
+            Displaydata();
+            reportload();
+>>>>>>> Stashed changes
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -427,6 +494,7 @@ namespace thalbhet
             string searchValue = textBox2.Text;
             int rowIndex = -1;
 
+<<<<<<< Updated upstream
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             try
             {
@@ -443,6 +511,75 @@ namespace thalbhet
             catch (Exception exc)
             {
                 MessageBox.Show(exc.Message);
+=======
+        private void Button7_Click(object sender, EventArgs e)
+        {
+
+            if (label11.Text == "admin")
+            {
+                string fromReportDate = dateTimePicker2.Value.ToString("yyyy-MM-dd") + " 00:00:00";
+                string toReportDate = dateTimePicker3.Value.ToString("yyyy-MM-dd") + " 23:59:59";
+                //MessageBox.Show(fromReportDate);
+                //MessageBox.Show(toReportDate);
+                SqlCommand selectCMD = new SqlCommand("SELECT * FROM newentrytable where ((status='Credit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "') AND(giver = '" + label11.Text + "' or taker = '" + label11.Text + "' or loggedinuser = '" + label11.Text + "'))", con);
+                SqlDataAdapter DA = new SqlDataAdapter();
+                DA.SelectCommand = selectCMD;
+                con.Open();
+                DataSet DS = new DataSet();
+                DA.Fill(DS, "newentrytable");
+                dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
+                SqlCommand crquery = new SqlCommand("SELECT SUM(CrAmount) FROM newentrytable where ((status='Credit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
+                crquery.Connection = con;
+                object crsum = crquery.ExecuteScalar();
+                label4.Text = crsum.ToString();
+                //Debit sum in label
+                SqlCommand debquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable where ((status='Debit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
+                debquery.Connection = con;
+                object debsum = debquery.ExecuteScalar();
+                label5.Text = debsum.ToString();
+                //Transfer sum in label
+                SqlCommand transquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable where ((status != 'Credit' AND status != 'Debit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
+                transquery.Connection = con;
+                object transsum = transquery.ExecuteScalar();
+                label10.Text = transsum.ToString();
+                //Balance sum in label
+                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)    ) FROM newentrytable where (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "')");
+                balquery.Connection = con;
+                object balsum = balquery.ExecuteScalar();
+                label6.Text = balsum.ToString();
+                con.Close();
+
+            }
+            else
+            {
+                string crestring = "Credit";
+                string fromReportDate = dateTimePicker2.Value.ToString("yyyy-MM-dd") + " 00:00:00";
+                string toReportDate = dateTimePicker3.Value.ToString("yyyy-MM-dd") + " 23:59:59";
+                SqlCommand selectCMD = new SqlCommand("SELECT * FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) AND ((status='Credit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))", con);
+                SqlDataAdapter DA = new SqlDataAdapter();
+                DA.SelectCommand = selectCMD;
+                con.Open();
+                DataSet DS = new DataSet();
+                DA.Fill(DS, "newentrytable");
+                dataGridView1.DataSource = DS.Tables["newentrytable"].DefaultView;
+                SqlCommand crquery = new SqlCommand("SELECT SUM(CrAmount) FROM newentrytable where ((loggedinuser ='" + label11.Text + "') AND (status='Credit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
+                crquery.Connection = con;
+                object crsum = crquery.ExecuteScalar();
+                label4.Text = crsum.ToString();
+                SqlCommand debquery = new SqlCommand("SELECT SUM(DebAmount) FROM newentrytable where ((loggedinuser ='" + label11.Text + "') AND (status='Debit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
+                debquery.Connection = con;
+                object debsum = debquery.ExecuteScalar();
+                label5.Text = debsum.ToString();
+                SqlCommand transquery = new SqlCommand("SELECT SUM(TransAmount) FROM newentrytable where ((loggedinuser ='" + label11.Text + "') AND (status != 'Credit' AND status != 'Debit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
+                transquery.Connection = con;
+                object transsum = transquery.ExecuteScalar();
+                label10.Text = transsum.ToString();
+                SqlCommand balquery = new SqlCommand("SELECT (SUM(CrAmount)-SUM(DebAmount)) FROM newentrytable where ((loggedinuser ='" + label11.Text + "') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))");
+                balquery.Connection = con;
+                object balsum = balquery.ExecuteScalar();
+                label6.Text = balsum.ToString();
+                con.Close();
+>>>>>>> Stashed changes
             }
         }
 
@@ -450,8 +587,14 @@ namespace thalbhet
         {
             if (label11.Text == "admin")
             {
+<<<<<<< Updated upstream
                 SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
                 SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount, hastaksmk, hastak, submissiontime, enrtydatetime, status, note, giver, taker, loggedinuser FROM newentrytable where SMK like '"+textBox2.Text+"' ", con);
+=======
+                string fromReportDate = dateTimePicker2.Value.ToString("yyyy-MM-dd") + " 00:00:00";
+                string toReportDate = dateTimePicker3.Value.ToString("yyyy-MM-dd") + " 23:59:59";
+                SqlCommand selectCMD = new SqlCommand("SELECT * FROM newentrytable where ( SMK = '"+textBox2.Text+"' AND (status='Credit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))", con);
+>>>>>>> Stashed changes
                 SqlDataAdapter DA = new SqlDataAdapter();
                 DA.SelectCommand = selectCMD;
                 con.Open();
@@ -482,6 +625,7 @@ namespace thalbhet
             }
             else
             {
+<<<<<<< Updated upstream
                 /*DataView dv = DS.Tables[0].DefaultView;
                 dv.RowFilter = string.Format("loggedinuser LIKE '%{0}%' OR giver LIKE '%{0}%' OR taker LIKE '%{0}%'", label11.Text);
                 dataGridView1.DataSource = dv;*/
@@ -493,6 +637,11 @@ namespace thalbhet
                 string transstring = "Transfer";
                 SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\thal bhet new\thalbhet\newentrydb.mdf;Integrated Security=True");
                 SqlCommand selectCMD = new SqlCommand("SELECT ID, SMK, name, FatherName, Surname, PresentCity, NativeCity,MobileNumber, Nimit, CrAmount, TransAmount, hastaksmk, hastak, submissiontime, enrtydatetime, status, note, giver, taker, loggedinuser FROM newentrytable where (loggedinuser ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) AND (status IS NULL OR status ='" + transstring + "') AND SMK like '" + textBox2.Text + "'", con);
+=======
+                string fromReportDate = dateTimePicker2.Value.ToString("yyyy-MM-dd") + " 00:00:00";
+                string toReportDate = dateTimePicker3.Value.ToString("yyyy-MM-dd") + " 23:59:59";
+                SqlCommand selectCMD = new SqlCommand("SELECT * FROM newentrytable where ( SMK = '" + textBox2.Text + "' AND (loggedinuser ='" + label11.Text + "' OR taker ='" + label11.Text + "' ) AND ((status='Credit') AND (enrtydate BETWEEN '" + fromReportDate + "' AND '" + toReportDate + "'))", con);
+>>>>>>> Stashed changes
                 SqlDataAdapter DA = new SqlDataAdapter();
                 DA.SelectCommand = selectCMD;
                 con.Open();

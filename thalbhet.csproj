@@ -207,6 +207,12 @@
     <Compile Include="debitreport.Designer.cs">
       <DependentUpon>debitreport.cs</DependentUpon>
     </Compile>
+    <Compile Include="deleted.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="deleted.Designer.cs">
+      <DependentUpon>deleted.cs</DependentUpon>
+    </Compile>
     <Compile Include="export.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -324,6 +330,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="debitreport.resx">
       <DependentUpon>debitreport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="deleted.resx">
+      <DependentUpon>deleted.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="export.resx">
       <DependentUpon>export.cs</DependentUpon>
